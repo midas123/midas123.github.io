@@ -1,0 +1,114 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: yk-dev-blog
+email: midasyk123@naver.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Welcome to my dev-blog. I blog what I learned about
+  and this blog is made of web-programming stuff.
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "https://midas123.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+repository: ""
+masthead_title: ""
+author:
+  name: "yk"
+  avatar: "/assets/images/profile.jpg"
+  bio: "Welcome to my dev-blog."
+  #location: "Somewhere"
+  links:
+    - label: "Blog"
+      icon: "fab fa-blogger"
+      url: "http://midas123.tistory.com/"
+    - label: "Github"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/midas123"
+
+head_scripts: ""
+footer_scripts: ""
+search: true
+timezone: "Asia/Seoul"
+encoding: utf-8
+paginate: 5 # amount of posts to show
+paginate_path: /page:num/
+
+twitter_username: ""
+github_username:  ""
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+      sidebar:
+        nav: "docs"
+
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+      sidebar:
+        nav: "docs"
+
+  # _portfolio
+  - scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      sidebar:
+        nav: "docs"
+
+  # _foo
+  - scope:
+      path: ""
+      type: foo
+    values:
+      layout: single
+
+
+
+
+# Build settings
+markdown: kramdown
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "default" #"default" "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
+locale: "ko"
+
+plugins:
+  - jekyll-feed
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
