@@ -17,7 +17,7 @@ author_profile: true
 
     <title>Home</title>
 <style>
-.button {
+.button_detail{
   font-size: 14px;
   background-color: #ddd;
   border: none;
@@ -29,9 +29,8 @@ author_profile: true
   margin: 4px 2px;
   cursor: pointer;
 }
-.button:hover{
-    color: white;
-    background-image:none;
+a.button_detail:hover{
+    color: white !important;
     background-color:#262626;
 }
 </style>
@@ -40,7 +39,7 @@ author_profile: true
 <body>
 
     <div class="portfolio_summary">
-    <div style="display: inline-block; width:50px; height: auto; background-color: green; overflow:auto; margin:auto;">
+    <div style="display: inline-block; width:50px; height: auto;">
     </div>
     <div style="display: inline-block;">
         <h1 style="font-size:45px;">PORTFOLIO</h1>
@@ -52,7 +51,7 @@ author_profile: true
         <th></th>
         <div>
             <div style="display: inline-block;"><h2>OFF THE BALL</h2></div>
-            <div style="display: inline-block;"><button class="button" onclick="">상세보기</button></div>
+            <div style="display: inline-block;"><a class="button_detail" href="http://localhost:4000/2019/01/22/off-the-ball.html" style="color:black;">상세보기</a></div>
         </div>
         <div id="project_detail1">
             <ul  style="font-size: 16px;">
@@ -63,7 +62,7 @@ author_profile: true
         </div>
         <div>
             <div style="display: inline-block;"><h2>MODUHOME</h2></div>
-            <div style="display: inline-block;"><button class="button" onclick="">상세보기</button></div>
+            <div style="display: inline-block;"><a class="button_detail" href="http://localhost:4000/2019/01/26/ModuHome.html" style="color:black;">상세보기</a></div>
         </div>
         <ul id="project_detail2" style="font-size: 16px;">
             <li>프로젝트 개요 - 셀프 인테리어 쇼핑몰이면서 정보를 공유하고 소통할 수 있는 사이트
@@ -73,7 +72,7 @@ author_profile: true
         </ul>
         <div>
             <div style="display: inline-block;"><h2>MODUHOME2</h2></div>
-            <div style="display: inline-block;"><button class="button" onclick="">상세보기</button></div>
+            <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}2019/01/22/off-the-ball-membership.html" style="color:black;">상세보기</a></div>
         </div>
         <ul id="project_detail3" style="font-size: 16px;">
             <li>프로젝트 개요</li>
