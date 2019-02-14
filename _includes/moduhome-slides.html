@@ -1,0 +1,56 @@
+
+
+<div style="position: relative;">
+    <div class="mySlides">
+        <img src="{{ site.url }}{{ site.baseurl }}\assets\images\post\MODUHOME\modu-goodsorder.jpg">
+        <div id="text">상품 게시판</div>
+    </div>
+    <div class="mySlides">
+        <img src="{{ site.url }}{{ site.baseurl }}\assets\images\post\MODUHOME\modu-goodsdetail.jpg">
+        <div id="text">상품 상세페이지</div>
+    </div>
+    <div class="mySlides">
+        <img src="{{ site.url }}{{ site.baseurl }}\assets\images\post\MODUHOME\mh-qna.jpg">
+        <div id="text">Q&A 게시판</div>
+    </div>
+    <div class="mySlides">
+        <img src="{{ site.url }}{{ site.baseurl }}\assets\images\post\MODUHOME\mh-review.jpg">
+        <div id="text">리뷰 게시판</div>
+    </div>
+    <div class="mySlides">
+        <img src="{{ site.url }}{{ site.baseurl }}\assets\images\post\MODUHOME\md-cart.jpg">
+        <div id="text">장바구니</div>
+    </div>
+    <div class="mySlides">
+        <img src="{{ site.url }}{{ site.baseurl }}\assets\images\post\MODUHOME\md-order.jpg">
+        <div id="text">주문 페이지</div>
+    </div>
+    <div class="mySlides">
+        <img src="{{ site.url }}{{ site.baseurl }}\assets\images\post\MODUHOME\md-orderresult.jpg">
+        <div id="text">주문완료 페이지</div>
+    </div>
+    <div>
+        <button class="w3-button w3-display-left" onclick="plusDivs(-1)" style="position: absolute; left: -20px; top: 43%;">&#10094;</button>    
+        <button class="w3-button w3-display-right" onclick="plusDivs(+1)" style="position: absolute; right: -20px; top: 43%;">&#10095;</button>
+    </div>
+</div>
+    <script>    
+        var slideIndex = 1;
+        showDivs(slideIndex);
+        
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+        
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {slideIndex = 1} 
+            if (n < 1) {slideIndex = x.length} ;
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none"; 
+            }
+            x[slideIndex-1].style.display = "block"; 
+        }
+
+        </script>

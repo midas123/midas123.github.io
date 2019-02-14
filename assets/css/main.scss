@@ -19,3 +19,45 @@ body {font-family: 'Nanum Gothic', sans-serif;}
     display: block;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.w3-black, .w3-hover-black:hover {
+    color: #fff!important;
+    background-color: #000!important;
+}
+
+.w3-btn, .w3-button {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.w3-button:hover {
+    background-color: #262626;
+    color: white;
+  }
+
+.mySlides img, .mySlides2 img, .mh2-img{
+max-width:700px; max-height:400px; width: auto; height: auto;
+margin: 0 auto;
+display: block;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    background-color: #ff9966;
+    color: white;
+    padding: 6px 14px;
+  }
+

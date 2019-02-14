@@ -55,34 +55,46 @@ a.button_detail:hover{
         </div>
         <div id="project_detail1">
             <ul  style="font-size: 16px;">
-                    <li>프로젝트 개요 - 팀/개인 단위로 참여 가능한 축구경기 스케줄링 및 커뮤니티 기능을 하는 사이트</li>
+                    <li>프로젝트 개요 - 팀/개인 단위로 참여 가능한 축구경기 스케줄링 및 커뮤니티</li>
                     <li>사용기술 - java / jsp / struts2 / javascript / ibatis / oralce</li>
                     <li>담당 파트 - 회원가입 / 로그인 / 관리자 페이지 구현</li>
             </ul>
         </div>
+        {% include offtheball-slides.html %}
+        <br>
+        <hr>
         <div>
             <div style="display: inline-block;"><h2>MODUHOME</h2></div>
             <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/01/26/ModuHome.html" style="color:black;">상세보기</a></div>
         </div>
         <ul id="project_detail2" style="font-size: 16px;">
-            <li>프로젝트 개요 - 셀프 인테리어 쇼핑몰이면서 정보를 공유하고 소통할 수 있는 사이트
+            <li>프로젝트 개요 - 셀프 인테리어 쇼핑몰이면서 정보를 공유하는 커뮤니티
                 </li>
-            <li>사용기술 - java / jsp / spring / jquery / ajax / mybatis / oracle</li>
+            <li>사용기술 - java / jsp / spring / jquery / ajax / mybatis / oracle / maven</li>
             <li>담당 파트 - 상품 게시판 / 상세 페이지 / 주문 및 결제 / 장바구니</li>
         </ul>
+        {% include moduhome-slides.html %}
+        <br>
+        <hr>
         <div>
             <div style="display: inline-block;"><h2>MODUHOME2</h2></div>
-            <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/01/22/off-the-ball-membership.html" style="color:black;">상세보기</a></div>
+            <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/02/07/ModuHome2.html" style="color:black;">상세보기</a></div>
         </div>
         <ul id="project_detail3" style="font-size: 16px;">
-            <li>프로젝트 개요</li>
-            <li>사용기술</li>  
-            <li>프로젝트 변경이력</li>
+            <li>프로젝트 개요 - MODUHOME 프로젝트 업그레이드</li>
+            <li>추가 사용기술 - AWS EC2 / docker / jenkins  </li>  
+            <li>MODUHOME2 요약</li>
+                <ul>
+                    <li>AWS-EC2 인스턴스에 수동 빌드 및 배포</li>
+                    <li>AWS-EC2 인스턴스에 Docker, Jenkins로 자동빌드 및 배포환경 구성</li>
+                    <li>JUNIT 테스트</li>
+                </ul>
         </ul>
+        <img class="mh2-img" src="{{ site.url }}{{ site.baseurl }}\assets\images\post\MODUHOME2\mh2.jpg" width="700"/>
+        <br>
+        <hr>
     </div>
-​    </table>
-   
-    
+​    </table>   
     </body>
     </html>
 

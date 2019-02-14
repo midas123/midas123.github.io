@@ -60,6 +60,10 @@ defaults:
       related: true
       sidebar:
         nav: "docs"
+      comments: true
+      provider: "disqus"
+      disqus:
+        shortname: "ykblog-2"
 
   # _pages
   - scope:
@@ -88,8 +92,6 @@ defaults:
       type: foo
     values:
       layout: single
-
-
 
 
 # Build settings
