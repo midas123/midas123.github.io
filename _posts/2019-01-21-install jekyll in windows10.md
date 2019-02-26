@@ -1,6 +1,7 @@
 ---
   layout: single
   title: 윈도우10에서 jekyll 설치하기
+  tag: [jekyll]
 ---
 
 

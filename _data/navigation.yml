@@ -1,10 +1,10 @@
 docs:
   - title: MENU
     children:
-      - title: "MyPortFolio"
+      - title: "PortFolio"
         url: /
       - title: "2019"
-        url: /2019/
+        url: /year-archive/
       
 
 main:
