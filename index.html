@@ -22,7 +22,7 @@ author_profile: true
   background-color: #ddd;
   border: none;
   color: black;
-  padding: 7px 15px;
+  padding: 4px 12px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -37,75 +37,75 @@ a.button_detail:hover{
 
 </head>
 <body>
-
     <div class="portfolio_summary">
     <div style="display: inline-block; width:50px; height: auto;">
     </div>
     <div style="display: inline-block;">
         <h1 style="font-size:45px;">PORTFOLIO</h1>
-        <br><br><br>
+        <br><br>
+        <h1>기술 경험</h1>
+        <hr>
+        <ul>
+            <li>spring 프레임워크와 mybatis 팀 프로젝트</li>
+            <li>struts2 프레임워크와 ibatis 팀 프로젝트</li>
+            <li>jquery, ajax, javascript로 사이트 기능 구현</li>
+            <li>CRUD, JOIN, 서브쿼리 등 기본적인 SQL 숙지</li>
+            <li>AWS EC2 인스턴스에서 Docker와 jenkins로 자동 빌드 및 배포 환경 구성</li>
+            <li>git bash, 이클립스 내에서 기본적인 git 사용 경험</li>
+            <li>리눅스 운영체제 사용 경험</li>
+        </ul>
+        <br><br>
         <h1>팀 프로젝트</h1>
         <hr>
-        <table>
-        <th></th>
-        <th></th>
-        <div>
-            <div style="display: inline-block;"><h2>OFF THE BALL</h2></div>
-            <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/01/22/off-the-ball.html" style="color:black;">상세보기</a></div>
-        </div>
-        <div id="project_detail1">
-                사용기술 - java / jsp / struts2 / javascript / ibatis / oralce
-            <!-- <ul  style="font-size: 16px;">
-                    
-                    <li>사용기술 - java / jsp / struts2 / javascript / ibatis / oralce</li>
-                   
-            </ul> -->
-        </div>
-        <br>
-        {% include offtheball-slides.html %}
-        <br>
-        <hr>
-        <div>
-            <div style="display: inline-block;"><h2>MODUHOME</h2></div>
-            <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/01/26/ModuHome.html" style="color:black;">상세보기</a></div>
-        </div>
-        <div id="project_detail2">
-                사용기술 - java / spring / jquery / ajax / mybatis / oracle / maven 
-        </div>
-        <br>
-        <!-- <ul id="project_detail2" style="font-size: 16px;">
-            
-            <li>사용기술 - java / jsp / spring / jquery / ajax / mybatis / oracle / maven</li>
-           
-        </ul> -->
-        {% include moduhome-slides.html %}
-        <br>
-        <hr>
-        <div>
-            <div style="display: inline-block;"><h2>MODUHOME2</h2></div>
-            <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/02/07/ModuHome2.html" style="color:black;">상세보기</a></div>
-        </div>
-        <div id="project_detail3">
-            추가 사용기술 - AWS EC2 / docker / jenkins
-        </div>
-        <br>
-        <!-- <ul id="project_detail3" style="font-size: 16px;">
-        
-            <li>추가 사용기술 - AWS EC2 / docker / jenkins  </li>  
-            <li>MODUHOME2 요약</li>
-                <ul>
-                    <li>AWS-EC2 인스턴스에 수동 빌드 및 배포</li>
-                    <li>AWS-EC2 인스턴스에 Docker, Jenkins로 자동빌드 및 배포환경 구성</li>
-                    <li>JUNIT 테스트</li>
-                </ul>
-        </ul> -->
-        <img class="mh2-img" src="{{ site.url }}{{ site.baseurl }}\assets\images\post\MODUHOME2\mh2.jpg" width="700"/>
-        <br>
-        <hr>
-        <br><br><br>
-        
+        <ul>
+            <li>
+                <div>
+                    <div style="display: inline-block;"><h2>OFF THE BALL</h2></div>
+                    <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/01/22/off-the-ball.html" style="color:black;">상세보기</a></div>
+                </div>
+                <div id="project_detail1">
+                    java / jsp / struts2 / javascript / ibatis / oralce
+                </div>
+            </li>
+
+        <li>    
+            <div>
+                <div style="display: inline-block;"><h2>MODUHOME</h2></div>
+                <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/01/26/ModuHome.html" style="color:black;">상세보기</a></div>
+            </div>
+            <div id="project_detail2">
+                java / spring / jquery / ajax / mybatis / oracle / maven 
+            </div>
+        </li>
+    </ul>
+    <br><br>
+    <h1>개인 프로젝트</h1>
+    <hr>
+    <ul>
+        <li>
+            <div>
+                <div style="display: inline-block;"><h2>MODUHOME2</h2></div>
+                <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/02/07/ModuHome2.html" style="color:black;">상세보기</a></div>
+            </div>
+            <div id="project_detail3">
+                AWS EC2 / docker / jenkins
+            </div>
+        </li>
+        <li>
+                <div>
+                    <div style="display: inline-block;"><h2>SpringBoot-JPA-Hibernate</h2></div>
+                    <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/04/08/Springboot-Hibernate-project.html" style="color:black;">상세보기</a></div>
+                </div>
+                <div id="project_detail3">
+                    springboot / hibernate / spring-security / thymeleaf / maven
+                </div>
+            </li>
+
+    </ul>
+
+      
     </div>
-​    </table>   
+    <br><br><br>
     </body>
     </html>
 
