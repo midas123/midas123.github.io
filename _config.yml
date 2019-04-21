@@ -49,7 +49,7 @@ include:
 
 twitter_username: ""
 github_username:  ""
-
+g_analytics: UA-138663237-1
 
 defaults:
   # _posts
