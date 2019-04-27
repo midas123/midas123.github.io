@@ -1,3 +1,8 @@
+---
+  layout: single
+  title: React 프로젝트 세팅 방법
+---
+
 react 프로젝트 개발 환경 세팅을 정리했다. react는 유저 인터페이스를 만드는 라이브러리이므로
 프론트 엔드만을 담당하기 때문에 백엔드에서 사용자 요청을 처리하기 위한 웹 서버가 추가로 필요하다. 
 
@@ -52,7 +57,7 @@ yarn start
 npm init -y
 ```
 
-npm init 실행 후 폴더 안에 package.json 파일이 생성된다. [npm-script](https://docs.npmjs.com/misc/scripts)
+npm init 실행 후 폴더 안에 package.json 파일이 생성된다.
 
 *-package.json*
 
@@ -118,7 +123,9 @@ npm install css-loader style-loader --save-dev
 
 ## 4.package.json 설정
 
-**scripts**: 로컬 webpack을 CLI에서 쉽게 사용할 수 있도록 [npm script](https://docs.npmjs.com/misc/scripts)를 정의한다. 
+이 파일에서는 주로 프로젝트에서 사용하는 dependency를 정의한다.
+
+**scripts**: 로컬 webpack을 CLI에서 쉽게 사용할 수 있도록 [npm script](https://docs.npmjs.com/misc/scripts)를 작성한다. 
 
 ```javascript
 {
@@ -153,7 +160,7 @@ npm install css-loader style-loader --save-dev
 }
 ```
 
-위 설정 중 scripts 안에서 "start"에 할당한 명령어를 커맨드 창에서 실행한다.
+위 설정 중 scripts 안에서 "start"에 할당한 명령어를 커맨드 창에서 아래처럼 실행할 수 있다.
 
 ```
 npm start
@@ -162,6 +169,8 @@ npm start
 <br>
 
 ## 5.webpack.config.js
+
+webpack은 entry에 있는 모듈의 의존 관계를 이용해서 번들 작업을 진행한다. webpack.config.js에서는 entry 파일과 output 파일을 정하고 프로젝트의 asset 파일(css, js 등)을 모듈로 등록한다.
 
 **entry**: dependency graph의 시작점, webpack은 entry point에서 직/간접적으로 의존하고 있는 모듈 또는 라이브러리를 알아내서 빌드한다.
 
