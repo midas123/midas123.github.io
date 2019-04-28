@@ -12,7 +12,7 @@ react 프로젝트 개발 환경 세팅을 정리했다. react는 유저 인터�
 
 # nodejs & npm 설치
 
-nodejs를 [다운로드](https://nodejs.org/ko/download/) 후 설치시 npm도 같이 설치된다. nodejs 자바스크립트 기반의 오픈 소스 서버이다. npm은 패키지 매니져이다. 명령어 입력으로 간단하게 각종 오픈소스를 다운로드 받을 수 있다.
+윈도우에서 nodejs를 [다운로드](https://nodejs.org/ko/download/) 후 설치시 npm도 같이 설치된다. node는 자바스크립트 기반의 오픈 소스 서버이다. 같이 설치되는 [npm](https://docs.npmjs.com/cli/npm)은 자바스크립트 패키지 매니져이다. CLI를 지원하므로 윈도우 명령 프롬프트에서 오픈소스 설치 명령어를 입력하면 다운로드 받은 후 설치가 진행된다.
 
 
 
