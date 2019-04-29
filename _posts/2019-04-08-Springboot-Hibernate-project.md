@@ -56,7 +56,7 @@
 
 ## 개체 관계도
 
-![]({{ site.url }}{{ site.baseurl }}\assets\images\post\springboot\springbootex_20190409.jpg){: .center-image }
+![]({{ site.url }}{{ site.baseurl }}\assets\images\post\springboot\springboot_20190429_11_30.jpg){: .center-image }
 
 <br><br>
 

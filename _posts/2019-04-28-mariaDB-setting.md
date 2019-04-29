@@ -1,6 +1,6 @@
 ---
   layout: single
-  title: 리눅스(데비안) mariaDB 세팅
+  title: 리눅스 mariaDB 세팅
 ---
 
 리눅스(데비안) 환경에서 마리아DB 세팅 방법을 정리했습니다. [mariaDB](https://mariadb.com/kb/ko/mariadb-korean-mariadb/)는 mysql 엔지니어가 만든 오픈 소스 데이터베이스 입니다. ([GNU General Public License, version 2](https://www.olis.or.kr/license/Detailselect.do?lId=1004&mapCode=010004).)
@@ -95,7 +95,18 @@ DROP USER 'abc123'@'%' //계정 삭제
 
 ```
 GRANT all privileges ON efg.* TO 'abc123';
+REVOKE DELETE ON efg.* FROM abc123@'%'; //권한 제거
 ```
+
+※MYSQL 공식 문서에서 INSERT, UPDATE, DELETE 등 DML로 GRANT 테이블을 직접 조작하여 권한을 부여하는 방법은 추천하지 않는다. [링크](https://dev.mysql.com/doc/refman/5.7/en/privilege-changes.html) 
+
+위에서 처럼 **GRANT(DCL)로 권한을 부여하지 않은 경우** 아래 명령어로 권한 변경을 갱신해줘야 한다.
+
+```
+FLUSH PRIVILEGES;
+```
+
+
 
 <br>
 
