@@ -3,7 +3,7 @@ docs:
     children:
       - title: "PortFolio"
         url: /
-      - title: "2019"
+      - title: "모두 보기"
         url: /year-archive/
       
 
