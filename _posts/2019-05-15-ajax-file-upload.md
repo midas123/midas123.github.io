@@ -108,10 +108,28 @@ public interface UserImagesRepository extends JpaRepository<UserImages, Long>{
 
 서비스 클래스 - 파일 정보를 DB에 저장하고 실제 파일을 지정한 경로에 저장
 
-```
+```java
 @Service
 public class UserImageService {
-	//서비스 로직
+	private UserImagesRepository userImagesRepository;
+	
+	public UserImageService(UserImagesRepository userImagesRepository) {
+		this.userImagesRepository = userImagesRepository;
+	}
+	
+	public void saveFile(UserImagesRequestDto dto) throws IOException {
+		dto = saveFileToPath(dto);
+		userImagesRepository.save(dto.toEntity());
+	}
+	
+	private UserImagesRequestDto saveFileToPath(UserImagesRequestDto dto) throws IOException{
+		String ex_uploadPath = "C:\\Users\\yk1\\Desktop\\upload2\\images\\";
+		byte[] bytes = dto.getFile_data().getBytes();
+		Path path = Paths.get(ex_uploadPath+dto.getFile_save_name());
+		Files.write(path, bytes);
+		dto.setFile_data(null);
+		return dto;
+	}
 }
 ```
 
