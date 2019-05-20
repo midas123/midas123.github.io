@@ -24,6 +24,7 @@
 
 - UserImages 엔티티, DTO, DAO, 서비스 클래스 추가
 - 자바 클래스에서 WebMvcConfigurer를 구현 후 업로드 파일이 저장될 경로와 url 맵핑을 설정
+- application.yml에 업로드 파일 사이즈 설정 추가
 - html 페이지에 form 태그 안에 file 타입의 input 태그 추가
 - ajax 코드 수정
 - 컨트롤러에 UUID 클래스를 이용한 저장용 파일 이름 생성 코드 추가
@@ -34,7 +35,9 @@
 
 ## UserImages 엔티티, DTO, DAO, 서비스 클래스
 
-UserImages 엔티티 - Users 엔티티의 userid 칼럼과 1:1 맵핑 관계
+![]({{ site.url }}{{ site.baseurl }}\assets\images\post\0514\spring-jpa_20190514_17_14.png){: .center-image }
+
+UserImages 엔티티의 userid는 참조키이며 Users 엔티티의 userid 칼럼과 1:1 맵핑 관계 입니다.
 
 ```java
 @Entity
