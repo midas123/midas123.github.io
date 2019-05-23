@@ -41,7 +41,7 @@ systemd는 리눅스 시스템 부팅시 작동할 프로그램을 관리하는 
 
 <br>
 
-**root 계정 로그인**
+**리눅스 root 계정 로그인**
 
 ```
 su root //루트 계정 로그인(비밀번호 입력)
@@ -52,9 +52,11 @@ sudo passwd root //최초 설치 후 루트 계정 비밀번호 설정
 **시작 설정**
 
 ```
+sudo systemctl status mariadb //실행 상태 확인
+
 systemctl start mariadb
 
-systemctl restart mariadb //재시작
+systemctl restart mariadb
 ```
 
 **자동 시작 설정**
@@ -71,7 +73,7 @@ https://mariadb.com/kb/en/library/systemd/#interacting-with-the-mariadb-server-p
 
 ## DB 계정 생성
 
-마리아DB에 root로 접속
+마리아DB에 root 유저로 접속
 
 ```
 mysql -u root -p
@@ -80,25 +82,30 @@ mysql -u root -p
 새로운 계정으로 사용할 데이터 베이스 생성
 
 ```
-create database 'DB명';
-use 'DB명'; //DB 선택
+CREATE DATABASE 'DB명';
+
+SHOW DATABASES //DB 목록
+USE 'DB명'; //DB 선택
 ```
 
-root 계정으로 외부에서 접속하는 것은 보안상 좋지 않으므로 새로 계정을 생성한다. 아래는 예시는 계정명이 abc123, 접속대역은 제한없음(%)이고 비밀번호는 1234이다.
+root 계정으로 외부에서 접속하는 것은 보안상 좋지 않으므로 새로 계정을 생성한다. 아래는 예시는 계정명이 abc123, 접속대역은 제한없음(%)이고 비밀번호는 1234이다. [CREATE USER 문법](https://mariadb.com/kb/en/library/create-user/)
 
 ```
 CREATE USER 'abc123'@'%' IDENTIFIED BY '1234';
-DROP USER 'abc123'@'%' //계정 삭제
+
+SELECT user,host FROM mysql.user; //mysql데이터베이스의 유저 테이블 조회
+DROP USER 'abc123'@'%'; //계정 삭제
 ```
 
 생성한 계정에 권한 부여.  eft 데이터베이스의 모든 테이블(*)에 대한 모든 권한을 abc123에게 부여한다.
 
 ```
 GRANT all privileges ON efg.* TO 'abc123';
+
 REVOKE DELETE ON efg.* FROM abc123@'%'; //권한 제거
 ```
 
-※MYSQL 공식 문서에서 INSERT, UPDATE, DELETE 등 DML로 GRANT 테이블을 직접 조작하여 권한을 부여하는 방법은 추천하지 않는다. [링크](https://dev.mysql.com/doc/refman/5.7/en/privilege-changes.html) 
+※INSERT, UPDATE, DELETE 등 DML로 GRANT 테이블을 직접 조작하여 권한을 부여하면 db서버를 재시작 하기전까지 변경사항이 적용되지 않는다. [링크](https://dev.mysql.com/doc/refman/5.7/en/privilege-changes.html) 
 
 위에서 처럼 **GRANT(DCL)로 권한을 부여하지 않은 경우** 아래 명령어로 권한 변경을 갱신해줘야 한다.
 
@@ -118,13 +125,21 @@ my.cnf 파일을 오픈 후 포트 수정 및 IP 바인딩이 가능하다.
 vi /etc/mysql/my.cnf
 ```
 
-로컬이 아닌 구글 클라우드 인스턴스에 설치했으므로 아래와 같이 **IP 바인딩**을 변경했다.
+로컬이 아닌 구글 클라우드 인스턴스에 설치했으므로 아래와 같이 **bind-address**을 변경했다.
 
 ```
 bind-address = 127.0.0.1     ->      0.0.0.0
 ```
 
-**port 번호**는 그대로 사용한다. (기본값은 3306) 참고로 필자는 구글 클라우드 인스턴스에 mariaDB를 설치했으므로 클라우드 인스턴스의 방화벽 설정에서 port를 열어줘야 외부에서 접속할 수 있다.
+마리아DB 재시작 후 아래 명령어로 **bind-address**가 변경 되었는지 확인한다.
+
+```
+sudo lsof -i -P -n | grep 3306
+```
+
+**port 번호**는 그대로 사용한다. (기본값은 3306) 참고로 필자는 구글 클라우드 인스턴스에 mariaDB를 설치했으므로 구글 클라우드 인스턴스의 방화벽 설정에서 port를 열어줘야 외부에서 접속할 수 있다.
+
+
 
 <br>
 
