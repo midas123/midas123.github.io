@@ -1,7 +1,7 @@
 ---
   layout: single
   title: Springboot-Hibernate 개인 프로젝트
-  tag: [java, springboot, jpa, hibernate, spring-security, jquery, ajax, 이메일-api, maven]
+  tag: [java, springboot, jpa, hibernate, spring-security, jquery, ajax, maven]
 ---
 
 이전에 진행한 팀 프로젝트에서 spring과 mybatis를 기반으로 XML 설정 파일로 ORM을 세팅해서   사용해본 경험이 있습니다. 
