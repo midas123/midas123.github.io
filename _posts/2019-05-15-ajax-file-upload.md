@@ -1,6 +1,7 @@
 ---
  layout: single
  title: springboot에서 ajax로 파일 업로드하기
+ tag: [java, springboot, jpa, hibernate, ajax, maven]
 ---
 
 기존 회원가입 기능에서 이미지 파일을 업로드 할 수 있도록 수정하였습니다. form 안에 파일을 포함해서 submit 처리를 해야 하는데 ajax 요청으로 보낼 수 있는 기본 데이터 타입은 text, xml, json 등의 이기 때문에 파일 전송을 위해서는 ajax 코드 수정이 필요했습니다.

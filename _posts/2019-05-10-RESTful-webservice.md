@@ -1,6 +1,7 @@
 ---
  layout: single
  title: 스프링부트 RESTful 게시판 구현
+ tag: [java, rest-api, springboot, maven]
 ---
 
 앞서 스프링부트 + 스프링시큐리티를 사용해서 회원가입/로그인을 구현하였고 이어서 RESTful한 구조의 기본적인 게시판을 구현했습니다. 

@@ -24,7 +24,7 @@ repository: ""
 masthead_title: ""
 author:
   name: "yk"
-  avatar: "/assets/images/profile.jpg"
+  #avatar: "/assets/images/profile.jpg"
   bio: "Welcome to my dev-blog."
   #location: "Somewhere"
   links:
@@ -32,7 +32,7 @@ author:
       icon: "fab fa-blogger"
       url: "http://midas123.tistory.com/"
     - label: "Github"
-      icon: "fab fa-fw fa-github"
+      icon: "fab fa-git-square"
       url: "https://github.com/midas123"
 
 head_scripts: ""
@@ -63,14 +63,14 @@ defaults:
       read_time: false
       comments: true
       share: false
-      related: true
+      related: false
       sidebar:
         nav: "docs"
       comments: true
       provider: "disqus"
       disqus:
         shortname: "ykblog-2"
-
+        tag: tag-archive
   # _pages
   - scope:
       path: ""
@@ -80,7 +80,6 @@ defaults:
       author_profile: true
       sidebar:
         nav: "docs"
-     
 
   # _portfolio
   - scope:
@@ -100,6 +99,24 @@ defaults:
     values:
       layout: single
 
+category_archive:
+  type: jekyll-archives
+  path: /categories/
+tag_archive:
+  type: jekyll-archives
+  path: /tags/
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: archive-taxonomy
+    tag: archive-taxonomy
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
+
+
 
 # Build settings
 markdown: kramdown
@@ -110,6 +127,7 @@ locale: "ko"
 plugins:
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-archives
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

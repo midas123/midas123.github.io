@@ -1,6 +1,7 @@
 ---
 layout: single
 title: React 기본 개념 정리
+tag: [javascript, react]
 ---
 
 요즘은 리액트 같은 라이브러리 혹은 프레임워크를 이용해서 화면 렌더링을 사용자의 브라우저에서 담당하고 그때그때 필요한 데이터만 서버에 요청하는 SPA(Single Page Application) 방식이 많이 사용되고 있다.

@@ -1,6 +1,7 @@
 ---
   layout: single
   title: 리눅스 mariaDB 세팅
+  tag: [linux, maria-db]
 ---
 
 리눅스(데비안) 환경에서 마리아DB 세팅 방법을 정리했습니다. [mariaDB](https://mariadb.com/kb/ko/mariadb-korean-mariadb/)는 mysql 엔지니어가 만든 오픈 소스 데이터베이스 입니다. ([GNU General Public License, version 2](https://www.olis.or.kr/license/Detailselect.do?lId=1004&mapCode=010004).)

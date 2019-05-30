@@ -1,6 +1,7 @@
 ---
   layout: single
   title: OFF-THE-BALL 구현기능 설명
+  tag: [java, struts, javascript, oracle, maven]
 ---
 
 <br>

@@ -81,3 +81,125 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         -ms-transform: scale(1.4);
         -o-transform: scale(1.4);
 }
+
+
+
+// tag css
+.sidebar-tags{
+    padding-bottom: 100px;
+}
+
+.sidebar-tags .tags {
+    list-style-type: none;
+    //list-style: none;
+    margin: 0;
+    overflow: hidden; 
+    padding: 0;
+  }
+  
+.sidebar-tags .tags li {
+    float: left; 
+  }
+  
+.sidebar-tags .tag {
+    background: #eee;
+    border-radius: 3px 0 0 3px;
+    color: #494e52;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 20px 0 23px;
+    position: relative;
+    margin: 0 10px 10px 0;
+    text-decoration: none;
+    -webkit-transition: color 0.2s;
+  }
+  
+// .sidebar-tags .tag::before {
+//     background: #fff;
+//     border-radius: 10px;
+//     box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+//     content: '';
+//     height: 6px;
+//     left: 10px;
+//     position: absolute;
+//     width: 6px;
+//     top: 10px;
+//   }
+  
+.sidebar-tags .tag::after {
+    background: #fff;
+    border-bottom: 13px solid transparent;
+    border-left: 10px solid #eee;
+    border-top: 13px solid transparent;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+.sidebar-tags .tag:hover {
+    background-color:#000;
+    color: white;
+  }
+  
+.sidebar-tags .tag:hover::after {
+     border-left-color: #000; 
+  }
+//tag css end
+
+
+//post css
+h2 a {
+    color: inherit;
+}
+
+.posts > .post {
+    padding-bottom: 2em;
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.post .tag li {
+    display: inline;
+    margin: 0;
+}
+
+.post .meta .tag .date {
+  display: inline;
+  margin: 0;
+  width: 50%;
+}
+
+.post .tag li > a {
+    margin: 3px 3px 3px 0;
+    padding: .5px 4px;
+    color: #343a40;
+    background-color: #e9ecef;
+    border-radius: 3px;
+}
+
+.post .tag {
+    display: inline;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+a {
+    color: #1b6ec2;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.posts span {
+    font-size: 16px;
+}
+//post css end

@@ -4,10 +4,26 @@ layout: archive
 
 {{ content }}
 
-<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+ <div class="sidebar-tags">
+    <h1>Tags</h1>
+    <hr>
+    <ul class="tags">
+      {% assign items = site.tags | sort %}
+      {% for tag in items %}
+      {% assign t = tag | first %}
+      {% assign posts = tag | last %}
+      <li><a href="/tags/{{t}}" class="tag">{{t | downcase | replace:" ","-" }}({{ posts | size }})</a></li>
+      {% endfor %}
+    </ul>
+    </div> 
 
-{% for post in paginator.posts %}
+
+<!-- <div>
+  <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+  
+  {% for post in paginator.posts %}
   {% include archive-single.html %}
-{% endfor %}
+  {% endfor %}
+  {% include paginator.html %}
+</div> -->
 
-{% include paginator.html %}
