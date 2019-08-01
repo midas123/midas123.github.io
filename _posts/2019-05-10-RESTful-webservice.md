@@ -1,16 +1,21 @@
 ---
  layout: single
- title: 스프링부트 RESTful 게시판 구현
+ title: 스프링부트 RESTful 웹 서비스
  tag: [java, rest-api, springboot, maven]
+ kinds: 프로젝트
+ player: solo
+ detail: 게시글 조회/쓰기/수정/삭제/추천/댓글
+ toc: true
+ toc_sticky: true
 ---
 
-앞서 스프링부트 + 스프링시큐리티를 사용해서 회원가입/로그인을 구현하였고 이어서 RESTful한 구조의 기본적인 게시판을 구현했습니다. 
+앞서 스프링부트 + 스프링시큐리티를 사용해서 회원가입/로그인을 구현하였고 이어서 REST api 구조의 기본적인 게시판을 구현했습니다. 이번 프로젝트의 주제는 기본적인 게시판으로 REST API의 원칙을 준수하는 RESTful 웹 서비스의 백엔드 서버를 만드는데 집중했습니다.
 
-이번 프로젝트 통해서 REST의 6가지 구조적 제약 중에서 2가지를 이론과 직접적인 코딩을 통해서 제대로 이해할 수 있었습니다. 
+게시판에서 사용자가 요청하게될 자원은 게시글(post)이 입니다. 그래서 post를 기준으로 일관적인 식별자 주소를 만들었습니다. post에 접근하는 주소는 기본적으로 '/post/{post_id}' 형태이고 게시글 조회/쓰기/수정/삭제/추천 등의 기능의 구분은 http 메서드(GET,POST,PUT,DELETE)를 이용하였습니다. 그리고 요청한 자원만을 리턴해주는 백엔드 서버로서 뷰 페이지를 리턴하지 않고 json 타입의 텍스트 데이터만 리턴합니다. 
 
-첫번째는 Uniform Interface 입니다. 어플리케이션 내에서 사용자가 접근할 수 있는 자원은 오직 하나의 논리적인 URI를 갖고 자원의 이름과 주소는 명사 형태로 일관되게 네이밍 하였습니다. 그리고 spring HATEOAS를 사용해서서버 응답 안에 사용자의 다음 요청으로 쓰일 url이 포함되도록 구현했습니다.
+또한, spring HATEOAS를 사용해서 최초 요청의 응답을 받은 사용자가 자연스럽게 다음 자원으로 이동하도록 했습니다. 
 
-두번째는 statelessness 입니다. 서버 측에서 클라이언트 요청에 대한 정보를 저장하지 않고 각 요청은 독립적으로 수행됩니다.
+[프로젝트-github-링크](https://github.com/midas123/spring-board-jpa)
 
 <br>
 
@@ -35,7 +40,7 @@
 
 **테이블 구성**
 
-테이블은 POSTS(게시글) / POSTCOMMENT(댓글) / POSTLIKES(추천) 총 3개로 구성하였습니다. (아래 이미지 첨부)
+테이블은 POSTS(게시글) / POSTCOMMENT(댓글) / POSTLIKES(추천) 총 3개로 구성하였습니다. 
 
 <br>
 
@@ -67,7 +72,7 @@
 
 <br>
 
-# 프로젝트 클래스 구조
+# 클래스 구조
 
 ------
 
@@ -122,7 +127,7 @@
 
 ## 컨트롤러
 
-RESTful한 웹 서비스 구조를 갖추기 위해서 게시글 자원의 주소를 'post'로 동일하게 구성하고 HTTP 메서드(GET/POST/PUT/DELETE) 맵핑을 나누었습니다. 클라이언트 요청시 메서드 종류에 따라서 다른 처리가 진행됩니다. 요청 데이터는 URL 파리미터 또는 JSON 타입으로 요청 객체에 담겨서 넘어옵니다.
+RESTful한 웹 서비스 구조를 갖추기 위해서 게시글 자원의 주소를 'post'로 동일하게 구성하고 HTTP 메서드(GET/POST/PUT/DELETE) 맵핑을 나누었습니다. 클라이언트 요청시 메서드 종류에 따라서 다른 처리가 진행됩니다. 
 
 ```java
 @RestController
@@ -182,7 +187,7 @@ public class PostRestController {
 
 ## 스프링 라이브러리
 
-게시글을 조회한 사용자가 바로 다음 자원을 이용하도록 응답 객체에 다른 자원의 url을 포함하였습니다. 응답 URL을 생성을 지원하는 Spring HATEOAS를 사용하였습니다. 
+게시글을 조회한 사용자가 바로 다음 자원을 이용하도록 응답 객체에 다른 자원의 url을 포함하였습니다. 응답 URL을 생성을 지원하는 **Spring HATEOAS**를 사용하였습니다. 
 
 아래처럼 ResourceAssembler를 구현하고 오버라이드한 toResource()에서 url를 작성하는 클래스를 만든 후
 
@@ -210,14 +215,14 @@ PostRestController에서 이 클래스를 의존 주입하고 postList()가 엔�
 
 ```java
 @Autowired
-	PostResourceAssembler assembler;
+PostResourceAssembler assembler;
 	
-	@GetMapping("/post/all")
-	public Resources<Resource<Posts>> postList(){
+@GetMapping("/post/all")
+public Resources<Resource<Posts>> postList(){
 		List<Resource<Posts>> posts = postService.getAllPost().stream()
 				.map(assembler::toResource).collect(Collectors.toList());
 		
-		return new Resources<>(posts,
+return new Resources<>(posts,
 				linkTo(methodOn(PostRestController.class).postList()).withSelfRel());
 	}
 ```
@@ -262,7 +267,7 @@ http://localhost:8080/post/282로 요청한 결과는 아래와 같습니다.
 
 <br>
 
-# 프로젝트 계층 구조 
+# 프로젝트 구조 
 
 ------
 

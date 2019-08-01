@@ -1,10 +1,14 @@
 ---
  layout: single
- title: springboot에서 ajax로 파일 업로드하기
+ title: ajax로 파일 업로드하기
+ kinds : 프로젝트
+ player: solo
  tag: [java, springboot, jpa, hibernate, ajax, maven]
+ toc: true
+ toc_sticky: true
 ---
 
-기존 회원가입 기능에서 이미지 파일을 업로드 할 수 있도록 수정하였습니다. form 안에 파일을 포함해서 submit 처리를 해야 하는데 ajax 요청으로 보낼 수 있는 기본 데이터 타입은 text, xml, json 등의 이기 때문에 파일 전송을 위해서는 ajax 코드 수정이 필요했습니다.
+기존 [프로젝트](https://midas123.github.io/2019/04/08/Springboot-Hibernate-project.html)에서 회원가입 시 이미지 파일을 업로드 할 수 있도록 수정하였습니다. 파일 정보를 저장하는 엔티티를 추가하고 파일 이름을 변경하여 경로에 저장하는 코드를 추가하였습니다. 그리고 ajax 코드에서 컨텐츠 타입을 multipart/form-data으로 변경하였습니다.
 
 
 
@@ -132,7 +136,7 @@ public class UserImageService {
 
 <br>
 
-## 자바 클래스에서 WebMvcConfigurer를 구현 후 업로드 경로 설정
+## 자바 클래스에서 WebMvcConfigurer를 구현 후 업로드 경로 맵핑
 
 ```java
 @Configuration
@@ -167,7 +171,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
 ## ajax 코드 수정
 
-기존 ajax 코드는 아래와 같다. form 태그 안에 input 태그 값을 jquery 셀렉터로 가져와서 객체에 담은 후 JSON.stringify()로 JSON 문자열로 변환하고 ajax 요청을 보내는 방식이다.
+기존 ajax 코드는 아래와 같습니다. form 태그 안에 input 태그 값을 jquery 셀렉터로 가져와서 객체에 담은 후 JSON.stringify()로 JSON 문자열로 변환하고 ajax 요청을 보냅니다.
 
 ```javascript
  join : function () {
@@ -193,9 +197,9 @@ public class MvcConfig implements WebMvcConfigurer {
     }
 ```
 
-우선 파일을 업로드를 추가하면서 바뀌는 코드를 정리해보려고 한다. 우선 enctype을 multipart/form-data으로 변경해야 한다. 참고로 enctype 기본 값은 application/x-www-form-urlencoded으로 위에선 코드를 생략했다. 그리고 data1 객체를 JSON 문자열로 바꿔주는 JSON.stringify() 메서드를 제거해야 한다.
+주요한 변경사항으로는 먼저 enctype을 multipart/form-data으로 변경해야 합니다. 참고로 enctype 기본 값은 application/x-www-form-urlencoded으로 위에선 코드를 생략 됩니다. 그리고 data1 객체를 JSON 문자열로 바꿔주는 JSON.stringify() 메서드를 제거해야 합니다.
 
-변경 된 ajax 코드는 아래와 같다. FormData 객체를 이용해서 form 태그에서 제출한 데이터를 ajax 요청으로 보낸다. 
+변경 된 ajax 코드는 아래와 같습니다. FormData 객체를 이용해서 form 태그에서 제출한 데이터를 ajax 요청으로 보냅니다.
 
 ```javascript
 joinFileUpload : function(){
@@ -222,7 +226,7 @@ joinFileUpload : function(){
 
 ## UUID 클래스를 이용한 저장용 파일 이름 생성
 
-UUID 객체는 고유한 식별자로 사용되는 숫자를 생성한다. 업로드 파일 이름이 중복되는 것을 예방한다.
+UUID 객체는 고유한 식별자로 사용되는 숫자를 생성합니다. 고유한 번호로 파일명을 만들어서 업로드 파일 이름이 중복되는 것을 방지했습니다.
 
 ```java
 @PostMapping("/registration")

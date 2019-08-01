@@ -23,9 +23,9 @@ url: "https://midas123.github.io" # the base hostname & protocol for your site, 
 repository: ""
 masthead_title: ""
 author:
-  name: "yk"
+  #name: "yk"
   #avatar: "/assets/images/profile.jpg"
-  bio: "Welcome to my dev-blog."
+  #bio: "Welcome to my dev-blog."
   #location: "Somewhere"
   links:
     - label: "Tistory Blog"
@@ -37,7 +37,7 @@ author:
 
 head_scripts: ""
 footer_scripts: ""
-search: true
+search: false
 timezone: "Asia/Seoul"
 encoding: utf-8
 paginate: 5 # amount of posts to show
@@ -50,7 +50,7 @@ include:
 twitter_username: ""
 github_username:  ""
 g_analytics: UA-138663237-1
-search: false
+
 
 defaults:
   # _posts

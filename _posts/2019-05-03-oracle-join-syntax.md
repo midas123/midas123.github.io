@@ -2,6 +2,9 @@
   layout: single
   title: 오라클 JOIN
   tag: [oracle, join]
+  kinds: 포스트
+  toc: true
+  toc_sticky: true
 ---
 
 JOIN은 2개 이상의 테이블의 테이터를 조합한 결과를 만들때 사용한다. 오라클은 non-ANSI와 ANSI 조인(join) 문법을 제공한다. non-ANSI 조인은 오래전부터 사용되었고 지금도 여전히 인기가 많다. 이 문법은 FROM 절에 테이블을 열거하고 그 뒤에 WHERE 절에서 조인 조건을 정의한다. 이후 오라클 9i에서 도입된 ANSI 조인은 여러 이점이 있지만 오라클 개발자들은 습관적으로 또는 실행 단계에서 대부분의 ANSI 조인 문법은 오라클 옵티마이저에 의해 non-ANSI로 바뀌기 때문에 여전히 non-ANSI 조인 문법을 사용한다. (대부분 외형만 다를 뿐 성능은 동일하다는 의미)
@@ -32,7 +35,7 @@ ANSI 조인 문법과 같거나 비슷한 non-ANSI 조인 문법을 정리되어
 
 양쪽 테이블의 특정 칼럼에서 일치하는 테이터만 결과로 보여준다.
 
-*ANSI*
+***ANSI***
 
 ```
 SELECT d.부서이름,
@@ -47,7 +50,7 @@ ORDER BY d.부서이름;
 
  부서와 직원 테이블에서 [부서 이름]과 [직원 이름]을 조합한 결과를 가져온다. Join 조건(ON)은 양 테이블의 부서ID가 같고 부서ID는 30이상(WHERE), 결과는 부서이름을 기준으로 오름차순(기본 값)으로 정렬(ORDER BY)한다.
 
-*non-ANSI*
+***non-ANSI***
 
 ```
 SELECT d.부서이름,
@@ -68,7 +71,7 @@ ON으로 일치하는 칼럼 지정해야 한다. 결과는 일치하지 않는 
 
 ※[ ]는 필터, join 문법별 추가 필터의 위치와 형태가 다름
 
-*ANSI*
+***ANSI***
 
 ```
 SELECT d.부서이름,
@@ -79,7 +82,7 @@ WHERE  d.부서ID >= 30
 ORDER BY d.부서이름, e.직원이름;
 ```
 
-*non-ANSI*
+***non-ANSI***
 
 ```
 SELECT d.부서이름,
@@ -97,7 +100,7 @@ ORDER BY d.부서이름, e.직원이름;
 
 위 LEFT JOIN에 반대다. LEFT를 RIGHT로 바꿔주면 된다. 
 
-*ANSI*
+***ANSI***
 
 ```
 SELECT d.부서이름,
@@ -108,7 +111,7 @@ WHERE  d.부서ID >= 30
 ORDER BY d.부서이름, e.직원이름;
 ```
 
-*non ANSI*
+***non ANSI***
 
 이 문법은 ANSI 조인과는 반대로 조인하는 테이블의 순서는 상관없다. LEFT, RIGHT의 구분이 의미가 없다. 그냥 OUTER 조인이다.
 
@@ -118,7 +121,7 @@ ORDER BY d.부서이름, e.직원이름;
 
 양쪽 테이블 사이에서 조건에 일치하는 row와 조건에 일치하지 않는 row를 모두 포함한 결과를 보여준다. 데이터가 없을 경우 null로 표시된다.
 
-*ANSI*
+***ANSI***
 
 ```
 SELECT d.부서이름,
@@ -129,7 +132,7 @@ WHERE  d.부서id >= 30
 ORDER BY d.부서이름, e.직원이름;
 ```
 
-*non ANSI*
+***non ANSI***
 
 비슷하게 대응되는 조인 문법은 없다. 하지만 UNION ALL 키워드를 이용해서 같은 결과를 만들 수 있다.
 
@@ -141,7 +144,7 @@ ORDER BY d.부서이름, e.직원이름;
 
 두 테이블간의 가능한 모든 조합을 만들어야 할때 사용한다.  테스트용 데이터를 생성하거나 중개 수수료 어플을 만들때 -> [스택오버플로우-답변](https://stackoverflow.com/a/220042)
 
-*ANSI*
+***ANSI***
 
 ```
 SELECT e.직원이름,
@@ -151,7 +154,7 @@ FROM   직원_테이블 e
 ORDER BY e.직원이름, d.부서이름;
 ```
 
-*non ANSI*
+***non ANSI***
 
 ```
 SELECT e.직원이름,
@@ -170,7 +173,7 @@ ORDER BY e.직원이름, d.부서이름;
 
 ※WHEHE 절과 alias를 함께 사용할 수 없다. [ ] 안 처럼 사용할 수 있다.
 
-*ANSI*
+***ANSI***
 
 ```
 SELECT e.직원이름,
@@ -181,7 +184,7 @@ FROM   직원_테이블 e
 ORDER BY e.직원이름, d.부서이름;
 ```
 
-*non ANSI*
+***non ANSI***
 
 없음. non ANSI 조인 문법에서는 꼭 조건이 필요하다.
 
@@ -195,7 +198,7 @@ NATURAL JOIN과 거의 비슷하다. 하지만 이 조인은 칼럼 이름을 �
 
 ※WHEHE 절과 alias를 함께 사용할 수 없다. [ ] 안 처럼 사용할 수 있다.
 
-*ANSI*
+***ANSI***
 
 ```
 SELECT e.직원이름,

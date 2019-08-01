@@ -2,6 +2,9 @@
   layout: single
   title: React 프로젝트 세팅 방법
   tag: [javascript, react]
+  kinds: 포스트
+  toc: true
+  toc_sticky: true
 ---
 
 react 프로젝트 개발 환경 세팅을 정리했다. react는 유저 인터페이스를 만드는 라이브러리이므로

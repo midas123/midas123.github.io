@@ -2,6 +2,9 @@
   layout: single
   title: REST API 기본 개념
   tag: [java, rest-api]
+  kinds: 포스트
+  toc: true
+  toc_sticky: true
 ---
 
 REST(**Re**presentational **S**tate **T**ransfer)는 HTTP 프로토콜을 사용하는 웹 서비스 어플리케이션의 아키텍쳐 스타일이다. RESTful 웹 서비스는 REST를 베이스로 하는 웹 서비스를 말한다.

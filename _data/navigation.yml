@@ -1,13 +1,11 @@
 docs:
   - title: MENU
     children:
-      #  - title: "PortFolio"
-      #    url: /
        - title: "최근 포스트"
          url: /year-archive/
-
-      
+       - title: "모든 태그"
+         url: "#all-tags"
 
 main:
-  - title: ""
-    url: ""
+  - title: "Archive"
+    url: "/year-archive/"

@@ -4,7 +4,7 @@ layout: archive
 
 {{ content }}
 
- <div class="sidebar-tags">
+ <div class="sidebar-tags" id="all-tags">
     <h1>Tags</h1>
     <hr>
     <ul class="tags">
@@ -15,7 +15,7 @@ layout: archive
       <li><a href="{{ site.url }}{{ site.baseurl }}/tags/{{t}}" class="tag">{{t | downcase | replace:" ","-" }}({{ posts | size }})</a></li>
       {% endfor %}
     </ul>
-    </div> 
+  </div> 
 
 
 <!-- <div>

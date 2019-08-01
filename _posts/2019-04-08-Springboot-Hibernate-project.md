@@ -1,18 +1,23 @@
 ---
   layout: single
-  title: Springboot-Hibernate 개인 프로젝트
-  tag: [java, springboot, jpa, hibernate, spring-security, jquery, ajax, maven]
+  title: Springboot-SpringSecurity-JPA 
+  tag: [java, springboot, jpa, hibernate, spring-security, maven]
+  kinds: 프로젝트
+  player: solo
+  detail: 스프링부트 / 스프링 시큐리티 / jpa
+  toc: true
+  toc_sticky: true
 ---
 
-이전에 진행한 팀 프로젝트에서 spring과 mybatis를 기반으로 XML 설정 파일로 ORM을 세팅해서   사용해본 경험이 있습니다. 
+이전에 진행한 팀 프로젝트에서는 spring과 mybatis를 다루었습니다. 그리고 mybatis에 대해 공부하면서 ORM과 hibernate에 대해서 알게 되었습니다. hibernate가 해외에서는 널리 사용되고 있고 국내에서도 사용이 늘고 있는 것으로 알고 있습니다. 그래서 작은 개인 프로젝트를 진행하며 공부해보았습니다. 
 
-당시 mybatis를 사용하면서 ORM과 hibernate에 대해서 알게 되었습니다. hibernate가 해외에서는 널리 사용되고 있고 국내에서도 많이 늘고 있는 것으로 알고 있습니다. 그래서 작은 개인 프로젝트를 진행하며 공부해보았습니다. 
-
-이전에 mybatis로 진행한 프로젝트에서는 xml 설정 파일에 데이터베이스에 접근하는 쿼리를 작성하여 데이터베이스 위주로 기능하는 프로젝트를 만들었다면, 이번 개인 프로젝트에서는 hibernate를 이용하여 전자와 상반되는 구조로 만들게 되었습니다. 
+mybatis에서는 xml 설정 파일에 데이터베이스에 접근하는 쿼리를 작성하여 데이터베이스 위주로 기능하는 프로젝트를 만들었다면, 이번 개인 프로젝트에서는 hibernate를 이용하여 전자와 상반되는 구조로 만들게 되었습니다. 
 
 자바 클래스에서 entity 객체를 설정하고 DB에 접근하는 코드를 작성해야 했기 때문에 처음 습득하는 단계에서 어려움이 많았습니다.
 
 먼저 관련 이론을 상세하게 공부하기 보다는 springboot과 hibernate 기반의 예제 코드를 찾아보고 그 안에 있는 각 어노테이션과 클래스 기능을 파악하고 프로젝트에 적용해보며 공부하였습니다.
+
+[프로젝트-github-링크](https://github.com/midas123/spring-board-jpa)
 
 <br><br>
 
@@ -437,13 +442,13 @@ PasswordTokenResetPro()에서는 DB에 저장되어 있는 유효한 token으로
 
 <br><br>
 
-## 결론
+## 마무리
 
 어플리케이션 동작 중 만들어진 데이터가 데이터베이스에 저장되도록 변환해주는 영속화 프레임 워크 중 하나인 mybatis를 처음 접하였습니다. 그래서 sql 위주의 xml 설정에 먼저 익숙해진 상태였습니다. 
 
 hibernate는 mybatis와 상반되게 기본적인 sql 쿼리를 일일이 작성할 필요없이 간단한 자바 코드 한 줄이면 해결되고 DB에 따라서 sql 문법이나 관련 설정을 바꿀 필요가 없는 편리함이 있었습니다. 
 
-하지만 초기 설정시 작성해야 하는 자바 코드가 생소해서 적응하는게 쉽지 않았습니다. 그럼에도 불구하고 작은 프로젝트를 차근차근 진행하면서 각 어노테이션과 클래스를 공부하고 기능을 하나둘씩 추가하면서 오류를 수정하는 경험을 통해서 공부하면서 알게 된 hibernate 장점들에 대해 어느정도 공감할 수 있었습니다.  
+하지만 초기 설정시 작성해야 하는 자바 코드가 생소해서 적응하는게 쉽지 않았습니다. 그럼에도 불구하고 작은 프로젝트를 차근차근 진행하면서 각 어노테이션과 클래스를 공부하고 기능을 하나둘씩 추가하면서 프로젝트를 마무리 할 수 있었습니다. 
 
 
 

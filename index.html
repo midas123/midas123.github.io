@@ -1,13 +1,9 @@
 ---
 # Feel free to add content and custom Front Matter to this file.
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-header:
-    image: /assets/images/the-atacama-desert.jpg
-    image_description: "the-atacama-desert"
-
-layout: home
-author_profile: true
-
+layout: splash 
+author_profile: false
+sidebar: false
 ---
 
 <!DOCTYPE html>
@@ -24,10 +20,11 @@ author_profile: true
   color: black;
   padding: 4px 12px;
   text-align: center;
-  text-decoration: none;
+  text-decoration: none !important;
   display: inline-block;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius: 3px;
 }
 a.button_detail:hover{
     color: white !important;
@@ -37,85 +34,95 @@ a.button_detail:hover{
 
 </head>
 <body>
-    <div class="portfolio_summary">
-    <div style="display: inline-block; width:50px; height: auto;">
+    <div class="index_main">
+    <div class="portfolio-summary">
+        <div class="port-container">
+            <div class="port-introduction">
+                <h1 style="font-size:45px;">PORTFOLIO</h1>
+                <p>yk의 개발 블로그에 오신 것을 환영합니다.<br>
+                    그 동안 진행해온 프로젝트를 포트폴리오로 정리했습니다.</p>
+                    <p>
+                        <b>'팀 프로젝트'</b>와 <b>'개인 프로젝트'</b>로 구분되어 있으며<br>
+                        <a class="button_detail">상세보기</a>를 클릭하시면 프로젝트 세부내용이 있는 페이지로 이동합니다.
+                    </p>
+                    <br>
+                    <br>
+                    <h1>프로젝트</h1>
+                    <hr>
+            </div>
+                <div class="portfolio-list">
+                    {% for post in site.posts %}
+                    {% if post.kinds =="프로젝트" %}
+                    
+                        <div class="post-box">
+                            {% if post.player == "team" %}
+                                <div class="project_kind" style="background-color: #c94c4c;">
+                                        팀 프로젝트
+                                </div>
+                            {% endif %}
+                            {% if post.player == "solo" %}
+                                <div class="project_kind">
+                                    개인 프로젝트
+                                </div>
+                            {% endif %}    
+                        <div class="project-contents">    
+                            <div class="project_title">
+                              {{post.title}}
+                            </div>
+                            <div class="project_skill">
+                                {% for t in post.tag %}
+                                    <div class="skill_tag">{{t}}</div>       
+                                {% endfor %}
+                            </div> 
+                            <!-- <div class="project_detail">
+                               {{post.detail}}
+                            </div> -->
+                            <div class="project_excerpt">
+                                {{ post.excerpt | markdownify | strip_html | truncate: 90 }}
+                            </div>
+                            <div class="project_btn"><a class="button_detail" href="{{ post.url }}" style="color:black;">상세 보기</a></div>
+                        </div>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="post-container">
+                <div>
+                    <h1>최근 포스트</h1>    
+                    <hr>
+                </div>
+                <div class="post-list">
+                        {% for post in site.posts limit:6 %}
+                        {% if post.kinds =="포스트"%}    
+                            <div class="post-box">
+                                <div class="project_kind" style="background-color: #4040a1;">
+                                       
+                                </div>
+                            <div class="project-contents">    
+                                <div class="project_title">
+                                  {{post.title}}
+                                </div>
+                                <div class="project_skill">
+                                    {% for t in post.tag %}
+                                        <div class="skill_tag">{{t}}</div>       
+                                    {% endfor %}
+                                </div> 
+                                <div class="project_excerpt">
+                                    {{ post.excerpt | markdownify | strip_html | truncate: 90 }}
+                                </div>
+                                <div class="project_btn"><a class="button_detail" href="{{ post.url }}" style="color:black;">상세 보기</a></div>
+                            </div>
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="to_archive">
+                        <a href="/year-archive/" class="">포스트 더 보기..</a>        
+                    </div>            
+            </div>
+        </div>
     </div>
-    <div style="display: inline-block;">
-        <h1 style="font-size:45px;">PORTFOLIO</h1>
-        <p>yk의 깃헙 페이지에 오신 것을 환영합니다.<br>
-            그 동안 진행해온 프로젝트를 포트폴리오 형태로 정리했습니다.
-            '상세보기'를 클릭하시면 프로젝트 세부내용이 있는 페이지로 이동합니다.</p>
-        <br><br>
-        <h1>기술 경험</h1>
-        <hr>
-        <ul>
-            <li>spring 프레임워크와 mybatis 프로젝트</li>
-            <li>struts2 프레임워크와 ibatis 프로젝트</li>
-            <li>springboot과 spring-security, jpa 프로젝트</li>
-            <li>RESTful api 프로젝트</li>
-            <li>jquery, ajax로 사용자 화면의 기능 구현</li>
-            <li>오라클의 기본적인 CRUD, JOIN, 서브쿼리 등 SQL 숙지</li>
-            <li>AWS EC2 인스턴스에서 Docker와 jenkins로 자동 빌드 및 배포 환경 구성</li>
-            <li>기본적인 git 사용 경험</li>
-            <li>linux 운영체제 사용 경험</li>
-        </ul>
-        <br><br>
-        <h1>팀 프로젝트</h1>
-        <hr>
-        <ul>
-            <li>    
-                <div>
-                    <div style="display: inline-block;"><h2>MODUHOME</h2></div>
-                    <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/01/26/ModuHome.html" style="color:black;">상세보기</a></div>
-                </div>
-                <div id="project_detail2">
-                    java / spring / jquery / ajax / mybatis / oracle / maven 
-                </div>
-            </li>
-            <li>
-                <div>
-                    <div style="display: inline-block;"><h2>OFF THE BALL</h2></div>
-                    <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/01/22/off-the-ball.html" style="color:black;">상세보기</a></div>
-                </div>
-                <div id="project_detail1">
-                    java / jsp / struts2 / javascript / ibatis / oralce
-                </div>
-            </li>
-        </ul>
-    <br><br>
-    <h1>개인 프로젝트</h1>
-    <hr>
-    <ul>
-        <li>
-            <div>
-                <div style="display: inline-block;"><h2>MODUHOME2</h2></div>
-                <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/02/07/ModuHome2.html" style="color:black;">상세보기</a></div>
-            </div>
-            <div id="project_detail3">
-                AWS EC2 / docker / jenkins
-            </div>
-        </li>
-        <li>
-                <div>
-                    <div style="display: inline-block;"><h2>회원가입/로그인</h2></div>
-                    <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/04/08/Springboot-Hibernate-project.html" style="color:black;">상세보기</a></div>
-                </div>
-                <div id="project_detail3">
-                    java / springboot / hibernate / spring-security / thymeleaf / maven
-                </div>
-        </li>
-        <li>
-            <div>
-                <div style="display: inline-block;"><h2>기본 게시판</h2></div>
-                <div style="display: inline-block;"><a class="button_detail" href="{{ site.url }}{{ site.baseurl }}/2019/05/10/RESTful-webservice.html" style="color:black;">상세보기</a></div>
-            </div>
-            <div id="project_detail3">
-                java / springboot / hibernate / REST API / maven
-            </div>
-    </li>
-    </ul>
-    </div>
-    <br><br><br>
     </body>
     </html>
 

@@ -1,14 +1,16 @@
 ---
   layout: single
-  title: OFF-THE-BALL 구현기능 설명
+  title: OFF-THE-BALL
   tag: [java, struts, javascript, oracle, maven]
+  kinds: 프로젝트
+  player: team
+  detail: 회원 관리 / 로그인
+  toc: true
+  toc_sticky: true
 ---
 
-<br>
-## 프로젝트 요약 및 페이지 구성
-<br>
-첫번째 팀 프로젝트 입니다. 이 프로젝트의 주제는 팀/개인 단위로 참여 가능한 축구경기 스케줄링 및 커뮤니티 사이트 입니다. 
-**struts** 2.0 프레임워크를 사용하였고 **javascript**로 유효성검사 기능을 구현했습니다. 
+프로젝트의 주제는 팀/개인 단위로 참여 가능한 축구경기 스케줄링 및 커뮤니티 사이트 입니다. 
+회원 관리와 로그인 기능을 구현하였고 **javascript**로 유효성검사 기능을 구현했습니다. 
 
 <br>
 {% include offtheball-slides.html %}

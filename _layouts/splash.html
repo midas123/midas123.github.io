@@ -19,4 +19,17 @@ layout: default
       {{ content }}
     </section>
   </article>
+  <div class="sidebar-tags" id="all-tags">
+      <h1>Tags</h1>
+      <hr>
+      <ul class="tags">
+        {% assign items = site.tags | sort %}
+        {% for tag in items %}
+        {% assign t = tag | first %}
+        {% assign posts = tag | last %}
+        <li><a href="{{ site.url }}{{ site.baseurl }}/tags/{{t}}" class="tag">{{t | downcase | replace:" ","-" }}({{ posts | size }})</a></li>
+        {% endfor %}
+      </ul>
+    </div> 
+
 </div>
