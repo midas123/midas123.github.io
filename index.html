@@ -59,6 +59,7 @@ a.button_detail:hover{
               {% for post in site.posts %}
               {% if post.kinds =="프로젝트" %}
               <li>
+                    <a class="project_link" href="{{ post.url }}">
                     <div class="project-box">
                     {% if post.player == "team" %}
                     <div class="project_kind" style="background-color: #c94c4c;">
@@ -83,9 +84,10 @@ a.button_detail:hover{
                     <div class="project_excerpt">
                         {{ post.excerpt | markdownify | strip_html | truncate: 90 }}
                     </div>
-                    <div class="project_btn"><a class="button_detail" href="{{ post.url }}" style="color:black;">Read Me</a></div>
+                    <!-- <div class="project_btn"><a class="button_detail" href="{{ post.url }}" style="color:black;">Read Me</a></div> -->
                 </div>
               </div>
+            </a>
               </li>
               {% endif %}
               {% endfor %}
