@@ -1,7 +1,7 @@
 ---
   layout: single
   title: Springboot-SpringSecurity-JPA 
-  tag: [java, springboot, jpa, hibernate, spring-security, maven]
+  tag: [springboot, jpa, hibernate, spring-security, maven]
   kinds: 프로젝트
   player: solo
   detail: 스프링부트 / 스프링 시큐리티 / jpa

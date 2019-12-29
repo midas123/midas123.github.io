@@ -1,7 +1,7 @@
 ---
  layout: single
  title: 스프링부트 RESTful 웹 서비스
- tag: [java, rest-api, springboot, maven]
+ tag: [rest-api, springboot, maven]
  kinds: 프로젝트
  player: solo
  detail: 게시글 조회/쓰기/수정/삭제/추천/댓글

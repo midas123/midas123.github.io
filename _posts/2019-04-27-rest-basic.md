@@ -1,7 +1,7 @@
 ---
   layout: single
   title: REST API 기본 개념
-  tag: [java, rest-api]
+  tag: [rest-api]
   kinds: 포스트
   toc: true
   toc_sticky: true

@@ -37,7 +37,7 @@ a.button_detail:hover{
     <div class="index_main">
     <div class="portfolio-summary">
         <div class="port-container">
-            <div class="port-introduction">
+            <!-- <div class="port-introduction">
                 <h1 style="font-size:45px;">PORTFOLIO</h1>
                 <p>yk의 개발 블로그에 오신 것을 환영합니다.<br>
                     그 동안 진행해온 프로젝트를 포트폴리오로 정리했습니다.</p>
@@ -49,43 +49,49 @@ a.button_detail:hover{
                     <br>
                     <h1>프로젝트</h1>
                     <hr>
-            </div>
-                <div class="portfolio-list">
-                    {% for post in site.posts %}
-                    {% if post.kinds =="프로젝트" %}
-                    
-                        <div class="post-box">
-                            {% if post.player == "team" %}
-                                <div class="project_kind" style="background-color: #c94c4c;">
-                                        팀 프로젝트
-                                </div>
-                            {% endif %}
-                            {% if post.player == "solo" %}
-                                <div class="project_kind">
-                                    개인 프로젝트
-                                </div>
-                            {% endif %}    
-                        <div class="project-contents">    
-                            <div class="project_title">
-                              {{post.title}}
-                            </div>
-                            <div class="project_skill">
-                                {% for t in post.tag %}
-                                    <div class="skill_tag">{{t}}</div>       
-                                {% endfor %}
-                            </div> 
-                            <!-- <div class="project_detail">
-                               {{post.detail}}
-                            </div> -->
-                            <div class="project_excerpt">
-                                {{ post.excerpt | markdownify | strip_html | truncate: 90 }}
-                            </div>
-                            <div class="project_btn"><a class="button_detail" href="{{ post.url }}" style="color:black;">상세 보기</a></div>
-                        </div>
-                        </div>
-                    {% endif %}
-                    {% endfor %}
+            </div> -->
+            <!-- <div class="blog-introduction">
+                    <p>yk의 블로그에 오신 것을 환영합니다.<p>
+            </div>    -->
+
+            <div class="flexslider">
+                <ul class="slides">
+              {% for post in site.posts %}
+              {% if post.kinds =="프로젝트" %}
+              <li>
+                    <div class="project-box">
+                    {% if post.player == "team" %}
+                    <div class="project_kind" style="background-color: #c94c4c;">
+                            팀 프로젝트
+                    </div>
+                {% endif %}
+                {% if post.player == "solo" %}
+                    <div class="project_kind">
+                        개인 프로젝트
+                    </div>
+                {% endif %}
+      
+              <div class="project-contents">    
+                    <div class="project_title">
+                      {{post.title}}
+                    </div>
+                    <div class="project_skill">
+                        {% for t in post.tag %}
+                            <div class="skill_tag">{{t}}</div>       
+                        {% endfor %}
+                    </div> 
+                    <div class="project_excerpt">
+                        {{ post.excerpt | markdownify | strip_html | truncate: 90 }}
+                    </div>
+                    <div class="project_btn"><a class="button_detail" href="{{ post.url }}" style="color:black;">Read Me</a></div>
                 </div>
+              </div>
+              </li>
+              {% endif %}
+              {% endfor %}
+                </ul>
+            </div>
+       
             </div>
             <div class="post-container">
                 <div>
@@ -95,25 +101,29 @@ a.button_detail:hover{
                 <div class="post-list">
                         {% for post in site.posts limit:6 %}
                         {% if post.kinds =="포스트"%}    
-                            <div class="post-box">
-                                <div class="project_kind" style="background-color: #4040a1;">
+                        <div class="post-box">
+                                <!-- <div class="project_kind" style="background-color: #4040a1;">
                                        
-                                </div>
-                            <div class="project-contents">    
-                                <div class="project_title">
+                                </div> -->
+                            <div class="post-contents">    
+                                <div class="post_title">
                                   {{post.title}}
                                 </div>
-                                <div class="project_skill">
-                                    {% for t in post.tag %}
-                                        <div class="skill_tag">{{t}}</div>       
-                                    {% endfor %}
-                                </div> 
-                                <div class="project_excerpt">
+                                <div class="post_excerpt">
                                     {{ post.excerpt | markdownify | strip_html | truncate: 90 }}
                                 </div>
-                                <div class="project_btn"><a class="button_detail" href="{{ post.url }}" style="color:black;">상세 보기</a></div>
+                                <div class="post_skill">
+                                    {% for t in post.tag %}
+                                    <div class="skill_tag">{{t}}</div>       
+                                    {% endfor %}
+                                </div> 
                             </div>
-                            </div>
+                          
+
+                                <div class="post_detail_btn"><a href="{{ post.url }}">Read me..</a></div>
+                            
+                        </div>
+                        <div class="post_gap"></div>
                         {% endif %}
                         {% endfor %}
                     </div>

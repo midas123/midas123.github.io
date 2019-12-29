@@ -1,21 +1,36 @@
 ---
   layout: single
-  title: Java - Comparable와 Comparator 인터페이스
-  tag: [java]
+  title: 객체 정렬하기 - Collections.sort와 Comparable, Comparator 
+  tag: [java, Comparable, Comparator]
   kinds: 포스트
   toc: true
   toc_sticky: true
 ---
 
-java.lang.Comparable과 java.util.Comparator 인터페이스는 Collection의 객체들을 정렬하는데 쓰인다. 자바 배열과 리스트 등 Collection 클래스는 primitive 타입 또는 String, Wrapper 클래스 등 Comparable을 구현하는 클래스를 오름차순으로 정렬해주는 내장 메서드가 있다. 
+# java.util.Collections.sort()
+
+자바 Collection 프레임워크는 객체 그룹을 저장하고 조작할 수 있는 다양한 구조체를 제공합니다. 이 구조체에 서는 대해서 탐색, 정렬, 삽입, 삭제 등에 조작이 가능합니다.
+
+- interface - Set, List, Queue, Deque
+- class - ArrayList, Vector, LinkedList, PriorityQueue, HashSet, LinkedHashSet, TreeSet
+
+
+
+<br>이런 컬렉션을 정렬하려면 Collection.sort()를 사용합니다. 그런데 이 메서드가 동작하기 위한 조건이 있습니다. 컬렉션에 저장된 객체의 클래스가  java.lang.Comparable 인터페이스를 구현해야 합니다. 
+만약 객체 클래스에서  Comparable를 구현하고 코드를 직접 수정할 수 없는 경우에는 별도로 Comparator 인터페이스를 구현하는 클래스를 만들고 객체를 비교하는 compare() 메서드를 오버라이드해서 정렬합니다.
+
+String, Date 관련 클래스와 Integer, Double 등 primitive 타입에 맞춰 제공되는 wrapper 클래스는 이미 Comparable를 인터페이스를 구현하기 때문에 이러한 객체 타입이 저장된 컬렉션은 바로 Collection.sort() 메서드로 정렬할 수 있습니다. 이 메서드는 기본적으로 알파벳, 숫자 등을 오름차순으로 정렬합니다.
+
+https://www.javatpoint.com/collections-in-java
 
 <br>
 
-## Comparable 
+##  java.lang.Comparable 
 
-Comparable을 구현하는 모든 클래스의 인스턴스는 정렬 될 수 있다. Comparable를 구현하는 클래스는 [여기서](https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html) 확인
+위에서 말한 wrapper 클래스처럼 자바에서 제공하는 클래스 객체는 컬렉션 정렬이 바로 가능합니다. 그러나 유저가 만든 커스텀 객체가 담긴 컬렉션을 정렬하려면 먼저 커스텀 객체 클래스에서 Comparable를 구현하고 compareTo() 메서드를 오버라이드 해야 합니다. 
 
-만약 커스텀 클래스의 객체들을 Collection 자료구조에서 제공하는 sort() 메서드로 정렬하려면 먼저 커스텀 클래스에서 Comparable 인터페이스를 구현해야 한다. 이 인터페이스는 compareTo(Object obj) 메서드를 가지고 있다. 이 메서드는 앞에 객체가 클 경우 양수, 같을 경우 0, 작을 경우 음수를 반환한다. 이 메서드는 기본적으로 알파벳, 숫자 등을 오름차순으로 정렬한다.
+예를 들어, 객체 간에 멤버 변수의 숫자 값을 비교하는 경우, compareTo() 메서드가 두 객체의 숫자를  "-" 산술 연산자로 계산한 결과를 리턴하도록 구현할 수 있습니다. 비교 기준은 리턴하는 결과 값이 양수일 경우 앞에 있는 피연산자가 더 큰 값이 되고, 0은 서로 동일한 경우, 음수는 앞에 있는 피연산자가 더 작은 경우가 됩니다. 
+return 키워드에 이항 연산식 안에 피연산자의 순서가 정렬 순서(오름/내림차순)를 결정 합니다. Comparable를 구현한 객체 클래스의 this.멤버변수가 앞에 위치하고 compareTo() 메서드 인자로 전달 받은 외부객체의 멤버변수가 그 다음에 올 경우 정렬 결과는 오름차순이 됩니다. 그리고 이 순서를 반대로 하면 내림차순이 됩니다.
 
 ```java
 import java.util.Map;
@@ -63,13 +78,19 @@ public class personSortingClass{
 
 <br>
 
-## Comparator 
+## java.utilComparator 
 
-기본 정렬 기준 외에 다른 정렬 기준을 사용하고자 할때에는 Comparator 인터페이스의 compare(Object o1, Object o2) 메서드를 사용한다. compare() 메서드는 o1이 o2보다 작을 경우 음수를, 같을 경우 0, 큰 경우 양수를 반환한다.
+Comparable를 직접 구현할 수 없는 경우, 다시 말해서 객체 클래스의 코드를 변경할 수 없는 경우, Comparator 인터페이스를 구현합니다. Comparator를 구현하는 별도의 클래스를 만든 후 비교할 두 객체를 인자로 전달하는compare(o1, o2) 메서드를 오버라이드 합니다. 이때 전달 받는 인자는 정렬하려는 클래스 객체의 타입 입니다.
+또한, Comparator는 다양한 정렬 기준이 필요할때에도 사용합니다. 예를 들어 위 person 객체의 username을 기준으로 정렬하는 클래스와 age 순으로 정렬하는 클래스를 따로 구현해서 사용할 수 있습니다.
+또한, 자바에서 제공하는 클래스 객체를 다른 기준으로 정렬시에도 사용할 수도 있습니다. 예를 들면 String 문자열을 알파벳 순서가 아니라 문자열 길이로 정렬할 때 입니다.
 
-Comparator 인터페이스의 compare() 메서드를 sort() 메서드의 파라미터로 전달하기 위해서 익명 클래스나 람다 표현식(java8부터)을 사용해야 한다.
+compare() 메서드는 o1이 o2보다 작을 경우 음수를, 같을 경우 0, 큰 경우 양수를 리턴하도록 구현합니다.
 
--리스트 생성
+Comparator 인터페이스를 구현하는 클래스를 별도로 만드는 방법 외에 익명 클래스나 람다 표현식(java8부터)을 사용할 수도 있습니다.
+
+<br>
+
+**-리스트 생성**
 
 ```java
 		personClass obj1 = new personClass("john", 20);
@@ -87,7 +108,7 @@ Comparator 인터페이스의 compare() 메서드를 sort() 메서드의 파라�
 
 
 
--익명 클래스(anonymous class) 사용
+**-익명 클래스(anonymous class) 사용**
 
 ```java
 	    Collections.sort(list1, new Comparator<personClass>(){
@@ -112,7 +133,7 @@ Comparator 인터페이스의 compare() 메서드를 sort() 메서드의 파라�
 		//[name:aimy age:27 rank, name:john age:20 rank, name:kim age:17 rank]
 ```
 
--람다 표현식
+**-람다 표현식**
 
 ```java
 		list1.sort((personClass o1, personClass o2) -> Integer.compare(o1.getAge(), o2.getAge()));
@@ -137,19 +158,15 @@ Comparator 인터페이스의 compare() 메서드를 sort() 메서드의 파라�
 
 ## 결론
 
-Comparable의 compareTo() 메서드와 Comparator의 compare() 메서드는 둘다 객체를 비교하는 기능을 한다. 그러므로 상황에 적합한 메서드를 사용해서 정렬을 구현하면 된다. 
+Comparable의 compareTo() 메서드와 Comparator의 compare() 메서드는 둘다 객체를 비교하는 기능을 합니다. 그러므로 상황에 적합한 메서드를 사용해서 정렬을 구현합니다. 
 
-정렬하려는 클래스에서 인터페이스를 구현 가능하고 기본 정렬 기준을 사용한다면 Comparable를 사용하고 반대로 클래스 내의 코드를 추가/변경 할 수 없는 상황이거나 다른 정렬 기준이 필요하다면 Comparator를 사용한다.
+정렬하려는 클래스에서 인터페이스를 구현 가능하고 기본 정렬 기준을 사용한다면 Comparable를 사용하고 반대로 클래스 내의 코드를 추가/변경 할 수 없는 상황이거나 추가적인 정렬 기준이 필요하다면 Comparator를 사용합니다.
 
 <br>
 
 참고:
 
-[Comparable VS Comparator 스택오버플로우 답변](https://stackoverflow.com/a/4108616/10999770)
-
-[comparable-and-comparator-in-java-example](https://www.journaldev.com/780/comparable-and-comparator-in-java-example)
-
-[sorting-with-comparable-and-comparator-in-java.html](https://www.javaworld.com/article/3323403/learn-java/java-challengers-5-sorting-with-comparable-and-comparator-in-java.html?page=2)
+https://www.callicoder.com/java-comparable-comparator/
 
 [객체 비교시 (Object.a - Object.b) Integer flow에 대해서](https://stackoverflow.com/questions/2728793/java-integer-compareto-why-use-comparison-vs-subtraction)
 

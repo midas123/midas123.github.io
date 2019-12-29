@@ -3,7 +3,7 @@
  title: ajax로 파일 업로드하기
  kinds : 프로젝트
  player: solo
- tag: [java, springboot, jpa, hibernate, ajax, maven]
+ tag: [springboot, jpa, hibernate, ajax, maven]
  toc: true
  toc_sticky: true
 ---

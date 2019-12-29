@@ -87,6 +87,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 //index.html
 .index_main {
   width: 90%;
+  margin:auto;
 }
 
 .page__content, .portfolio-summary {
@@ -268,7 +269,7 @@ ul {
 }
 
 
-.post-box {
+.project-box {
   box-sizing: border-box;
   box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
   background-color: white;
@@ -277,17 +278,13 @@ ul {
   transition: transform 0.2s ease-out;
   position: relative;
 
-  width: 340px;
+  width: 80%;
   height: 350px;
   margin-bottom: 100px;
   margin:10px; 
-  
-  
+  margin:auto;
 }
 
-.post-box:hover{
-  transform: translateY(-2px);
-}
 
 .project_kind {
   background-color:#034f84; 
@@ -325,10 +322,82 @@ ul {
 
 .project_btn {
   position: absolute;
-
   bottom: 20px;
 }
 
+
+
+
+.post-box{
+  box-sizing: border-box;
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+  background-color: white;
+  border-radius: 4px;
+  border: none;
+  transition: transform 0.2s ease-out;
+  position: relative;
+  // width: 340px;
+  width: 80%;
+  // height: 350px;
+  // margin-bottom: 20px;
+  margin:0 auto;
+}
+
+.post_gap{
+  height: 20px;
+}
+
+.post-box:hover{
+  transform: translateY(-2px);
+}
+
+
+.post_kind {
+  background-color:#034f84; 
+  color:white; 
+  padding:10px;
+  font-weight: bold;
+  height: 40px;
+}
+
+.post_title {
+  font-weight: bolder;
+  font-size: 21px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+
+.post-contents {
+
+  padding: 20px;
+  width: 100%;
+}
+
+.post_excerpt {
+  color: #666;
+  padding: 10px 0px 15px 0px;
+  font-weight: 200;
+  font-size: 14px;
+  max-height: 70px;
+  overflow: hidden;
+  height: 100px;
+}
+
+
+.post_skill{
+  height: 50px;
+}
+
+.post_detail_btn{
+  position: absolute;
+  bottom: 30px;
+  right: 35px;
+
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #1b6ec2;
+}
 
 .skill_tag {
   display: inline-block;
@@ -341,7 +410,7 @@ ul {
   margin-bottom: 3px;
 }
 
-//post-box end
+
 
 //recent post
 
@@ -351,15 +420,17 @@ ul {
 
 .post-list {
 box-sizing: border-box;
-display: flex;
-flex-wrap: wrap;
-margin: 0 auto;
+// display: flex;
+// flex-wrap: wrap;
+margin: auto;
 padding: 0;
 }
 
 
 .to_archive{
-  margin-top: 30px;
+  margin-top: 20px;
   padding: 10px;
   font-size: 18px;
+  position: absolute;
+  right: 15%;
 }

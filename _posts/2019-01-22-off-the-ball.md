@@ -1,7 +1,7 @@
 ---
   layout: single
   title: OFF-THE-BALL
-  tag: [java, struts, javascript, oracle, maven]
+  tag: [struts, javascript, oracle, maven]
   kinds: 프로젝트
   player: team
   detail: 회원 관리 / 로그인
