@@ -1,0 +1,585 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>피보나치 수열과 재귀 함수 &amp; call stack - yk-dev-blog</title>
+<meta name="description" content="피보나치수열을 재귀함수로 구현하는 방법을 공부하다가 재귀함수에 대해 더 깊은 이해를 하게 되어 이렇게 간단하게 정리하게 되었습니다.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="yk-dev-blog">
+<meta property="og:title" content="피보나치 수열과 재귀 함수 &amp; call stack">
+<meta property="og:url" content="https://midas123.github.io/2019/07/23/recursion-pibonacci.html">
+
+
+  <meta property="og:description" content="피보나치수열을 재귀함수로 구현하는 방법을 공부하다가 재귀함수에 대해 더 깊은 이해를 하게 되어 이렇게 간단하게 정리하게 되었습니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-07-23T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://midas123.github.io/2019/07/23/recursion-pibonacci.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="yk-dev-blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+
+
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">맨 위로</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTop").style.display = "block";
+    } else {
+      document.getElementById("scrollToTop").style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138663237-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138663237-1');
+</script>
+
+<!-- flex slider -->
+<link rel="stylesheet" href="/assets/slider/flexslider.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.6.2.js"integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="crossorigin="anonymous"></script>
+<script src="/assets/slider/jquery.flexslider.js"></script>
+<script src="/assets/slider/jquery.flexslider-min.js"></script>
+
+<style>
+@font-face {
+ font-family: 'flexslider-icon';
+ src: url(/assets/slider/fonts/flexslider-icon.eot);
+ src: url(/assets/slider/fonts/flexslider-icon.woff) format('woff'),
+      url(/assets/slider/fonts/flexslider-icon.ttf) format('truetype');
+}
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "fade",
+      directionNav: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      touch: true
+    });
+  });
+</script>
+
+<!-- flex slider end -->
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!-- end custom head snippets -->
+
+  </head>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">yk-dev-blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+  
+  <div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="http://midas123.tistory.com/" rel="nofollow noopener noreferrer"><i class="fab fa-blogger" aria-hidden="true"></i> Tistory Blog</a></li>
+          
+        
+          
+            <li><a href="https://github.com/midas123" rel="nofollow noopener noreferrer"><i class="fab fa-git-square" aria-hidden="true"></i> Github</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">MENU</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/year-archive/" class="">최근 포스트</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/#all-tags" class="">모든 태그</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  
+</div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="피보나치 수열과 재귀 함수 &amp; call stack">
+    <meta itemprop="description" content="피보나치수열을 재귀함수로 구현하는 방법을 공부하다가 재귀함수에 대해 더 깊은 이해를 하게 되어 이렇게 간단하게 정리하게 되었습니다.">
+    <meta itemprop="datePublished" content="July 23, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">피보나치 수열과 재귀 함수 &amp; call stack
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>피보나치수열을 재귀함수로 구현하는 방법을 공부하다가 재귀함수에 대해 더 깊은 이해를 하게 되어 이렇게 간단하게 정리하게 되었습니다.</p>
+
+<p>이전까지 제가 이해한 재귀함수는 아래 코드처럼 함수가 함수 안에서 자기자신을 호출하는 것이었습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">someMethod</span><span class="o">(){</span>
+<span class="c1">//코드</span>
+<span class="k">return</span> <span class="nf">someMethod</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>물론 기본 조건(base case) 없이 위 코드 처럼 함수를 호출하면 무한 재귀 호출에 빠지게 됩니다. 그러므로 기본 조건을 넣어서 특정 조건에서 재귀 호출이 멈추도록 해야 합니다. 아래 코드는 n이 0과 같아지면 n을 리턴하면서 재귀 호출이 멈춥니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">someMethod</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+	<span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">){</span>
+	   <span class="k">return</span> <span class="n">n</span><span class="o">;</span> 
+	<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+	   <span class="k">return</span> <span class="nf">someMethod</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>	
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>여기까지가 제가 그 동안 이해했던 재귀함수의 개념이었습니다.</p>
+
+<p>재귀함수에 대해 새로 알게된 점을 정리하기 전 먼저 피보나치 수열에 대해 알아보겠습니다. <a href="https://ko.wikipedia.org/wiki/%ED%94%BC%EB%B3%B4%EB%82%98%EC%B9%98_%EC%88%98">피보나치 수열</a>에 법칙대로 ‘앞에 있는 두 수의 합은 그 뒤에 있는 수가 된다’ 는 조건을 정의했습니다. 이 수열을 자바 배열로 구현한다면 n이 2보다 크거나 같은 조건에서 아래 공식이 성립합니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">number</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">=</span> <span class="n">number</span><span class="o">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">number</span><span class="o">[</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">]</span>
+</code></pre></div></div>
+
+<p>위에서 정의한 조건으로 재귀함수를 이용해서 피보나치 수열을 구하는 자바 코드를 만들었습니다. 아래 코드에서 fiboArrayByRecursion() 메서드는 수열 size 만큼의 비어있는 배열과 int n을 인자로 받아서 피보나치 수열을 담은 배열을 리턴 합니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Fibo</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">7</span><span class="o">;</span>
+		<span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">fiboArrayByRecursion</span><span class="o">(</span><span class="n">numbers</span><span class="o">,</span> <span class="n">n</span><span class="o">)));</span>
+		<span class="c1">//[0, 1, 1, 2, 3, 5, 8]</span>
+	<span class="o">}</span>
+
+
+        <span class="kd">static</span> <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">fiboArrayByRecursion</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span><span class="o">(</span><span class="n">n</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">array</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">array</span><span class="o">[</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">];</span>
+                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                        <span class="n">array</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
+                    <span class="o">}</span>
+                    <span class="n">n</span><span class="o">++;</span>
+                    <span class="k">return</span> <span class="nf">fiboArrayByRecursion</span><span class="o">(</span><span class="n">array</span><span class="o">,</span> <span class="n">n</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="n">array</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>나름데로 맞는 답이긴 하지만 외부에서 기본 조건에 사용할 int 값과 비어있는 배열을 메서드 인자로 전달 하는 부분이 왠지 찝찝합니다.</p>
+
+<p>이 찝찝함을 해소하기 위해서 비로소 구글링을 해보았습니다. 그리고 아래와 같은 코드를 찾았습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="kt">int</span> <span class="nf">fiboNumberByRecursion</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="n">index</span><span class="o">;</span>
+		<span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="nf">fiboNumberByRecursion</span><span class="o">(</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="n">fiboNumberByRecursion</span><span class="o">(</span><span class="n">index</span><span class="o">-</span><span class="mi">2</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+
+<p>fiboNumberByRecursion() 메서드는 특정 항(index)의 피보나치 수열 값을 구합니다. 이 함수의 기본조건에 따라서 index가 0 또는 1일 경우 index 값을 리턴하면서 재귀 함수 호출이 멈추게 됩니다.</p>
+
+<p>그런데 else 조건 안에서 return 하는 부분이 잘 이해가 되지 않습니다. index가 0 또는 1이 되기 전까지fiboNumberByRecursion()를 여러번 호출하고 그 리턴 값을 더한 결과를 최종적으로 리턴하게 된다는 표면적인 부분은 이해가 되지만 그 자세한 과정이 머리 속에 그려지지 않습니다.</p>
+
+<p>일단 index 값을 대입해서 메서드가 실행된 결과를 노트에 손으로 써가는 과정에서 ‘<a href="https://ko.wikipedia.org/wiki/%EC%9E%AC%EA%B7%80_(%EC%BB%B4%ED%93%A8%ED%84%B0_%EA%B3%BC%ED%95%99)">재귀</a>‘라는 단어에 뜻을 다시 한번 생각해보았습니다. ‘‘자기 자신에게 되돌아온다.’’ 또는 ‘‘자기자신을 호출 한다.’’ 그 전까지는 ‘‘자기 자신을 호출한다.’‘는 부분에만 집중해서 “되돌아 온다”는 부분에 대해 미쳐 생각하지 못했던 것 입니다.</p>
+
+<p>'’메서드가 반복해서 호출되고 그 메서드의 리턴 값이 누적되어 가장 처음으로 돌아오게 된다.’’</p>
+
+<p>그런데 어떤 원리로 이게 가능한 걸까요? 궁금해서 좀 더 검색해 보았습니다.</p>
+
+<p>java에서는 <a href="https://en.wikipedia.org/wiki/Call_stack"><strong>call stack</strong></a>이라는 자료구조를 사용합니다. call stack은 프로그램의 서브루틴을 저장합니다. call stack은 하나의 큰 stack 프레임 입니다. 위 코드의 베이스 조건에 맞게 호출된 fiboNumberByRecursion() 메서드는 먼저 호출된 순서로 stack 프레임 안에 추가 됩니다.</p>
+
+<p>stack은 후입선출(LIFO) 방식으로 데이터(메서드)가 추가/삭제되는 메모리 영역입니다. 그러므로 가장 나중에 호출된 메서드부터 실행됩니다.</p>
+
+<p>fiboNumberByRecursion() 메서드가 피보나치 수열을 Recursion(재귀)로 구현한 과정을 풀어보면, 먼저 입력 받은 index 값이 0 또는 1과 같아지는 if 조건에 만족할때까지 계속해서 메서드를 재귀 호출합니다. 그리고 if 조건에 만족하면 스택 프레임 안에서 가장 마지막에 있는 메서드부터 먼저 값을 리턴합니다. 즉, 피보나치 수열의 첫째항부터 항의 값부터 순서대로 계산하고 최종적으로 입력 받은 index 항의 값을 리턴합니다.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/algorithm" class="page__taxonomy-item" rel="tag">algorithm</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/call-stack" class="page__taxonomy-item" rel="tag">call stack</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/java" class="page__taxonomy-item" rel="tag">java</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/recursion" class="page__taxonomy-item" rel="tag">recursion</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2019-07-23T00:00:00+00:00">July 23, 2019</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2019/07/19/web-scraper-scheduler.html" class="pagination--pager" title="웹 어플리케이션 내에 스케줄러 구현
+">이전</a>
+    
+    
+      <a href="/2019/07/29/springsecurity-filter.html" class="pagination--pager" title="스프링시큐리티 - 필터 설정
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <section id="disqus_thread">
+    <script>
+    
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ykblog-2.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow" style="padding-top: 10px;">
+   <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2019 yk-dev-blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+
+
+
+
+
+
+
+
+  </body>
+</html>

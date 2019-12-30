@@ -1,0 +1,952 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Springboot-SpringSecurity-JPA - yk-dev-blog</title>
+<meta name="description" content="이전에 진행한 팀 프로젝트에서는 spring과 mybatis를 다루었습니다. 그리고 mybatis에 대해 공부하면서 ORM과 hibernate에 대해서 알게 되었습니다. hibernate가 해외에서는 널리 사용되고 있고 국내에서도 사용이 늘고 있는 것으로 알고 있습니다. 그래서 작은 개인 프로젝트를 진행하며 공부해보았습니다.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="yk-dev-blog">
+<meta property="og:title" content="Springboot-SpringSecurity-JPA">
+<meta property="og:url" content="https://midas123.github.io/2019/04/08/Springboot-Hibernate-project.html">
+
+
+  <meta property="og:description" content="이전에 진행한 팀 프로젝트에서는 spring과 mybatis를 다루었습니다. 그리고 mybatis에 대해 공부하면서 ORM과 hibernate에 대해서 알게 되었습니다. hibernate가 해외에서는 널리 사용되고 있고 국내에서도 사용이 늘고 있는 것으로 알고 있습니다. 그래서 작은 개인 프로젝트를 진행하며 공부해보았습니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-04-08T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://midas123.github.io/2019/04/08/Springboot-Hibernate-project.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="yk-dev-blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+
+
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">맨 위로</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTop").style.display = "block";
+    } else {
+      document.getElementById("scrollToTop").style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138663237-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138663237-1');
+</script>
+
+<!-- flex slider -->
+<link rel="stylesheet" href="/assets/slider/flexslider.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.6.2.js"integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="crossorigin="anonymous"></script>
+<script src="/assets/slider/jquery.flexslider.js"></script>
+<script src="/assets/slider/jquery.flexslider-min.js"></script>
+
+<style>
+@font-face {
+ font-family: 'flexslider-icon';
+ src: url(/assets/slider/fonts/flexslider-icon.eot);
+ src: url(/assets/slider/fonts/flexslider-icon.woff) format('woff'),
+      url(/assets/slider/fonts/flexslider-icon.ttf) format('truetype');
+}
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "fade",
+      directionNav: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      touch: true
+    });
+  });
+</script>
+
+<!-- flex slider end -->
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!-- end custom head snippets -->
+
+  </head>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">yk-dev-blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+  
+  <div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="http://midas123.tistory.com/" rel="nofollow noopener noreferrer"><i class="fab fa-blogger" aria-hidden="true"></i> Tistory Blog</a></li>
+          
+        
+          
+            <li><a href="https://github.com/midas123" rel="nofollow noopener noreferrer"><i class="fab fa-git-square" aria-hidden="true"></i> Github</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">MENU</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/year-archive/" class="">최근 포스트</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/#all-tags" class="">모든 태그</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  
+</div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Springboot-SpringSecurity-JPA">
+    <meta itemprop="description" content="이전에 진행한 팀 프로젝트에서는 spring과 mybatis를 다루었습니다. 그리고 mybatis에 대해 공부하면서 ORM과 hibernate에 대해서 알게 되었습니다. hibernate가 해외에서는 널리 사용되고 있고 국내에서도 사용이 늘고 있는 것으로 알고 있습니다. 그래서 작은 개인 프로젝트를 진행하며 공부해보았습니다.">
+    <meta itemprop="datePublished" content="April 08, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Springboot-SpringSecurity-JPA
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#index">INDEX</a></li>
+  <li><a href="#프로젝트-구조">프로젝트 구조</a></li>
+  <li><a href="#처리-흐름">처리 흐름</a></li>
+  <li><a href="#개체-관계도">개체 관계도</a></li>
+  <li><a href="#스프링-시큐리티-설정">스프링 시큐리티 설정</a></li>
+  <li><a href="#회원가입">회원가입</a>
+    <ul>
+      <li><a href="#회원가입---사용자-이메일-계정-인증">회원가입 - 사용자 이메일 계정 인증</a></li>
+      <li><a href="#회원가입-유효성-검사">회원가입 유효성 검사</a></li>
+    </ul>
+  </li>
+  <li><a href="#비밀번호-변경-이메일-token-발송">비밀번호 변경 이메일 token 발송</a></li>
+  <li><a href="#마무리">마무리</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>이전에 진행한 팀 프로젝트에서는 spring과 mybatis를 다루었습니다. 그리고 mybatis에 대해 공부하면서 ORM과 hibernate에 대해서 알게 되었습니다. hibernate가 해외에서는 널리 사용되고 있고 국내에서도 사용이 늘고 있는 것으로 알고 있습니다. 그래서 작은 개인 프로젝트를 진행하며 공부해보았습니다.</p>
+
+<p>mybatis에서는 xml 설정 파일에 데이터베이스에 접근하는 쿼리를 작성하여 데이터베이스 위주로 기능하는 프로젝트를 만들었다면, 이번 개인 프로젝트에서는 hibernate를 이용하여 전자와 상반되는 구조로 만들게 되었습니다.</p>
+
+<p>자바 클래스에서 entity 객체를 설정하고 DB에 접근하는 코드를 작성해야 했기 때문에 처음 습득하는 단계에서 어려움이 많았습니다.</p>
+
+<p>먼저 관련 이론을 상세하게 공부하기 보다는 springboot과 hibernate 기반의 예제 코드를 찾아보고 그 안에 있는 각 어노테이션과 클래스 기능을 파악하고 프로젝트에 적용해보며 공부하였습니다.</p>
+
+<p><a href="https://github.com/midas123/spring-board-jpa">프로젝트-github-링크</a></p>
+
+<p><br /><br /></p>
+
+<h2 id="index">INDEX</h2>
+
+<ul>
+  <li>
+    <p><strong>프로젝트 개요</strong></p>
+
+    <p><a href="#프로젝트-구조">프로젝트 구조</a></p>
+
+    <p><a href="#처리-흐름">처리흐름</a></p>
+
+    <p><a href="#개체-관계도">개체 관계도</a></p>
+  </li>
+  <li>
+    <p><strong>구현 기능</strong></p>
+
+    <p><a href="#스프링-시큐리티-설정">스프링 시큐리티 설정</a></p>
+
+    <p><a href="#회원가입">회원가입</a></p>
+
+    <p><a href="#회원가입-유효성-검사">회원가입-유효성 검사(Validation)</a></p>
+
+    <p><a href="#비밀번호-변경-이메일-token-발송">비밀번호 변경 - 이메일 token 발송</a></p>
+  </li>
+</ul>
+
+<p><br /><br /><br /></p>
+
+<h2 id="프로젝트-구조">프로젝트 구조</h2>
+
+<p><img src="https://midas123.github.io\assets\images\post\springboot\project-structure.jpg" alt="" class="center-image" /></p>
+
+<p><br /><br /></p>
+
+<h2 id="처리-흐름">처리 흐름</h2>
+
+<p><img src="https://midas123.github.io\assets\images\post\springboot\springboot-flowchart.jpeg" alt="" class="center-image" /></p>
+
+<p><br /><br /></p>
+
+<h2 id="개체-관계도">개체 관계도</h2>
+
+<p><img src="https://midas123.github.io\assets\images\post\springboot\springboot_20190429_11_30.jpg" alt="" class="center-image" /></p>
+
+<p><br /><br /></p>
+
+<h2 id="스프링-시큐리티-설정">스프링 시큐리티 설정</h2>
+
+<p>스프링 시큐리티 필터 설정으로 ROLE이 없는 사용자는 css, js, 이미지 파일 등의 리소스와 특정 페이지만 접근이 가능하도록 설정했습니다.</p>
+
+<p>사용자 로그인 기능은 스프링 시큐리티가 처리합니다. UserDetailsService 인터페이스를 구현한 CustomUserDetailsService 클래스의 loadUserByUsername() 메서드에서 사용자의 계정과 이메일 계정 인증 여부를 확인 후 반환한 CustomUserDetails 객체에 의해서 스프링 시큐리티 로그인 과정이 진행됩니다.</p>
+
+<p><br /></p>
+
+<p><em>-WebSecurityConfig</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableWebSecurity</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">basePackageClasses</span> <span class="o">=</span> <span class="n">CustomUserDetailsService</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebSecurityConfig</span> <span class="kd">extends</span> <span class="n">WebSecurityConfigurerAdapter</span> <span class="o">{</span>
+	 
+	 <span class="nd">@Autowired</span>
+	 <span class="kd">private</span> <span class="n">UserDetailsService</span> <span class="n">userDetailsService</span><span class="o">;</span>
+	 
+	 <span class="nd">@Autowired</span>
+	 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configAuthentication</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+	  <span class="n">auth</span><span class="o">.</span><span class="na">userDetailsService</span><span class="o">(</span><span class="n">userDetailsService</span><span class="o">).</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="n">passwordencoder</span><span class="o">());</span>
+	 <span class="o">}</span> 
+	
+	<span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">http</span><span class="o">.</span><span class="na">csrf</span><span class="o">().</span><span class="na">disable</span><span class="o">();</span>
+		<span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">"/css/**"</span><span class="o">,</span> <span class="s">"/js/**"</span><span class="o">,</span> <span class="s">"/img/**"</span><span class="o">,</span> <span class="s">"/login**"</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">"/emailConfirmation/**"</span><span class="o">,</span> <span class="s">"/ResetPassword/**"</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">"/registration"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"ANONYMOUS"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">"/board"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"USER"</span><span class="o">).</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+		<span class="o">.</span><span class="na">formLogin</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">loginPage</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">loginProcessingUrl</span><span class="o">(</span><span class="s">"/loginPro"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">defaultSuccessUrl</span><span class="o">(</span><span class="s">"/board"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">failureUrl</span><span class="o">(</span><span class="s">"/login?error"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">usernameParameter</span><span class="o">(</span><span class="s">"username"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">passwordParameter</span><span class="o">(</span><span class="s">"password"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">permitAll</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">logout</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">exceptionHandling</span><span class="o">().</span><span class="na">accessDeniedPage</span><span class="o">(</span><span class="s">"/403"</span><span class="o">);</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">PasswordEncoder</span> <span class="nf">passwordencoder</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">BCryptPasswordEncoder</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><em>-CustomUserDetailsService</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span><span class="o">(</span><span class="s">"customUserDetailsService"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomUserDetailsService</span> <span class="kd">implements</span> <span class="n">UserDetailsService</span><span class="o">{</span>
+	
+	<span class="kd">private</span> <span class="kd">final</span> <span class="n">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kd">final</span> <span class="n">UserRolesRepository</span> <span class="n">userRolesRepository</span><span class="o">;</span>
+	
+	<span class="nd">@Autowired</span>
+	<span class="kd">public</span> <span class="nf">CustomUserDetailsService</span><span class="o">(</span><span class="n">UserRepository</span> <span class="n">userRepository</span><span class="o">,</span><span class="n">UserRolesRepository</span> <span class="n">userRolesRepository</span><span class="o">)</span> <span class="o">{</span>
+	    <span class="k">this</span><span class="o">.</span><span class="na">userRepository</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">;</span>
+	    <span class="k">this</span><span class="o">.</span><span class="na">userRolesRepository</span><span class="o">=</span><span class="n">userRolesRepository</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="n">UserDetails</span> <span class="nf">loadUserByUsername</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UsernameNotFoundException</span> <span class="o">{</span>
+		<span class="n">Users</span> <span class="n">user</span><span class="o">=</span><span class="n">userRepository</span><span class="o">.</span><span class="na">findByUsername</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">user</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">user</span><span class="o">.</span><span class="na">getIsenabled</span><span class="o">()</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">||</span> <span class="n">user</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">throw</span> <span class="k">new</span> <span class="nf">UsernameNotFoundException</span><span class="o">(</span><span class="s">"아이디 또는 비밀번호를 잘못 입력하셨습니다."</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">else</span><span class="o">{</span>
+			<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">userRoles</span><span class="o">=</span><span class="n">userRolesRepository</span><span class="o">.</span><span class="na">findRoleByUsername</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+			<span class="k">return</span> <span class="k">new</span> <span class="nf">CustomUserDetails</span><span class="o">(</span><span class="n">user</span><span class="o">,</span><span class="n">userRoles</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<h2 id="회원가입">회원가입</h2>
+
+<p>회원가입 요청시 데이터가 JSON 형식으로 넘어오도록 컨트롤러를 구성했습니다.  userResistrationPro() 메서드에서 사용자가 입력한 이메일, 닉네임 중복 여부를 확인합니다. 그리고 사용자 역할(ROLE)을 부여하고 UserRole 테이블에 별도로 저장합니다.  비밀번호는 암호화되며 다른 사용자 정보와 함께 Users 테이블에 저장됩니다.</p>
+
+<p>@Transactional에 의해서 모든 과정은 일괄 실행됩니다. 마지막에 sendVerifycationEmail() 메서드가 사용자의 이메일 계정을 인증하는 token 이메일을 발송합니다. token은 EmailToken 테이블에 저장 됩니다.</p>
+
+<p><br /></p>
+
+<p><em>-컨트롤러</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="nd">@AllArgsConstructor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebRestController</span> <span class="o">{</span>
+	
+	<span class="nd">@Autowired</span>
+	<span class="kd">private</span> <span class="n">UserServiceImpl</span> <span class="n">userServiceImpl</span><span class="o">;</span>
+	
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/registration"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">joinMember</span><span class="o">(</span><span class="nd">@Valid</span> <span class="nd">@RequestBody</span> <span class="n">UserRequestDto</span> <span class="n">UserDto</span><span class="o">)</span> <span class="o">{</span>
+    	<span class="k">return</span> <span class="n">userServiceImpl</span><span class="o">.</span><span class="na">userResistrationPro</span><span class="o">(</span><span class="n">UserDto</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>-‘UserServiceImpl’ 서비스 클래스</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">userResistrationPro</span><span class="o">(</span><span class="n">UserRequestDto</span> <span class="n">dto</span><span class="o">){</span>
+		<span class="n">verifyDuplicattionEmail</span><span class="o">(</span><span class="n">dto</span><span class="o">.</span><span class="na">getUsername</span><span class="o">());</span><span class="c1">//이메일 중복 확인</span>
+		<span class="n">verifyDuplicattionNickName</span><span class="o">(</span><span class="n">dto</span><span class="o">.</span><span class="na">getNickname</span><span class="o">());</span><span class="c1">//넥네임 중복 확인</span>
+		<span class="n">dto</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="n">passwordEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">dto</span><span class="o">.</span><span class="na">getPassword</span><span class="o">()));</span> <span class="c1">//비밀번호 암호화</span>
+		<span class="kt">int</span> <span class="n">userId</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">dto</span><span class="o">.</span><span class="na">toEntity</span><span class="o">()).</span><span class="na">getUserid</span><span class="o">();</span><span class="c1">//사용자 정보 DB저장</span>
+		<span class="n">UserRoleResistration</span><span class="o">(</span><span class="n">userId</span><span class="o">);</span><span class="c1">//사용자 ROLE DB저장</span>
+		<span class="n">sendVerifycationEmail</span><span class="o">(</span><span class="n">dto</span><span class="o">,</span> <span class="n">userId</span><span class="o">);</span><span class="c1">//사용자 이메일계정 인증메일 발송</span>
+		<span class="k">return</span> <span class="n">userId</span><span class="o">;</span>
+<span class="o">}</span>
+	
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="회원가입---사용자-이메일-계정-인증">회원가입 - 사용자 이메일 계정 인증</h3>
+
+<p>confirmEmailToken() 메서드가 사용자의 인증 요청의 파라미터로 넘어온 token이 DB에 저장된 token과 일치하는지 확인한 후 사용자 계정을 활성화 합니다. @Controller 어노테이션을 사용한 컨트롤러이므로 모든 처리 후 활성화 완료 페이지(confirmDone)를 view로 반환합니다.</p>
+
+<p><em>-컨트롤러</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/emailConfirmation/account"</span><span class="o">)</span>
+	  <span class="kd">public</span> <span class="n">String</span> <span class="nf">confirmUserAccount</span><span class="o">(</span><span class="nd">@RequestParam</span><span class="o">(</span><span class="s">"token"</span><span class="o">)</span><span class="n">String</span> <span class="n">emailToken</span><span class="o">)</span> <span class="o">{</span>
+		  <span class="n">userServiceImpl</span><span class="o">.</span><span class="na">confirmEmailToken</span><span class="o">(</span><span class="n">emailToken</span><span class="o">);</span>
+		  <span class="k">return</span> <span class="s">"confirmDone"</span><span class="o">;</span>
+	  <span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><em>-UserServiceImpl의 UserServiceImpl메서드</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">confirmEmailToken</span><span class="o">(</span><span class="n">String</span> <span class="n">token</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">EmailToken</span> <span class="n">emailtoken</span> <span class="o">=</span> <span class="n">emailTokenRepository</span><span class="o">.</span><span class="na">findByConfirmationToken</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">emailtoken</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Users</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findByUsernameIgnoreCase</span><span class="o">(</span><span class="n">emailtoken</span><span class="o">.</span><span class="na">getUser</span><span class="o">().</span><span class="na">getUsername</span><span class="o">());</span>
+            <span class="n">user</span><span class="o">.</span><span class="na">setIsenabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span><span class="c1">//사용자 계정 활성화</span>
+            <span class="n">emailTokenRepository</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">emailtoken</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        	<span class="k">throw</span> <span class="k">new</span> <span class="nf">ValidCustomException</span><span class="o">(</span><span class="s">"인증 주소가 적절하지 않습니다."</span><span class="o">,</span> <span class="s">"confirm-email-errormessage"</span><span class="o">);</span>
+        <span class="o">}</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<h3 id="회원가입-유효성-검사">회원가입 유효성 검사</h3>
+
+<p>이전 프로젝트에서 javascript와 jquery를 이용해서 유효성 검사를 구현한 경험이 있습니다. 하지만 웹브라우저에서 javascript가 작동 안되는 경우가 있기 때문에 이번에는 서버 측에서 유효성 검사를 구현하게 되었습니다. 물론 서버와 웹브라우저에서 동시에 유효성검사를 구현하는 방법이 최선 일 것입니다.</p>
+
+<p>회원가입시 사용자가 입력한 정보의 유효성 검사 코드는 UserRequestDto 클래스에 작성했습니다. 클래스의 필드 값은 Users 엔티티로 전달되는 파라미터 입니다. 각 필드마다 유효성 검사를 실행하는 constraint 어노테이션이 붙어있습니다.</p>
+
+<p>몇몇 필드는 기본 제공 되는 어노테이션만으로 유효성 검사를 하기에 부족한 부분이 있기 때문에 별도의 constraint 어노테이션 클래스가 필요해서 따로 추가하게 되었습니다.</p>
+
+<p>@EmailValid는 username(이메일) 필드의 유효성 검사를 좀 더 정확하게 하며, @PasswordMatch 어노테이션은  사용자가 처음 입력한 비밀번호와 다시 한번 입력한 비밀번호를 비교해서 비밀번호를 정확히 입력했는지 확인하는 기능을 합니다.</p>
+
+<p><br /></p>
+
+<p><em>-UserRequestDto</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Getter</span>
+<span class="nd">@Setter</span>
+<span class="nd">@NoArgsConstructor</span>
+<span class="nd">@PasswordMatch</span><span class="o">.</span><span class="na">List</span><span class="o">({</span> 
+	<span class="nd">@PasswordMatch</span><span class="o">(</span><span class="n">field</span> <span class="o">=</span> <span class="s">"password"</span><span class="o">,</span> <span class="n">fieldMatch</span> <span class="o">=</span> <span class="s">"confirmPassword"</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"비밀번호가 서로 다릅니다."</span><span class="o">),</span> 
+<span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserRequestDto</span> <span class="o">{</span>
+	<span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span><span class="o">=</span><span class="s">"이메일을 작성해주세요."</span><span class="o">)</span>
+	<span class="nd">@EmailValid</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">username</span><span class="o">;</span>
+	
+	<span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span><span class="o">=</span><span class="s">"닉네임을 작성해주세요."</span><span class="o">)</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">nickname</span><span class="o">;</span>
+	
+	<span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span><span class="o">=</span><span class="s">"비밀번호를 작성해주세요."</span><span class="o">)</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
+	
+	<span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span><span class="o">=</span><span class="s">"비밀번호를 다시 한번 작성해주세요."</span><span class="o">)</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">confirmPassword</span><span class="o">;</span>
+	
+	<span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"전화번호를 작성해주세요."</span><span class="o">)</span>
+	<span class="nd">@Pattern</span><span class="o">(</span><span class="n">regexp</span> <span class="o">=</span> <span class="s">"[0-9]{10,11}"</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"10~11자리의 숫자만 입력가능합니다"</span><span class="o">)</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">phoneNumber</span><span class="o">;</span>
+    
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<p>바로 위에 유효성 검사가 동작하기 전, 사용자가 웹브라우저 화면에서 회원가입 버튼을 누르면 아래 기능이 동작합니다. jquery로 가져온 데이터들을 JSON 데이터 타입으로 만들고 ajax를 이용해서 POST 형식으로 서버측으로 보냅니다.</p>
+
+<p><br /></p>
+
+<p><em>-main.js</em></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nx">join</span> <span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">data1</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="na">username</span><span class="p">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#username'</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+            <span class="na">nickname</span><span class="p">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#nickname'</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+            <span class="na">phoneNumber</span><span class="p">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#phoneNumber'</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+            <span class="na">password</span><span class="p">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#password'</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+            <span class="na">confirmPassword</span><span class="p">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#password2'</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
+        <span class="p">};</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+            <span class="na">type</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+            <span class="na">url</span><span class="p">:</span> <span class="s1">'/registration'</span><span class="p">,</span>
+            <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+            <span class="na">contentType</span><span class="p">:</span><span class="s1">'application/json; charset=utf-8'</span><span class="p">,</span>
+            <span class="na">data</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data1</span><span class="p">)</span>
+        <span class="p">}).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s1">'회원 가입 되었습니다. 회원 이메일을 인증해주세요.'</span><span class="p">);</span>
+            <span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">=</span><span class="s2">"/"</span><span class="p">;</span>
+        <span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+        	<span class="nx">markingErrorField</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>만약 회원가입시 입력한 데이터가 유효성 검사 조건에 맞지 않을 경우에는 위 ajax의 .fail() 메서드가 서버측으로 부터  response 객체를 받습니다. 이 객체는 필드 네임과 에러 코드, 메시지 등을 담고 있는 error 객체가 있습니다.</p>
+
+<p>아래 코드에서 그 error 객체의 내용을 확인해서 에러 메세지를 html 형태로 사용자 화면에 추가합니다.</p>
+
+<p><br /></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">markingErrorField</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">errorFields</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">responseJSON</span><span class="p">.</span><span class="nx">errors</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">errorFields</span><span class="p">){</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">$field</span><span class="p">,</span> <span class="nx">error</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">errorFields</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="nx">error</span> <span class="o">=</span> <span class="nx">errorFields</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="nx">$field</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#'</span><span class="o">+</span><span class="nx">error</span><span class="p">[</span><span class="s1">'field'</span><span class="p">]);</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">$field</span> <span class="o">&amp;&amp;</span> <span class="nx">$field</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+        	<span class="nx">$</span><span class="p">(</span><span class="s1">'#'</span><span class="o">+</span><span class="nx">error</span><span class="p">[</span><span class="s1">'field'</span><span class="p">]</span><span class="o">+</span><span class="s1">'-error'</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+            <span class="nx">$field</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">'&lt;span class="error-message" id="'</span><span class="o">+</span><span class="nx">error</span><span class="p">[</span><span class="s1">'field'</span><span class="p">]</span><span class="o">+</span><span class="s1">'-error"&gt;'</span><span class="o">+</span><span class="nx">error</span><span class="p">.</span><span class="nx">defaultMessage</span><span class="o">+</span><span class="s1">'&lt;/span&gt;'</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">error</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"PasswordMatch"</span><span class="p">){</span>
+        	<span class="nx">$</span><span class="p">(</span><span class="s1">'#password2-error'</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+        	<span class="nx">$</span><span class="p">(</span><span class="s1">'#password2'</span><span class="p">).</span><span class="nx">after</span><span class="p">(</span><span class="s1">'&lt;span class="error-message" id="password2-error"&gt;'</span><span class="o">+</span><span class="nx">error</span><span class="p">.</span><span class="nx">defaultMessage</span><span class="o">+</span><span class="s1">'&lt;/span&gt;'</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">error</span><span class="p">[</span><span class="s1">'code'</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"confirm-email-errormessage"</span><span class="p">){</span>
+        		<span class="nx">alert</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">defaultMessage</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<h2 id="비밀번호-변경-이메일-token-발송">비밀번호 변경 이메일 token 발송</h2>
+
+<p>회원 가입시 입력한 이메일을 비밀번호 변경 요청 페이지에서 입력하면 이메일 검증 후 token을 발송합니다. 이 후 사용자가 token이 포함된 링크를 클릭하면 token의 유효성을 서버에서 확인하고 비밀번호를 변경 페이지로 이동합니다.</p>
+
+<p>아래 코드에서 각 메서드의 기능을 순서대로 설명하겠습니다. PasswordReset() 메서드에서 이메일과 token의 유효성 검사 결과를 view로 출력합니다.</p>
+
+<p>유효성 검사가 실행되는 곳은 PasswordResetPro() 메서드 입니다. 이메일 주소를 검사하고 만약 error 메세지가 있을 경우 view로 반환합니다. 아무 문제가 없을 경우에는 정상적으로 token 생성과 이메일 발송을 처리합니다.</p>
+
+<p>PasswordChangeForm()에서 token의 유효성을 검사하며, 이상이 없을 경우 비밀번호 변경 페이지를 반환합니다. token은 30분의 유효기간을 가지며 그 이후에는 해당 token으로 비밀번호를 변경할 수 없습니다.</p>
+
+<p>PasswordTokenResetPro()에서는 DB에 저장되어 있는 유효한 token으로 사용자 정보에 접근하여 비밀번호 변경을 처리합니다.</p>
+
+<p><br /></p>
+
+<p><em>-PasswordResetController</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 	<span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/ResetPassword"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">PasswordReset</span><span class="o">(</span><span class="nd">@ModelAttribute</span><span class="o">(</span><span class="s">"pfdto"</span><span class="o">)</span> <span class="n">PasswordResetRequestDto</span> <span class="n">pfdto</span><span class="o">,</span> <span class="n">String</span> 			<span class="n">mailSended</span><span class="o">,</span> <span class="n">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+	  	<span class="k">if</span><span class="o">(</span><span class="n">mailSended</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+	  		<span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"mailSended"</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+	  	<span class="o">}</span>
+        <span class="k">return</span> <span class="s">"passwordResetForm"</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/ResetPassword/verificationMail"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">PasswordResetPro</span><span class="o">(</span><span class="nd">@ModelAttribute</span><span class="o">(</span><span class="s">"pfdto"</span><span class="o">)</span> <span class="nd">@Valid</span> <span class="n">PasswordResetRequestDto</span> <span class="n">pfdto</span><span class="o">,</span>
+                                            <span class="n">BindingResult</span> <span class="n">result</span><span class="o">,</span> <span class="n">Errors</span> <span class="n">errors</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">hasErrors</span><span class="o">()){</span>
+            <span class="k">return</span> <span class="s">"passwordResetForm"</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">Users</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findByUsername</span><span class="o">(</span><span class="n">pfdto</span><span class="o">.</span><span class="na">getEmail</span><span class="o">());</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">user</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">rejectValue</span><span class="o">(</span><span class="s">"email"</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="s">"이메일 주소가 존재하지 않습니다."</span><span class="o">);</span>
+            <span class="k">return</span> <span class="s">"passwordResetForm"</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="c1">//token 생성 후 DB 저장</span>
+        <span class="n">PasswordResetToken</span> <span class="n">token</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PasswordResetToken</span><span class="o">();</span>
+        <span class="n">token</span><span class="o">.</span><span class="na">setToken</span><span class="o">(</span><span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+        <span class="n">token</span><span class="o">.</span><span class="na">setUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+        <span class="n">token</span><span class="o">.</span><span class="na">setExpiryDate</span><span class="o">(</span><span class="mi">30</span><span class="o">);</span>
+        <span class="n">tokenRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
+		
+        <span class="c1">//메일 발송</span>
+        <span class="n">SimpleMailMessage</span> <span class="n">mailMessage</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleMailMessage</span><span class="o">();</span>
+        <span class="n">mailMessage</span><span class="o">.</span><span class="na">setTo</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getUsername</span><span class="o">());</span>
+        <span class="n">mailMessage</span><span class="o">.</span><span class="na">setSubject</span><span class="o">(</span><span class="s">"비밀번호 변경 이메일 입니다."</span><span class="o">);</span>
+        <span class="n">mailMessage</span><span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="s">"admin@gmail.com"</span><span class="o">);</span>
+        <span class="n">mailMessage</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"링크를 클릭해서 비밀번호를 변경합니다..: "</span>
+        <span class="o">+</span><span class="s">"http://localhost:8080/ResetPassword/valid?token="</span><span class="o">+</span><span class="n">token</span><span class="o">.</span><span class="na">getToken</span><span class="o">());</span>
+        <span class="n">emailSendService</span><span class="o">.</span><span class="na">sendEmail</span><span class="o">(</span><span class="n">mailMessage</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"redirect:/ResetPassword/?mailSended"</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/ResetPassword/valid"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">PasswordTokenResetForm</span><span class="o">(</span><span class="nd">@ModelAttribute</span><span class="o">(</span><span class="s">"prdto"</span><span class="o">)</span> <span class="n">PasswordResetDto</span> <span class="n">prdto</span><span class="o">,</span> 
+    		<span class="nd">@RequestParam</span><span class="o">(</span><span class="n">required</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span> <span class="n">String</span> <span class="n">token</span><span class="o">,</span> <span class="n">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">PasswordResetToken</span> <span class="n">resetToken</span> <span class="o">=</span> <span class="n">tokenRepository</span><span class="o">.</span><span class="na">findByToken</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">resetToken</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
+            <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"error"</span><span class="o">,</span> <span class="s">"유효한 token이 아닙니다."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">resetToken</span><span class="o">.</span><span class="na">isExpired</span><span class="o">()){</span>
+            <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"error"</span><span class="o">,</span> <span class="s">"token의 유효기간이 종료되었습니다."</span><span class="o">);</span>
+            <span class="n">tokenRepository</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">resetToken</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"token"</span><span class="o">,</span> <span class="n">resetToken</span><span class="o">.</span><span class="na">getToken</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="s">"passwordResetToken"</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/ResetPassword/pro"</span><span class="o">)</span>
+    <span class="nd">@Transactional</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">PasswordTokenResetPro</span><span class="o">(</span><span class="n">Model</span> <span class="n">model</span><span class="o">,</span> <span class="nd">@ModelAttribute</span><span class="o">(</span><span class="s">"prdto"</span><span class="o">)</span> <span class="nd">@Valid</span> 				<span class="n">PasswordResetDto</span> <span class="n">prdto</span><span class="o">,</span> <span class="n">BindingResult</span> <span class="n">result</span><span class="o">,</span> <span class="n">Errors</span> <span class="n">errors</span><span class="o">)</span> <span class="o">{</span>
+    	<span class="n">PasswordResetToken</span> <span class="n">token</span> <span class="o">=</span> <span class="n">tokenRepository</span><span class="o">.</span><span class="na">findByToken</span><span class="o">(</span><span class="n">prdto</span><span class="o">.</span><span class="na">getToken</span><span class="o">());</span>
+    	<span class="k">if</span><span class="o">(</span><span class="n">token</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    		<span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"error"</span><span class="o">,</span> <span class="s">"유효한 token이 아니므로 비밀번호를 변경 할 수 없습니다."</span><span class="o">);</span>
+    		<span class="k">return</span> <span class="s">"403"</span><span class="o">;</span>
+    	<span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">hasErrors</span><span class="o">()){</span>
+        	<span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"token"</span><span class="o">,</span> <span class="n">prdto</span><span class="o">.</span><span class="na">getToken</span><span class="o">());</span>
+        	<span class="k">return</span> <span class="s">"passwordResetToken"</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">Users</span> <span class="n">user</span> <span class="o">=</span> <span class="n">token</span><span class="o">.</span><span class="na">getUser</span><span class="o">();</span>
+        <span class="n">String</span> <span class="n">updatedPassword</span> <span class="o">=</span> <span class="n">passwordEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">prdto</span><span class="o">.</span><span class="na">getPassword</span><span class="o">());</span>
+        <span class="n">userRepository</span><span class="o">.</span><span class="na">updatePassword</span><span class="o">(</span><span class="n">updatedPassword</span><span class="o">,</span> <span class="n">user</span><span class="o">.</span><span class="na">getUserid</span><span class="o">());</span>
+        <span class="n">tokenRepository</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"redirect:/ResetPassword/done"</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/ResetPassword/done"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">passwordCheangeDone</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"passwordResetDone"</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<h2 id="마무리">마무리</h2>
+
+<p>어플리케이션 동작 중 만들어진 데이터가 데이터베이스에 저장되도록 변환해주는 영속화 프레임 워크 중 하나인 mybatis를 처음 접하였습니다. 그래서 sql 위주의 xml 설정에 먼저 익숙해진 상태였습니다.</p>
+
+<p>hibernate는 mybatis와 상반되게 기본적인 sql 쿼리를 일일이 작성할 필요없이 간단한 자바 코드 한 줄이면 해결되고 DB에 따라서 sql 문법이나 관련 설정을 바꿀 필요가 없는 편리함이 있었습니다.</p>
+
+<p>하지만 초기 설정시 작성해야 하는 자바 코드가 생소해서 적응하는게 쉽지 않았습니다. 그럼에도 불구하고 작은 프로젝트를 차근차근 진행하면서 각 어노테이션과 클래스를 공부하고 기능을 하나둘씩 추가하면서 프로젝트를 마무리 할 수 있었습니다.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/hibernate" class="page__taxonomy-item" rel="tag">hibernate</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/jpa" class="page__taxonomy-item" rel="tag">jpa</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/maven" class="page__taxonomy-item" rel="tag">maven</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/spring-security" class="page__taxonomy-item" rel="tag">spring-security</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/springboot" class="page__taxonomy-item" rel="tag">springboot</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2019-04-08T00:00:00+00:00">April 08, 2019</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2019/03/11/jpa.html" class="pagination--pager" title="JPA, Hibernate 기초
+">이전</a>
+    
+    
+      <a href="/2019/04/18/Reactjs-basic.html" class="pagination--pager" title="React 기본 개념 정리
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <section id="disqus_thread">
+    <script>
+    
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ykblog-2.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow" style="padding-top: 10px;">
+   <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2019 yk-dev-blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+
+
+
+
+
+
+
+
+  </body>
+</html>

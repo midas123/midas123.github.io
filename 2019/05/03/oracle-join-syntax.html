@@ -1,0 +1,704 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>오라클 JOIN - yk-dev-blog</title>
+<meta name="description" content="JOIN은 2개 이상의 테이블의 테이터를 조합한 결과를 만들때 사용한다. 오라클은 non-ANSI와 ANSI 조인(join) 문법을 제공한다. non-ANSI 조인은 오래전부터 사용되었고 지금도 여전히 인기가 많다. 이 문법은 FROM 절에 테이블을 열거하고 그 뒤에 WHERE 절에서 조인 조건을 정의한다. 이후 오라클 9i에서 도입된 ANSI 조인은 여러 이점이 있지만 오라클 개발자들은 습관적으로 또는 실행 단계에서 대부분의 ANSI 조인 문법은 오라클 옵티마이저에 의해 non-ANSI로 바뀌기 때문에 여전히 non-ANSI 조인 문법을 사용한다. (대부분 외형만 다를 뿐 성능은 동일하다는 의미)">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="yk-dev-blog">
+<meta property="og:title" content="오라클 JOIN">
+<meta property="og:url" content="https://midas123.github.io/2019/05/03/oracle-join-syntax.html">
+
+
+  <meta property="og:description" content="JOIN은 2개 이상의 테이블의 테이터를 조합한 결과를 만들때 사용한다. 오라클은 non-ANSI와 ANSI 조인(join) 문법을 제공한다. non-ANSI 조인은 오래전부터 사용되었고 지금도 여전히 인기가 많다. 이 문법은 FROM 절에 테이블을 열거하고 그 뒤에 WHERE 절에서 조인 조건을 정의한다. 이후 오라클 9i에서 도입된 ANSI 조인은 여러 이점이 있지만 오라클 개발자들은 습관적으로 또는 실행 단계에서 대부분의 ANSI 조인 문법은 오라클 옵티마이저에 의해 non-ANSI로 바뀌기 때문에 여전히 non-ANSI 조인 문법을 사용한다. (대부분 외형만 다를 뿐 성능은 동일하다는 의미)">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-05-03T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://midas123.github.io/2019/05/03/oracle-join-syntax.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="yk-dev-blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+
+
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">맨 위로</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTop").style.display = "block";
+    } else {
+      document.getElementById("scrollToTop").style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138663237-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138663237-1');
+</script>
+
+<!-- flex slider -->
+<link rel="stylesheet" href="/assets/slider/flexslider.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.6.2.js"integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="crossorigin="anonymous"></script>
+<script src="/assets/slider/jquery.flexslider.js"></script>
+<script src="/assets/slider/jquery.flexslider-min.js"></script>
+
+<style>
+@font-face {
+ font-family: 'flexslider-icon';
+ src: url(/assets/slider/fonts/flexslider-icon.eot);
+ src: url(/assets/slider/fonts/flexslider-icon.woff) format('woff'),
+      url(/assets/slider/fonts/flexslider-icon.ttf) format('truetype');
+}
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "fade",
+      directionNav: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      touch: true
+    });
+  });
+</script>
+
+<!-- flex slider end -->
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!-- end custom head snippets -->
+
+  </head>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">yk-dev-blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+  
+  <div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="http://midas123.tistory.com/" rel="nofollow noopener noreferrer"><i class="fab fa-blogger" aria-hidden="true"></i> Tistory Blog</a></li>
+          
+        
+          
+            <li><a href="https://github.com/midas123" rel="nofollow noopener noreferrer"><i class="fab fa-git-square" aria-hidden="true"></i> Github</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">MENU</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/year-archive/" class="">최근 포스트</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/#all-tags" class="">모든 태그</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  
+</div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="오라클 JOIN">
+    <meta itemprop="description" content="JOIN은 2개 이상의 테이블의 테이터를 조합한 결과를 만들때 사용한다. 오라클은 non-ANSI와 ANSI 조인(join) 문법을 제공한다. non-ANSI 조인은 오래전부터 사용되었고 지금도 여전히 인기가 많다. 이 문법은 FROM 절에 테이블을 열거하고 그 뒤에 WHERE 절에서 조인 조건을 정의한다. 이후 오라클 9i에서 도입된 ANSI 조인은 여러 이점이 있지만 오라클 개발자들은 습관적으로 또는 실행 단계에서 대부분의 ANSI 조인 문법은 오라클 옵티마이저에 의해 non-ANSI로 바뀌기 때문에 여전히 non-ANSI 조인 문법을 사용한다. (대부분 외형만 다를 뿐 성능은 동일하다는 의미)">
+    <meta itemprop="datePublished" content="May 03, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">오라클 JOIN
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#오라클-ansi-조인-문법">오라클 ANSI 조인 문법</a>
+    <ul>
+      <li><a href="#inner-join--on">(INNER) JOIN … ON</a></li>
+      <li><a href="#left-outer-join">LEFT [OUTER] JOIN</a></li>
+      <li><a href="#right-outer-join">RIGHT [OUTER] JOIN</a></li>
+      <li><a href="#full-outer-join">FULL [OUTER] JOIN</a></li>
+      <li><a href="#cross-join">CROSS JOIN</a></li>
+      <li><a href="#natural-join">NATURAL JOIN</a></li>
+      <li><a href="#inner-join--using">[INNER] JOIN … USING</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>JOIN은 2개 이상의 테이블의 테이터를 조합한 결과를 만들때 사용한다. 오라클은 non-ANSI와 ANSI 조인(join) 문법을 제공한다. non-ANSI 조인은 오래전부터 사용되었고 지금도 여전히 인기가 많다. 이 문법은 FROM 절에 테이블을 열거하고 그 뒤에 WHERE 절에서 조인 조건을 정의한다. 이후 오라클 9i에서 도입된 ANSI 조인은 여러 이점이 있지만 오라클 개발자들은 습관적으로 또는 실행 단계에서 대부분의 ANSI 조인 문법은 오라클 옵티마이저에 의해 non-ANSI로 바뀌기 때문에 여전히 non-ANSI 조인 문법을 사용한다. (대부분 외형만 다를 뿐 성능은 동일하다는 의미)</p>
+
+<p>하지만 언어 사용시 명확성을 따져보았을때 ANSI 조인 문법을 사용하는게 좋다.</p>
+
+<p><br /></p>
+
+<h1 id="오라클-ansi-조인-문법">오라클 ANSI 조인 문법</h1>
+
+<p>ANSI 조인 문법과 같거나 비슷한 non-ANSI 조인 문법을 정리되어 있습니다.</p>
+
+<ul>
+  <li>INNER JOIN</li>
+  <li>LEFT OUTER JOIN</li>
+  <li>RIGHT OUTER JOIN</li>
+  <li>FULL OUTER JOIN</li>
+  <li>CROSS JOIN</li>
+  <li>NATURAL JOIN</li>
+  <li>INNER JOIN USING</li>
+</ul>
+
+<p>※( )안에 키워드는 생략 가능함. 테이블, 칼럼명은 한글로 표시</p>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<h2 id="inner-join--on">(INNER) JOIN … ON</h2>
+
+<p>양쪽 테이블의 특정 칼럼에서 일치하는 테이터만 결과로 보여준다.</p>
+
+<p><strong><em>ANSI</em></strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT d.부서이름,
+       e.직원이름
+FROM   부서_테이블 d
+       JOIN 직원_테이블 e ON d.부서ID = e.부서ID
+WHERE  d.부서ID &gt;= 30
+ORDER BY d.부서이름;
+</code></pre></div></div>
+
+<p>쿼리 해석 -&gt;</p>
+
+<p>부서와 직원 테이블에서 [부서 이름]과 [직원 이름]을 조합한 결과를 가져온다. Join 조건(ON)은 양 테이블의 부서ID가 같고 부서ID는 30이상(WHERE), 결과는 부서이름을 기준으로 오름차순(기본 값)으로 정렬(ORDER BY)한다.</p>
+
+<p><strong><em>non-ANSI</em></strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT d.부서이름,
+       e.직원이름
+FROM   부서_테이블 d, 직원_테이블 e
+WHERE  d.부서ID = e.부서ID
+AND    d.부서ID &gt;= 30
+ORDER BY d.부서이름;
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="left-outer-join">LEFT [OUTER] JOIN</h2>
+
+<p>조인하는 테이블 중 왼쪽(부서 테이블)의 데이터 중 조건에 맞지 않는 것도 포함한 결과를 보여준다. 조건에 해당하지 않는 일부 row의 데이터(일치하는 부서ID가 없는 직원 테이블의 직원 이름 칼럼)는 null로 표시된다.</p>
+
+<p>ON으로 일치하는 칼럼 지정해야 한다. 결과는 일치하지 않는 것도 포함한다. (왼쪽 테이블에 한해서 -&gt; 부서_테이블 )</p>
+
+<p>※[ ]는 필터, join 문법별 추가 필터의 위치와 형태가 다름</p>
+
+<p><strong><em>ANSI</em></strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT d.부서이름,
+       e.직원이름     
+FROM   부서_테이블 d
+       LEFT OUTER JOIN 직원_테이블 e ON d.부서ID = e.부서ID [AND e.연봉 &gt;= 2000]
+WHERE  d.부서ID &gt;= 30
+ORDER BY d.부서이름, e.직원이름;
+</code></pre></div></div>
+
+<p><strong><em>non-ANSI</em></strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT d.부서이름,
+       e.직원이름      
+FROM   부서_테이블 d, 직원_테이블 e
+WHERE  d.부서ID = e.부서ID (+) 
+[AND    e.연봉 (+) &gt;= 2000]
+AND    d.부서ID &gt;= 30
+ORDER BY d.부서이름, e.직원이름;
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="right-outer-join">RIGHT [OUTER] JOIN</h2>
+
+<p>위 LEFT JOIN에 반대다. LEFT를 RIGHT로 바꿔주면 된다.</p>
+
+<p><strong><em>ANSI</em></strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT d.부서이름,
+       e.직원이름     
+FROM   부서_테이블 d
+       RIGHT OUTER JOIN 직원_테이블 e ON d.부서ID = e.부서ID [AND e.연봉 &gt;= 2000]
+WHERE  d.부서ID &gt;= 30
+ORDER BY d.부서이름, e.직원이름;
+</code></pre></div></div>
+
+<p><strong><em>non ANSI</em></strong></p>
+
+<p>이 문법은 ANSI 조인과는 반대로 조인하는 테이블의 순서는 상관없다. LEFT, RIGHT의 구분이 의미가 없다. 그냥 OUTER 조인이다.</p>
+
+<p><br /></p>
+
+<h2 id="full-outer-join">FULL [OUTER] JOIN</h2>
+
+<p>양쪽 테이블 사이에서 조건에 일치하는 row와 조건에 일치하지 않는 row를 모두 포함한 결과를 보여준다. 데이터가 없을 경우 null로 표시된다.</p>
+
+<p><strong><em>ANSI</em></strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT d.부서이름,
+       e.직원이름     
+FROM   부서_테이블 d
+       FULL OUTER JOIN 직원_테이블 e ON d.부서id = e.부서id
+WHERE  d.부서id &gt;= 30
+ORDER BY d.부서이름, e.직원이름;
+</code></pre></div></div>
+
+<p><strong><em>non ANSI</em></strong></p>
+
+<p>비슷하게 대응되는 조인 문법은 없다. 하지만 UNION ALL 키워드를 이용해서 같은 결과를 만들 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="cross-join">CROSS JOIN</h2>
+
+<p>양쪽 테이블 사이에서 모든 가능한 조합을 결과로 보여준다.6개의 행을 가진 테이블과 7개의 행을 가진 테이블을 cross 조인한 결과는 42개의 행을 보여준다.</p>
+
+<p>두 테이블간의 가능한 모든 조합을 만들어야 할때 사용한다.  테스트용 데이터를 생성하거나 중개 수수료 어플을 만들때 -&gt; <a href="https://stackoverflow.com/a/220042">스택오버플로우-답변</a></p>
+
+<p><strong><em>ANSI</em></strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT e.직원이름,
+       d.부서이름
+FROM   직원_테이블 e
+       CROSS JOIN 부서_테이블 d
+ORDER BY e.직원이름, d.부서이름;
+</code></pre></div></div>
+
+<p><strong><em>non ANSI</em></strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT e.직원이름,
+       d.부서이름
+FROM   직원_테이블 e, 부서_테이블 d
+ORDER BY e.직원이름, d.부서이름;
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="natural-join">NATURAL JOIN</h2>
+
+<p>양쪽 테이블 사이에서 이름이 같은 칼럼으로 조인한 결과를 보여준다. (별도의 조건을 지정할 필요 없음)</p>
+
+<p>문법과 실행결과가 심플한 이점이 있지만 동일한 칼럼에 대한 표기가 명확하지 않은 점, 추후 테이블에 칼럼이 추가될 경우 버그가 발생할 우려가 있기 때문에 사용시 주의가 필요함.</p>
+
+<p>※WHEHE 절과 alias를 함께 사용할 수 없다. [ ] 안 처럼 사용할 수 있다.</p>
+
+<p><strong><em>ANSI</em></strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT e.직원이름,
+       d.부서이름
+FROM   직원_테이블 e
+       NATURAL JOIN 부서_테이블 d
+[WHERE  부서id = 20]
+ORDER BY e.직원이름, d.부서이름;
+</code></pre></div></div>
+
+<p><strong><em>non ANSI</em></strong></p>
+
+<p>없음. non ANSI 조인 문법에서는 꼭 조건이 필요하다.</p>
+
+<p><br /></p>
+
+<h2 id="inner-join--using">[INNER] JOIN … USING</h2>
+
+<p>NATURAL JOIN과 거의 비슷하다. 하지만 이 조인은 칼럼 이름을 특정한다.</p>
+
+<p>칼럼 이름을 USING으로 특정하므로 추후 테이블 칼럼 추가에 영향을 받지 않는다.</p>
+
+<p>※WHEHE 절과 alias를 함께 사용할 수 없다. [ ] 안 처럼 사용할 수 있다.</p>
+
+<p><strong><em>ANSI</em></strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT e.직원이름,
+       d.부서이름
+FROM   직원_테이블 e
+       JOIN 부서_테이블 d USING (부서id)
+[WHERE  부서id = 20]
+ORDER BY e.직원이름;
+</code></pre></div></div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/join" class="page__taxonomy-item" rel="tag">join</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/oracle" class="page__taxonomy-item" rel="tag">oracle</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2019-05-03T00:00:00+00:00">May 03, 2019</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2019/04/28/mariaDB-setting.html" class="pagination--pager" title="리눅스 mariaDB 세팅
+">이전</a>
+    
+    
+      <a href="/2019/05/10/RESTful-webservice.html" class="pagination--pager" title="스프링부트 RESTful 웹 서비스
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <section id="disqus_thread">
+    <script>
+    
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ykblog-2.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow" style="padding-top: 10px;">
+   <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2019 yk-dev-blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+
+
+
+
+
+
+
+
+  </body>
+</html>

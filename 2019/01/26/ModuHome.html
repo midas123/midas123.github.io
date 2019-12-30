@@ -1,0 +1,1755 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>ModuHome - yk-dev-blog</title>
+<meta name="description" content="두 번째 팀 프로젝트의 주제는 셀프 인테리어 쇼핑몰이면서 정보를 공유하는 커뮤니티 입니다.제가 구현한 기능은 상품 게시판과 상품 상세페이지, 장바구니, 주문/결제 입니다.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="yk-dev-blog">
+<meta property="og:title" content="ModuHome">
+<meta property="og:url" content="https://midas123.github.io/2019/01/26/ModuHome.html">
+
+
+  <meta property="og:description" content="두 번째 팀 프로젝트의 주제는 셀프 인테리어 쇼핑몰이면서 정보를 공유하는 커뮤니티 입니다.제가 구현한 기능은 상품 게시판과 상품 상세페이지, 장바구니, 주문/결제 입니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-01-26T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://midas123.github.io/2019/01/26/ModuHome.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="yk-dev-blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+
+
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">맨 위로</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTop").style.display = "block";
+    } else {
+      document.getElementById("scrollToTop").style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138663237-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138663237-1');
+</script>
+
+<!-- flex slider -->
+<link rel="stylesheet" href="/assets/slider/flexslider.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.6.2.js"integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="crossorigin="anonymous"></script>
+<script src="/assets/slider/jquery.flexslider.js"></script>
+<script src="/assets/slider/jquery.flexslider-min.js"></script>
+
+<style>
+@font-face {
+ font-family: 'flexslider-icon';
+ src: url(/assets/slider/fonts/flexslider-icon.eot);
+ src: url(/assets/slider/fonts/flexslider-icon.woff) format('woff'),
+      url(/assets/slider/fonts/flexslider-icon.ttf) format('truetype');
+}
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "fade",
+      directionNav: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      touch: true
+    });
+  });
+</script>
+
+<!-- flex slider end -->
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!-- end custom head snippets -->
+
+  </head>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">yk-dev-blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+  
+  <div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="http://midas123.tistory.com/" rel="nofollow noopener noreferrer"><i class="fab fa-blogger" aria-hidden="true"></i> Tistory Blog</a></li>
+          
+        
+          
+            <li><a href="https://github.com/midas123" rel="nofollow noopener noreferrer"><i class="fab fa-git-square" aria-hidden="true"></i> Github</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">MENU</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/year-archive/" class="">최근 포스트</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/#all-tags" class="">모든 태그</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  
+</div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="ModuHome">
+    <meta itemprop="description" content="두 번째 팀 프로젝트의 주제는 셀프 인테리어 쇼핑몰이면서 정보를 공유하는 커뮤니티 입니다.제가 구현한 기능은 상품 게시판과 상품 상세페이지, 장바구니, 주문/결제 입니다.">
+    <meta itemprop="datePublished" content="January 26, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">ModuHome
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#erd">ERD</a></li>
+  <li><a href="#use-case-다이어그램">Use-case 다이어그램</a></li>
+  <li><a href="#index">INDEX</a>
+    <ul>
+      <li><a href="#상품--게시판">상품  게시판</a></li>
+      <li><a href="#상품--상세페이지">상품  상세페이지</a></li>
+      <li><a href="#장바구니--페이지">장바구니  페이지</a></li>
+      <li><a href="#주문-결제-페이지">주문 /결제 페이지</a></li>
+    </ul>
+  </li>
+  <li><a href="#상품-메인-서브-카테고리-및-상품-정렬">상품 메인 서브 카테고리 및 상품 정렬</a></li>
+  <li><a href="#상품-정보">상품 정보</a></li>
+  <li><a href="#상품-옵션-선택-및-합계-금액-출력">상품 옵션 선택 및 합계 금액 출력</a></li>
+  <li><a href="#구매후기-질문-답변-게시판">구매후기 질문 답변 게시판</a></li>
+  <li><a href="#장바구니-담기">장바구니 담기</a></li>
+  <li><a href="#장바구니-목록">장바구니 목록</a></li>
+  <li><a href="#장바구니-상품-수량-변경-및-삭제">장바구니 상품 수량 변경 및 삭제</a></li>
+  <li><a href="#주문-과정-트랜잭션-처리">주문 과정 트랜잭션 처리</a></li>
+  <li><a href="#포인트-사용-적립">포인트 사용 적립</a></li>
+  <li><a href="#우편번호-검색-서비스">우편번호 검색 서비스</a></li>
+  <li><a href="#아임포트-결제">아임포트 결제</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>두 번째 팀 프로젝트의 주제는 셀프 인테리어 쇼핑몰이면서 정보를 공유하는 커뮤니티 입니다.
+제가 구현한 기능은 상품 게시판과 상품 상세페이지, 장바구니, 주문/결제 입니다.</p>
+
+<p>상품 상세페이지에서 구매할 상품 옵션을 선택하거나 장바구니에서 상품 옵션 선택 및 수량 변경하는 등의 사용자 화면에서 동작하는 기능은 <strong>jquery</strong>로 구현하였습니다. 상품 게시판 정렬 순서, 회원 장바구니의 상품 수량 변경등의 기능은 <strong>ajax</strong>를 이용해서 비동기적 동작하도록 구현하였습니다.</p>
+
+<p><a href="https://github.com/midas123/moduhome2">프로젝트-github-링크</a></p>
+
+<p><br /></p>
+
+<!-- begin _includes/seo.html -->
+<title>ModuHome - yk-dev-blog</title>
+<meta name="description" content="두 번째 팀 프로젝트의 주제는 셀프 인테리어 쇼핑몰이면서 정보를 공유하는 커뮤니티 입니다.제가 구현한 기능은 상품 게시판과 상품 상세페이지, 장바구니, 주문/결제 입니다." />
+
+<meta property="og:type" content="article" />
+
+<meta property="og:locale" content="ko" />
+
+<meta property="og:site_name" content="yk-dev-blog" />
+
+<meta property="og:title" content="ModuHome" />
+
+<meta property="og:url" content="https://midas123.github.io/2019/01/26/ModuHome.html" />
+
+<meta property="og:description" content="두 번째 팀 프로젝트의 주제는 셀프 인테리어 쇼핑몰이면서 정보를 공유하는 커뮤니티 입니다.제가 구현한 기능은 상품 게시판과 상품 상세페이지, 장바구니, 주문/결제 입니다." />
+
+<meta property="article:published_time" content="2019-01-26T00:00:00+00:00" />
+
+<link rel="canonical" href="https://midas123.github.io/2019/01/26/ModuHome.html" />
+
+<!-- end _includes/seo.html -->
+
+<head>
+        <meta charset="UTF-8" />
+    
+        <title>Home</title>
+    <style>
+    .button_detail{
+      font-size: 14px;
+      background-color: #ddd;
+      border: none;
+      color: black;
+      padding: 7px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    a.button_detail:hover{
+        color: white !important;
+        background-color:#262626;
+    }
+    </style>
+</head>
+<body>
+<div style="position: relative;">
+    <div class="mySlides">
+        <img src="https://midas123.github.io\assets\images\post\MODUHOME\modu-goodsorder.jpg" />
+        <div id="text">상품 게시판</div>
+    </div>
+    <div class="mySlides">
+        <img src="https://midas123.github.io\assets\images\post\MODUHOME\modu-goodsdetail.jpg" />
+        <div id="text">상품 상세페이지</div>
+    </div>
+    <div class="mySlides">
+        <img src="https://midas123.github.io\assets\images\post\MODUHOME\mh-qna.jpg" />
+        <div id="text">Q&amp;A 게시판</div>
+    </div>
+    <div class="mySlides">
+        <img src="https://midas123.github.io\assets\images\post\MODUHOME\mh-review.jpg" />
+        <div id="text">리뷰 게시판</div>
+    </div>
+    <div class="mySlides">
+        <img src="https://midas123.github.io\assets\images\post\MODUHOME\md-cart.jpg" />
+        <div id="text">장바구니</div>
+    </div>
+    <div class="mySlides">
+        <img src="https://midas123.github.io\assets\images\post\MODUHOME\md-order.jpg" />
+        <div id="text">주문 페이지</div>
+    </div>
+    <div class="mySlides">
+        <img src="https://midas123.github.io\assets\images\post\MODUHOME\md-orderresult.jpg" />
+        <div id="text">주문완료 페이지</div>
+    </div>
+    <div>
+        <button class="w3-button w3-display-left" onclick="plusDivs(-1)" style="position: absolute; left: -20px; top: 43%;">&#10094;</button>    
+        <button class="w3-button w3-display-right" onclick="plusDivs(+1)" style="position: absolute; right: -20px; top: 43%;">&#10095;</button>
+    </div>
+</div>
+    <script>    
+        var slideIndex = 1;
+        showDivs(slideIndex);
+        
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+        
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {slideIndex = 1} 
+            if (n < 1) {slideIndex = x.length} ;
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none"; 
+            }
+            x[slideIndex-1].style.display = "block"; 
+        }
+
+        </script>
+</body>
+<p><br /></p>
+
+<h2 id="erd">ERD</h2>
+
+<p>제가 맡은 파트는 총 10개의 테이블로 구성되어 있습니다.</p>
+
+<ul>
+  <li>상품</li>
+  <li>상품 종류</li>
+  <li>상품 이미지</li>
+  <li>상품 후기</li>
+  <li>QnA</li>
+  <li>주문 정보</li>
+  <li>배송 정보</li>
+  <li>포인트</li>
+  <li>장바구니</li>
+  <li>카테고리</li>
+</ul>
+
+<p>상품 테이블의 상품 번호(GOODS_NUMBER)를 상품 이미지 / 상품 종류 / 후기 / QnA / 주문 정보 / 장바구니 테이블에서 참조합니다.</p>
+
+<p><img src="https://midas123.github.io\assets\images\post\MODUHOME\moduhome_20190429_17_46.jpg" alt="" class="center-image scale" /></p>
+
+<p><br /></p>
+
+<h2 id="use-case-다이어그램">Use-case 다이어그램</h2>
+
+<p>각 페이지의 세부 기능을 제외하고 간단하게 표현한 사용자 흐름도 입니다.</p>
+
+<p><img src="https://midas123.github.io\assets\images\post\MODUHOME\moduhome-flowchart.jpeg" alt="" class="center-image" /></p>
+
+<p><br /></p>
+
+<h2 id="index">INDEX</h2>
+
+<p>각 페이지별 세부 기능에 대한 설명 입니다.</p>
+
+<ul>
+  <li>
+    <h3 id="상품--게시판">상품  게시판</h3>
+  </li>
+</ul>
+
+<ol>
+  <li><a href="#상품-메인-서브-카테고리-및-상품-정렬">상품 메인/서브 카테고리 및 상품 정렬(최신/인기/낮은/높은 가격 순)</a></li>
+</ol>
+
+<ul>
+  <li>
+    <h3 id="상품--상세페이지">상품  상세페이지</h3>
+  </li>
+</ul>
+
+<ol>
+  <li><a href="#상품-정보">상품 정보</a></li>
+  <li><a href="#상품-옵션-선택-및-합계-금액-출력">상품 옵션 선택 / 합계 금액 출력</a></li>
+  <li><a href="#구매후기-질문-답변-게시판">구매후기 / Q&amp;A게시판</a></li>
+</ol>
+
+<ul>
+  <li>
+    <h3 id="장바구니--페이지">장바구니  페이지</h3>
+  </li>
+</ul>
+
+<ol>
+  <li><a href="#장바구니-담기">장바구니 담기(회원/비회원)</a></li>
+  <li><a href="#장바구니-상품-수량-변경-및-삭제">상품 수량 변경/삭제</a></li>
+</ol>
+
+<ul>
+  <li>
+    <h3 id="주문-결제-페이지">주문 /결제 페이지</h3>
+  </li>
+</ul>
+
+<ol>
+  <li><a href="#주문-과정-트랜잭션-처리">주문 과정 트랜잭션 처리</a></li>
+  <li><a href="#포인트-사용-적립">포인트 사용/적립</a></li>
+  <li><a href="#우편번호-검색-서비스">우편번호 API</a></li>
+  <li><a href="#아임포트-결제">아임포트 결제API</a></li>
+</ol>
+
+<hr />
+
+<p><br /><br /></p>
+
+<h1 id="상품--게시판-1">상품  게시판</h1>
+
+<p>스토어 메인에서 <strong>메인/서브 카테고리</strong> 메뉴를 클릭하면 해당 카테고리의 상품 목록이 출력되며 사용자는 상품 목록을 최신순/인기순/낮은가격순/높은가격순으로 <strong>정렬</strong> 할 수 있습니다. 상품을 클릭하면 상세 페이지로 이동합니다. 또한, 상품 게시판 서비스 로직(GoodsService)에는 8개의 메서드가 있습니다. 각 메서드의 기능은 아래와 같습니다.</p>
+
+<p>GoodsServiceImpl 클래스가 GoodsService 인터페이스를 구현하고 각 메서드를 오버라이딩 하는 구조 입니다.</p>
+
+<p><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">GoodsService</span> <span class="o">{</span>
+
+	<span class="c1">//스토어 메인, 상품 판매순 정렬</span>
+	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">bestSellAll</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//스토어 메인, 상품 판매순 정렬</span>
+	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">newItemAll</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//메인 카테고리 목록	</span>
+	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">getMainCategory</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+
+	<span class="c1">//서브 카테고리 목록	</span>
+	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">getSubCategory</span><span class="o">(</span><span class="n">String</span> <span class="n">category</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//상품 목록(카테고리,정렬 순서)</span>
+	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">goodsListOrdered</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//상품 상세페이지의 상품 정보</span>
+	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">selectOneGood</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//상품 상세페이지 이미지</span>
+	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">selectImage</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//추천 상품 목록</span>
+	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">selectRelatedGoods</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="상품-메인-서브-카테고리-및-상품-정렬">상품 메인 서브 카테고리 및 상품 정렬</h2>
+<p><br />
+<img src="https://midas123.github.io\assets\images\post\MODUHOME\modu-goodsorder.jpg" alt="" class="center-image" />
+<br /></p>
+
+<p>사용자가 메인 카테고리 메뉴를 클릭하면 서브 카테고리 메뉴와 상품 정렬 순서를 바꿀 수 있습니다. 각 정렬 순서에 1~5 까지의 숫자 값을 부여하고 <strong>동적 SQL</strong>을 이용해서 DB에서 상품 목록을 가져오도록하였습니다. 사용자가 메인 카테고리까지만 요청한 상황, 서브 카테고리에서 상품정렬까지 요청한 상황을 나누었으며 값에 따라서 상황에 알맞은 상품 목록을 DB에서 가져 옵니다. 그리고 페이징 처리가 끝나면 뷰로 객체들을 전달합니다. 아래는 GoodsController 클래스의 <strong>goodsCategory()</strong> 메서드 입니다.</p>
+
+<p>최초 URL 요청이후 페이지 이동과 상품 정렬은 <strong>ajax</strong>를 이용해서 비동기적으로 처리 됩니다.<br />
+<br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"/goods/category"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">goodsCategory</span><span class="o">(</span><span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">CommandMap</span> <span class="n">Map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">ModelAndView</span> <span class="n">mv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">();</span>
+		<span class="n">mv</span><span class="o">.</span><span class="na">setViewName</span><span class="o">(</span><span class="s">"goodsCategory"</span><span class="o">);</span>
+		<span class="n">String</span> <span class="n">categoryName</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="s">"CATEGORY"</span><span class="o">);</span> <span class="c1">//메인 카테고리</span>
+		<span class="n">String</span> <span class="n">subCategoryName</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="s">"SUBCATEGORY"</span><span class="o">);</span><span class="c1">//서브 카테고리</span>
+		<span class="n">String</span> <span class="n">sort</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="s">"sort"</span><span class="o">);</span><span class="c1">//상품 정렬순서</span>
+		<span class="c1">//상품 정렬순서 값</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">sort</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="c1">//ajax로 전송되는 상품 정렬 페이지 설정</span>
+			<span class="n">mv</span><span class="o">.</span><span class="na">setViewName</span><span class="o">(</span><span class="s">"store/goodsSort"</span><span class="o">);</span>
+			<span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">().</span><span class="na">put</span><span class="o">(</span><span class="s">"sort"</span><span class="o">,</span> <span class="n">sort</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+			<span class="c1">//상품 정렬 기본 값(최신순)</span>
+			<span class="n">sort</span> <span class="o">=</span> <span class="s">"1"</span><span class="o">;</span>
+			<span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">().</span><span class="na">put</span><span class="o">(</span><span class="s">"sort"</span><span class="o">,</span> <span class="n">sort</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="c1">//요청으로 넘어온 서브 카테고리가 있을 경우</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">subCategoryName</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">subCategoryName</span> <span class="o">==</span> <span class="s">""</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">subCategoryName</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+			<span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">().</span><span class="na">put</span><span class="o">(</span><span class="s">"SUBCATEGORY"</span><span class="o">,</span> <span class="n">subCategoryName</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">categoryName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"전체"</span><span class="o">))</span> <span class="o">{</span>
+			<span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">().</span><span class="na">put</span><span class="o">(</span><span class="s">"CATEGORY"</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="c1">//DB에서 메인/서브 카테고리 목록을 가져옴 </span>
+		<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mainCategory</span> <span class="o">=</span> <span class="n">goodsService</span><span class="o">.</span><span class="na">getMainCategory</span><span class="o">();</span>
+		<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">subCategory</span> <span class="o">=</span> <span class="n">goodsService</span><span class="o">.</span><span class="na">getSubCategory</span><span class="o">(</span><span class="n">categoryName</span><span class="o">);</span>
+	    <span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"mainCategory"</span><span class="o">,</span> <span class="n">mainCategory</span><span class="o">);</span>
+	    <span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"subCategory"</span><span class="o">,</span> <span class="n">subCategory</span><span class="o">);</span>
+
+		<span class="k">if</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">()</span> <span class="o">!=</span><span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="c1">//메인/서브 카테고리와 상품 정렬 순서 값으로 DB에서 상품 목록을 가져옴</span>
+			<span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">goodsListByOrder</span> <span class="o">=</span> <span class="n">goodsService</span><span class="o">.</span><span class="na">goodsListOrdered</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">());</span>
+			<span class="c1">//상품 게시판 페이징</span>
+		    <span class="k">if</span> <span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">"currentPage"</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">"currentPage"</span><span class="o">).</span><span class="na">trim</span><span class="o">().</span><span class="na">isEmpty</span><span class="o">()</span>
+		            <span class="o">||</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">"currentPage"</span><span class="o">).</span><span class="na">equals</span><span class="o">(</span><span class="s">"0"</span><span class="o">))</span> <span class="o">{</span>
+		         <span class="n">currentPage</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+		    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+		         <span class="n">currentPage</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">"currentPage"</span><span class="o">));</span>
+		    <span class="o">}</span>
+	        <span class="n">totalCount</span> <span class="o">=</span> <span class="n">goodsListByOrder</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+	        <span class="n">page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GoodsPaging</span><span class="o">(</span><span class="n">currentPage</span><span class="o">,</span> <span class="n">totalCount</span><span class="o">,</span> <span class="n">blockCount</span><span class="o">,</span> <span class="n">blockPage</span><span class="o">);</span>
+	        <span class="n">pagingHtml</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="na">getPagingHtml</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+	        <span class="kt">int</span> <span class="n">lastCount</span> <span class="o">=</span> <span class="n">totalCount</span><span class="o">;</span>
+	        <span class="k">if</span> <span class="o">(</span><span class="n">page</span><span class="o">.</span><span class="na">getEndCount</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">totalCount</span><span class="o">)</span>
+	        <span class="n">lastCount</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="na">getEndCount</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+	        <span class="n">goodsListByOrder</span> <span class="o">=</span> <span class="n">goodsListByOrder</span><span class="o">.</span><span class="na">subList</span><span class="o">(</span><span class="n">page</span><span class="o">.</span><span class="na">getStartCount</span><span class="o">(),</span> <span class="n">lastCount</span><span class="o">);</span>
+		      
+		    <span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"totalCount"</span><span class="o">,</span> <span class="n">totalCount</span><span class="o">);</span>
+		    <span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"pagingHtml"</span><span class="o">,</span> <span class="n">pagingHtml</span><span class="o">);</span>
+			<span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"categoryName"</span><span class="o">,</span> <span class="n">categoryName</span><span class="o">);</span>
+			<span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"subCategoryOne"</span><span class="o">,</span> <span class="n">subCategoryName</span><span class="o">);</span>
+			<span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"goodsListByOrder"</span><span class="o">,</span> <span class="n">goodsListByOrder</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">mv</span><span class="o">;</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<h1 id="상품-상세페이지">상품 상세페이지</h1>
+<p><br />
+상품을 클릭하면 상세페이지로 이동합니다. 상세 페이지는 기본적인 상품 정보와 이미지, 상세설명, 후기/QnA 게시판으로 구성되어 있고 상품을 장바구니에 담거나 바로 구매할 수 있습니다. <strong>jquery</strong>를 이용해서 사용자가 선택한 상품 옵션 목록 생성하고 상품 수량 변경/삭제 기능을 구현하였습니다.
+<br /></p>
+
+<h2 id="상품-정보">상품 정보</h2>
+<p><br />
+<img src="https://midas123.github.io\assets\images\post\MODUHOME\modu-goodsdetail.jpg" alt="" class="center-image" />
+<br /></p>
+
+<p>GoodsController에 goodsDetail() 메서드는 상품 상세페이지 URL 요청 시 보여줄 상품 정보와 후기/Q&amp;A 게시글 목록을 DB에서 가져온 후 뷰로 보낼 객체에 담습니다. 이 후 구매 후기/ Q&amp;A 게시판 페이지 이동은 ajax로 동작합니다. 또한, 상품 후기는 주문 내역이 확인되는 사용자만 작성할 수 있습니다.
+<br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"/goods/detail"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">goodsDetail</span><span class="o">(</span><span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">CommandMap</span> <span class="n">Map</span><span class="o">,</span> <span class="n">HttpSession</span> <span class="n">session</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">ModelAndView</span> <span class="n">mv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">();</span>
+		<span class="n">session</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+		<span class="c1">//상품 상세페이지 첫 요청시 (ajax 요청X)</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="s">"pagingReviewOnOff"</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="s">"pagingQnaOnOff"</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">mv</span><span class="o">.</span><span class="na">setViewName</span><span class="o">(</span><span class="s">"goodsDetail"</span><span class="o">);</span>
+			
+			<span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">goodsDetail</span> <span class="o">=</span> <span class="n">goodsService</span><span class="o">.</span><span class="na">selectOneGood</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">());</span> <span class="c1">//상품 정보(상품 선택 옵션 포함)</span>
+		    <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">goodsImage</span> <span class="o">=</span> <span class="n">goodsService</span><span class="o">.</span><span class="na">selectImage</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">());</span> <span class="c1">//상품 이미지</span>
+		    
+		    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">goodsBasic</span> <span class="o">=</span> <span class="n">goodsDetail</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+		    <span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"goodsBasic"</span><span class="o">,</span> <span class="n">goodsBasic</span><span class="o">);</span>
+		    <span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"GOODS_NUMBER"</span><span class="o">,</span> <span class="n">goodsDetail</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"GOODS_NUMBER"</span><span class="o">));</span>
+		    <span class="c1">//추천 상품 목록</span>
+		    <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">relatedGoods</span> <span class="o">=</span> <span class="n">goodsService</span><span class="o">.</span><span class="na">selectRelatedGoods</span><span class="o">(</span><span class="n">goodsBasic</span><span class="o">);</span>
+		    <span class="c1">//상품 구매 및 후기 작성 여부확인</span>
+		    <span class="k">if</span> <span class="o">(</span><span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+		    	<span class="n">Map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"GOODS_NUMBER"</span><span class="o">,</span> <span class="n">goodsDetail</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"GOODS_NUMBER"</span><span class="o">));</span>
+		    	<span class="n">Map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">,</span> <span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">));</span>
+			    	 <span class="kt">int</span> <span class="n">reviewCheck</span><span class="o">;</span>
+			         <span class="n">String</span> <span class="n">mem_num</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">).</span><span class="na">toString</span><span class="o">();</span>
+			         <span class="n">String</span> <span class="n">goods_num</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">"GOODS_NUMBER"</span><span class="o">);</span>
+			         <span class="n">Map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">,</span> <span class="n">mem_num</span><span class="o">);</span>
+			         <span class="n">Map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"GOODS_NUMBER"</span><span class="o">,</span> <span class="n">goods_num</span><span class="o">);</span>
+			         <span class="k">try</span> <span class="o">{</span> 
+                         <span class="c1">//주문 내역 확인</span>
+			        	<span class="n">reviewCheck</span> <span class="o">=</span> <span class="n">reviewService</span><span class="o">.</span><span class="na">reviewCheck</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">getMap</span><span class="o">());</span>
+			         <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> 
+			            <span class="n">reviewCheck</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+			         <span class="o">}</span>
+			         <span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"reviewCheck"</span><span class="o">,</span> <span class="n">reviewCheck</span><span class="o">);</span>
+		  <span class="o">}</span>
+		     <span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"goodsDetail"</span><span class="o">,</span> <span class="n">goodsDetail</span><span class="o">);</span>
+		     <span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"relatedGoods"</span><span class="o">,</span> <span class="n">relatedGoods</span><span class="o">);</span>
+			 <span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"goodsImage"</span><span class="o">,</span> <span class="n">goodsImage</span><span class="o">);</span>
+		<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="상품-옵션-선택-및-합계-금액-출력">상품 옵션 선택 및 합계 금액 출력</h2>
+<p><br />
+아래 예시처럼 사용자는 상품 옵션을 선택할 수 있으며 <strong>수량 변경</strong>시 <strong>합계 가격</strong>이 계산되어 출력됩니다. 사용자가 옵션을 선택하면 해당 옵션이 화면에 추가됩니다. 아래는 상품 옵션 추가 기능을 구현한 <strong>jquery</strong> 코드 입니다. 상품 수량 변경/삭제 기능 구현 코드 또한 아래에 있습니다.
+<br />
+<br /><br /></p>
+
+<p><em>-상품 옵션 선택 시 화면</em></p>
+
+<p><img src="https://midas123.github.io\assets\images\post\MODUHOME\modu-goodsoption.jpg" alt="" class="center-image" />
+<br /></p>
+
+<p><br /></p>
+
+<p><em>-상품 옵션 추가 및 합계가격 계산</em></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="kd">function</span> <span class="nx">setOption</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span>
+			<span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">totprice</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#option option:selected"</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"disabled"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"disabled"</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">alert</span><span class="p">(</span><span class="s2">"선택한 옵션은 품절된 상태입니다"</span><span class="p">);</span>
+					<span class="nx">$</span><span class="p">(</span><span class="s2">"#option"</span><span class="p">).</span><span class="kd">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">selectedIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+					<span class="k">return</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="kd">var</span> <span class="nx">optno</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#option option:selected"</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">optno</span><span class="p">)</span>
+					<span class="k">return</span><span class="p">;</span>
+				<span class="c1">//상품 옵션 추가 html</span>
+				<span class="kd">var</span> <span class="nx">li</span> <span class="o">=</span> <span class="s2">"&lt;li class='MK_li_1_1'&gt;&lt;span class='MK_p-name'&gt;"</span> 
+						<span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#option option:selected"</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"value"</span><span class="p">)</span>
+						<span class="o">+</span> <span class="s2">"&lt;/span&gt;&lt;input type='hidden' name='optno[]' value='"</span> <span class="o">+</span> <span class="nx">optno</span> <span class="o">+</span> 
+								<span class="s2">"'&gt;&lt;input type='hidden' name='kinds[]' value='"</span>
+						<span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"option:selected"</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="nx">obj</span><span class="p">)).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"kinds"</span><span class="p">)</span>
+						<span class="o">+</span> <span class="s2">"'&gt;&lt;input type='hidden' class='mstock' value='"</span>
+						<span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"option:selected"</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="nx">obj</span><span class="p">)).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"stock"</span><span class="p">)</span>
+						<span class="o">+</span> <span class="s2">"'&gt;&lt;div class='MK_qty-ctrl' style='height:50px'&gt;"</span>
+						<span class="o">+</span> <span class="s2">"&lt;input type='text' name='ea[]' value='1' class='input_ea' size='2' maxlength='3' readonly&gt;"</span>
+						<span class="o">+</span> <span class="s2">"&lt;span class='ea'&gt;&lt;a class='MK_btn-up'&gt;&lt;img src='/ModuHome/images/storeMain/btn_num_up.gif' alt='' /&gt;"</span>
+						<span class="o">+</span> <span class="s2">"&lt;/a&gt;&lt;a class='MK_btn-dw'&gt;&lt;img src='/ModuHome/images/storeMain/btn_num_down.gif' alt='' /&gt;"</span>
+						<span class="o">+</span> <span class="s2">"&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;&lt;span class='MK_price' data-price='"</span>
+						<span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"option:selected"</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="nx">obj</span><span class="p">)).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"price"</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"'&gt;"</span>
+						<span class="o">+</span> <span class="nx">comma</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"option:selected"</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="nx">obj</span><span class="p">)).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"price"</span><span class="p">))</span>
+						<span class="o">+</span> <span class="s2">"원&lt;/span&gt;&lt;a href='#' optno='"</span> <span class="o">+</span> <span class="nx">optno</span> <span class="o">+</span><span class="s2">"'class='MK_btn-del'&gt;&lt;img src='/ModuHome/images/storeMain/btn_close.gif' alt='' /&gt;&lt;/a&gt;&lt;/li&gt;"</span><span class="p">;</span>
+				<span class="c1">//페이지에 상품 옵션 html 코드 삽입</span>
+				<span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_innerOpt_01"</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">li</span><span class="p">);</span>
+				<span class="c1">//상품 추가할때 합계가격 갱신</span>
+		 		<span class="kd">var</span> <span class="nx">thisIdx</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">".input_ea"</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"value"</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">inputEa</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">price</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">rm_comma</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"option:selected"</span><span class="p">,</span>
+						<span class="nx">$</span><span class="p">(</span><span class="s1">'#option'</span><span class="p">)).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"price"</span><span class="p">)),</span> <span class="mi">10</span><span class="p">);</span>
+				<span class="nx">price</span> <span class="o">=</span> <span class="nx">price</span> <span class="o">*</span> <span class="nx">inputEa</span><span class="p">;</span>
+				<span class="nx">price</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">price</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+				<span class="nx">totprice</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">rm_comma</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_txt-won"</span><span class="p">)</span>
+						<span class="p">.</span><span class="nx">html</span><span class="p">()),</span> <span class="mi">10</span><span class="p">);</span>
+			
+				<span class="nx">totprice</span> <span class="o">=</span> <span class="nx">totprice</span> <span class="o">+</span> <span class="nx">price</span><span class="p">;</span>
+                 <span class="c1">//합계 가격을 페이지에 삽입</span>
+				<span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_txt-won"</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"price"</span><span class="p">,</span> <span class="nx">totprice</span><span class="p">);</span>
+				<span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_txt-won"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">comma</span><span class="p">(</span><span class="nx">totprice</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"원"</span><span class="p">);</span> 
+			<span class="p">});</span>
+	<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><em>-상품 옵션 삭제 및 상품 수량 증가/감소</em></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="c1">//상품옵션 삭제</span>
+	<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_innerOpt_01"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="s2">".MK_btn-del"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">thisIdx</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">".MK_btn-del"</span><span class="p">).</span><span class="nx">index</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">//인덱스</span>
+			<span class="kd">var</span> <span class="nx">price</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">".MK_price"</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"price"</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span><span class="c1">//상품 가격</span>
+			<span class="kd">var</span> <span class="nx">totprice</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_txt-won"</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"price"</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span> <span class="c1">//총액</span>
+			<span class="c1">//총액에서 삭제한 상품 가격 빼기</span>
+			<span class="nx">totprice</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">totprice</span> <span class="o">-</span> <span class="nx">price</span><span class="p">);</span>
+			<span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_txt-won"</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"price"</span><span class="p">,</span> <span class="nx">totprice</span><span class="p">);</span>
+			<span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_txt-won"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">comma</span><span class="p">(</span><span class="nx">totprice</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"원"</span><span class="p">);</span>
+			<span class="c1">//삭제</span>
+			<span class="nx">$</span><span class="p">(</span><span class="s2">".MK_li_1_1"</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+			<span class="c1">//기본 선택 위치로</span>
+			<span class="nx">$</span><span class="p">(</span><span class="s2">"option:eq(0)"</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s2">"selected"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+		<span class="p">});</span>
+	<span class="c1">//수량증가</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_innerOpt_01"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span><span class="s2">"li a.MK_btn-up"</span><span class="p">,</span>
+						<span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+							<span class="kd">var</span> <span class="nx">thisIdx</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">".MK_btn-up"</span><span class="p">).</span><span class="nx">index</span><span class="p">(</span><span class="k">this</span><span class="p">),</span><span class="mi">10</span><span class="p">);</span><span class="c1">//현재 옵션의 인덱스</span>
+							<span class="nx">change_ea</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span><span class="c1">//수량 변경 함수</span>
+							<span class="kd">var</span> <span class="nx">inputEa</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">".input_ea"</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span> <span class="mi">10</span><span class="p">);</span><span class="c1">//입력 수량</span>
+							<span class="kd">var</span> <span class="nx">mStock</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">".mstock"</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span> <span class="mi">10</span><span class="p">);</span><span class="c1">//상품 재고 수량</span>
+							<span class="kd">var</span> <span class="nx">price</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'.MK_price'</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"data-price"</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span><span class="c1">//단품 가격</span>
+							<span class="kd">var</span> <span class="nx">totprice</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_txt-won"</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"price"</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span><span class="c1">//합계 가격</span>
+							<span class="c1">//재고 수량  체크</span>
+							<span class="k">if</span> <span class="p">(</span><span class="nx">inputEa</span> <span class="o">&gt;</span> <span class="nx">mStock</span><span class="p">)</span> <span class="p">{</span>
+								<span class="nx">alert</span><span class="p">(</span><span class="nx">mStock</span> <span class="o">+</span> <span class="s2">"개 이상 주문하실 수 없습니다."</span><span class="p">);</span>
+								<span class="nx">$</span><span class="p">(</span><span class="s2">".input_ea"</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">mStock</span><span class="p">);</span>
+								<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+							<span class="p">}</span>
+							<span class="c1">//합계 금액 계산							</span>
+							<span class="nx">totprice</span> <span class="o">=</span> <span class="nx">totprice</span> <span class="o">+</span> <span class="nx">price</span><span class="p">;</span>
+							<span class="c1">//계산 결과 삽입</span>
+							<span class="nx">$</span><span class="p">(</span><span class="s2">".MK_price"</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"price"</span><span class="p">,</span>
+									<span class="p">(</span><span class="nx">price</span> <span class="o">*</span> <span class="nx">inputEa</span><span class="p">));</span>
+							<span class="nx">$</span><span class="p">(</span><span class="s2">".MK_price"</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span>
+									<span class="nx">comma</span><span class="p">(</span><span class="nx">price</span> <span class="o">*</span> <span class="nx">inputEa</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"원"</span><span class="p">);</span>
+							<span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_txt-won"</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"price"</span><span class="p">,</span> <span class="nx">totprice</span><span class="p">);</span>
+							<span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_txt-won"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">comma</span><span class="p">(</span><span class="nx">totprice</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"원"</span><span class="p">);</span>
+						<span class="p">}</span>
+				<span class="p">);</span>
+	<span class="c1">//수량 감소</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_innerOpt_01"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span>
+						<span class="s2">"click"</span><span class="p">,</span>
+						<span class="s2">"li a.MK_btn-dw"</span><span class="p">,</span>
+						<span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+							<span class="kd">var</span> <span class="nx">thisIdx</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">".MK_btn-dw"</span><span class="p">).</span><span class="nx">index</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+							<span class="kd">var</span> <span class="nx">inputEa</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">".input_ea"</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">)</span>
+									<span class="p">.</span><span class="nx">val</span><span class="p">(),</span> <span class="mi">10</span><span class="p">);</span>
+							<span class="k">if</span> <span class="p">(</span><span class="nx">inputEa</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+								<span class="nx">alert</span><span class="p">(</span><span class="s2">"1개 이상 주문하셔야 합니다."</span><span class="p">);</span>
+								<span class="nx">$</span><span class="p">(</span><span class="s2">".input_ea"</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">;</span>
+								<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+							<span class="p">}</span>
+							<span class="nx">change_ea</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+							<span class="nx">inputEa</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span>
+									<span class="nx">$</span><span class="p">(</span><span class="s2">".input_ea"</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span> <span class="mi">10</span><span class="p">);</span>
+							<span class="kd">var</span> <span class="nx">price</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span>
+									<span class="nx">$</span><span class="p">(</span><span class="s1">'.MK_price'</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"data-price"</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span>
+							
+							<span class="nx">$</span><span class="p">(</span><span class="s2">".MK_price"</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"price"</span><span class="p">,</span>
+									<span class="p">(</span><span class="nx">price</span> <span class="o">*</span> <span class="nx">inputEa</span><span class="p">));</span>
+							<span class="kd">var</span> <span class="nx">total</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">".MK_price"</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">thisIdx</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span>
+									<span class="nx">comma</span><span class="p">(</span><span class="nx">price</span> <span class="o">*</span> <span class="nx">inputEa</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"원"</span><span class="p">);</span>
+							<span class="kd">var</span> <span class="nx">totprice</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_txt-won"</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span>
+									<span class="s2">"price"</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span>
+							<span class="nx">totprice</span> <span class="o">=</span> <span class="nx">totprice</span> <span class="o">-</span> <span class="nx">price</span><span class="p">;</span>
+							<span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_txt-won"</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">"price"</span><span class="p">,</span> <span class="nx">totprice</span><span class="p">);</span>
+							<span class="nx">$</span><span class="p">(</span><span class="s2">"#MK_txt-won"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">comma</span><span class="p">(</span><span class="nx">totprice</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"원"</span><span class="p">);</span>
+							<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+						<span class="p">});</span>
+			<span class="p">});</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="구매후기-질문-답변-게시판">구매후기 질문 답변 게시판</h2>
+
+<p><br />
+구매 후기 및 Q&amp;A 게시판은 상품 상세페이지 하단에 있습니다. 기본적으로 로그인 상태에서 쓰기 및 삭제가 가능하며 구매 후기 쓰기는 상품을 구매한 사용자에 한하여 가능하도록 구현하였습니다. 
+또한, 페이징은 <strong>ajax</strong>를 이용하여 비동기적으로 구현하여 게시판 이용자가 불필요하게 상품 상세페이지 전체를 요청하지 않도록 하였습니다. 그리고 <strong>jquery</strong>를 이용하여 Q&amp;A 질문 내용이 많을 경우 일부가 가려지도록 하고 사용자가 클릭으로 내용을 ‘접기/더보기’ 할수 있도록 하였습니다.
+<br />
+<br /><br /></p>
+
+<p><em>-구매 후기 게시판</em></p>
+
+<p><img src="https://midas123.github.io\assets\images\post\MODUHOME\mh-review.jpg" alt="" class="center-image" />
+<br /></p>
+
+<p><em>-리뷰 서비스 로직</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ReviewService</span> <span class="o">{</span>
+	<span class="c1">//리뷰 삭제</span>
+	<span class="kt">void</span> <span class="nf">reviewDelete</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+
+	<span class="c1">//리뷰 등록</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">reviewWrite</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">,</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//리뷰 포인트 적립</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">reviewPoint</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//리뷰기 작성 여부 확인</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">reviewCheck</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+
+	<span class="c1">//리뷰 목록</span>
+	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">selectReview</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<p><em>-Q&amp;A 게시판</em></p>
+
+<p><img src="https://midas123.github.io\assets\images\post\MODUHOME\mh-qna.jpg" alt="" class="center-image" />
+<br /></p>
+
+<p><em>-Q&amp;A 서비스 로직</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">QnaService</span> <span class="o">{</span>
+	<span class="c1">//Q&amp;A 작성</span>
+	<span class="kt">void</span> <span class="nf">insertModalQna</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">,</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+
+	<span class="c1">//Q&amp;A 삭제</span>
+	<span class="kt">void</span> <span class="nf">qnaDelete</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//Q&amp;A 목록</span>
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">selectQNA</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+		
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<p><em>-ajax 페이징 구현 코드</em></p>
+
+<p>pagingCheck 값이 1이면 ‘이전 페이지’로, 2이면 ‘다음 페이지’로 이동하는 로직이 컨트롤러에서 실행됩니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//상품 후기, QnA - ajax</span>
+<span class="kd">function</span> <span class="nx">ajaxReviewPaging</span><span class="p">(</span><span class="nx">pagingCheck</span><span class="p">,</span><span class="nx">reviewEndPagingNum</span><span class="p">,</span><span class="nx">reviewStartPagingNum</span><span class="p">,</span><span class="nx">reviewNowPage</span><span class="p">)</span> <span class="p">{</span>
+ <span class="kd">var</span> <span class="nx">tempScrollTop</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#changeReviewList"</span><span class="p">).</span><span class="nx">offset</span><span class="p">().</span><span class="nx">top</span><span class="o">-</span><span class="mi">100</span><span class="p">;</span>
+ <span class="kd">var</span> <span class="nx">pagingReviewOnOff</span><span class="o">=</span><span class="s2">"ON"</span><span class="p">;</span>
+ <span class="kd">var</span> <span class="nx">GOODS_NUMBER</span><span class="o">=</span><span class="s1">'${GOODS_NUMBER}'</span><span class="p">;</span>
+  <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+     <span class="na">url</span><span class="p">:</span> <span class="s2">"/ModuHome/goods/detail"</span><span class="p">,</span>
+       <span class="na">type</span> <span class="p">:</span> <span class="s2">"post"</span><span class="p">,</span>
+       <span class="na">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">"reviewNowPage"</span><span class="p">:</span><span class="nx">reviewNowPage</span><span class="p">,</span><span class="s2">"reviewStartPagingNum"</span><span class="p">:</span><span class="nx">reviewStartPagingNum</span><span class="p">,</span>
+    	   <span class="s2">"reviewEndPagingNum"</span><span class="p">:</span><span class="nx">reviewEndPagingNum</span><span class="p">,</span><span class="s2">"pagingReviewOnOff"</span><span class="p">:</span><span class="nx">pagingReviewOnOff</span><span class="p">,</span>
+    	   <span class="s2">"pagingCheck"</span><span class="p">:</span><span class="nx">pagingCheck</span><span class="p">,</span><span class="s2">"GOODS_NUMBER"</span><span class="p">:</span><span class="nx">GOODS_NUMBER</span><span class="p">},</span>
+       <span class="na">success</span><span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+          <span class="nx">$</span><span class="p">(</span><span class="s2">"#changeReviewList"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+          <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">scrollTop</span><span class="p">(</span><span class="nx">tempScrollTop</span><span class="p">);</span>
+       <span class="p">}</span>
+    <span class="p">});</span>     
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">ajaxQnaPaging</span><span class="p">(</span><span class="nx">pagingCheck</span><span class="p">,</span><span class="nx">qnaEndPagingNum</span><span class="p">,</span><span class="nx">qnaStartPagingNum</span><span class="p">,</span><span class="nx">qnaNowPage</span><span class="p">)</span> <span class="p">{</span> 
+ <span class="kd">var</span> <span class="nx">tempScrollTop</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#changeQnaList"</span><span class="p">).</span><span class="nx">offset</span><span class="p">().</span><span class="nx">top</span><span class="o">-</span><span class="mi">100</span><span class="p">;</span>
+ <span class="kd">var</span> <span class="nx">pagingQnaOnOff</span><span class="o">=</span><span class="s2">"ON"</span><span class="p">;</span>
+ <span class="kd">var</span> <span class="nx">GOODS_NUMBER</span><span class="o">=</span><span class="s1">'${GOODS_NUMBER}'</span><span class="p">;</span>
+  <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+       <span class="na">url</span><span class="p">:</span> <span class="s2">"/ModuHome/goods/detail"</span><span class="p">,</span>
+       <span class="na">type</span> <span class="p">:</span> <span class="s2">"post"</span><span class="p">,</span>
+       <span class="na">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">"qnaNowPage"</span><span class="p">:</span><span class="nx">qnaNowPage</span><span class="p">,</span><span class="s2">"qnaStartPagingNum"</span><span class="p">:</span><span class="nx">qnaStartPagingNum</span><span class="p">,</span><span class="s2">"qnaEndPagingNum"</span><span class="p">:</span><span class="nx">qnaEndPagingNum</span><span class="p">,</span><span class="s2">"pagingQnaOnOff"</span><span class="p">:</span><span class="nx">pagingQnaOnOff</span><span class="p">,</span><span class="s2">"pagingCheck"</span><span class="p">:</span><span class="nx">pagingCheck</span><span class="p">,</span><span class="s2">"GOODS_NUMBER"</span><span class="p">:</span><span class="nx">GOODS_NUMBER</span><span class="p">},</span>
+       <span class="na">success</span><span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+          <span class="nx">$</span><span class="p">(</span><span class="s2">"#changeQnaList"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+          <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">scrollTop</span><span class="p">(</span><span class="nx">tempScrollTop</span><span class="p">);</span>
+       <span class="p">}</span>
+    <span class="p">});</span>     
+<span class="p">}</span> 
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<p><em>-Q&amp;A 게시글 ‘접기/더보기’</em></p>
+
+<p>최초 페이지 로딩 시 내용이 많은 글만 가리고 ‘더보기’, ‘접기’ 버튼으로 내용을 보거나 가릴 수 있도록 구현했습니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//최초 페이지 요청시 실행</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+	<span class="nx">makeQnaButton</span><span class="p">();</span>
+	<span class="nx">DoQnaButton</span><span class="p">();</span>
+<span class="p">});</span>
+<span class="c1">//ajax 완료 후 다시 한번 실행</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ajaxComplete</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+	<span class="nx">makeQnaButton</span><span class="p">();</span>
+	<span class="nx">DoQnaButton</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="c1">//QnA 글자수 47자 초과시 '더보기'생성</span>
+<span class="kd">function</span> <span class="nx">makeQnaButton</span><span class="p">(){</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s1">'.qna-content-class'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">qnaContent</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span>
+		<span class="kd">var</span> <span class="nx">qnaLength</span> <span class="o">=</span> <span class="nx">qnaContent</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">qnaLength</span> <span class="o">&gt;</span> <span class="mi">47</span><span class="p">){</span>
+			<span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">next</span><span class="p">().</span><span class="nx">html</span><span class="p">(</span><span class="s1">'더보기'</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1">//'더보기' 클릭시 QnA 내용 전체 표시 '접기' 클릭시 내용 감추기</span>
+<span class="kd">function</span> <span class="nx">DoQnaButton</span><span class="p">(){</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s1">'.qna-content-button'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+		<span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+			<span class="k">if</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">()</span> <span class="o">==</span> <span class="s1">'더보기'</span><span class="p">){</span>
+				<span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">css</span><span class="p">(</span><span class="s1">'height'</span><span class="p">,</span><span class="mi">120</span><span class="p">);</span>
+				<span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">css</span><span class="p">(</span><span class="s1">'word-break'</span><span class="p">,</span><span class="s1">'normal'</span><span class="p">);</span>
+				<span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">prev</span><span class="p">().</span><span class="nx">removeAttr</span><span class="p">(</span><span class="s2">"style"</span><span class="p">)</span>
+				<span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">'접기'</span><span class="p">);</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">//'접기'</span>
+				<span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">prev</span><span class="p">().</span><span class="nx">css</span><span class="p">({</span><span class="s1">'width'</span><span class="p">:</span><span class="s1">'90%'</span><span class="p">,</span> <span class="s1">'float'</span><span class="p">:</span><span class="s1">'left'</span><span class="p">,</span> <span class="s1">'text-overflow'</span><span class="p">:</span><span class="s1">'ellipsis'</span><span class="p">,</span> <span class="s1">'overflow'</span><span class="p">:</span><span class="s1">'hidden'</span><span class="p">,</span> <span class="s1">'white-space'</span><span class="p">:</span><span class="s1">'nowrap'</span><span class="p">});</span>
+				<span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">'더보기'</span><span class="p">);</span>
+				<span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">css</span><span class="p">(</span><span class="s1">'height'</span><span class="p">,</span><span class="mi">50</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">});</span>
+	<span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /><br /><br /><br /></p>
+
+<h1 id="장바구니--페이지-1">장바구니  페이지</h1>
+
+<p>상품 상세페이지에서 상품 옵션을 선택하고 ‘장바구니 담기’ 버튼을 누르면 상품이 장바구니에 저장 됩니다. 만약 같은 상품을 추가하면 수량이 올라갑니다. 장바구니에서 사용자가  체크한 상품의 합계 가격과 배송비를 계산해서 보여주는 기능을 <strong>jquery</strong>로 구현했고  단품 또는 여러 개의 상품을 한번에 구매하도록 구현했습니다. 비회원은 <strong>세션</strong>에 장바구니를 저장하고 회원은 <strong>DB</strong>에 저장하며 회원, 비회원 둘다 <strong>ajax</strong> 요청으로 <strong>상품 수량 변경</strong>하거나 상품을 <strong>삭제</strong>를 할 수 있습니다.</p>
+
+<p><img src="https://midas123.github.io\assets\images\post\MODUHOME\md-cart.jpg" alt="" class="center-image" /></p>
+
+<p><br />
+장바구니 파트의 서비스 로직(CartService)에는 12개의 메서드가 있습니다. 각 메서드에 기능은 아래와 같습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">CartService</span> <span class="o">{</span>
+
+	<span class="c1">//장바구니 목록 생성</span>
+	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">makeCart</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+
+	<span class="c1">//세션 장바구니 수량 변경</span>
+	<span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nf">updateSessionCart</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">cartSession</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//세션 장바구니 결합</span>
+	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">sessionCartJoin</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">oldCart</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">newCart</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//로그인시 세션 장바구니를 DB에 저장</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">saveSessionCart</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">sessionCart</span><span class="o">,</span> <span class="n">String</span> <span class="n">mem</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//세션 장바구니 목록 생성</span>
+	<span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nf">sessionCartList</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//세션 장바구니 삭제</span>
+	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">deleteSessionCart</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">sessionCart</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//회원 장바구니 담기 </span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">cartInsert</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">cartIventroy</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+
+	<span class="c1">//회원 장바구니 목록</span>
+	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">selectMyCart</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//회원 장바구니 삭제</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteMyCart</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+
+	<span class="c1">//회원 장바구니 수량 변경</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateCart</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+
+	<span class="c1">//7일 이상 지난 장바구니 상품 삭제</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">cleanUpCart</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+	<span class="c1">//회원 장바구니 중복 상품 확인</span>
+	<span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nf">duplicateCart</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="장바구니-담기">장바구니 담기</h2>
+
+<p>상품 상세 페이지에서 ‘장바구니 담기’ 버튼을 클릭하면 아래 CartController 클래스에 있는 cartAdd() 메서드에 의해서 장바구니에 상품이 추가됩니다. <strong>로그인한 회원</strong>은 장바구니 테이블에 상품 정보가 저장되고 <strong>비회원</strong>은 세션에 저장됩니다.
+이때 <strong>makeCart()</strong> 메서드가 가장 중요한 기능을 합니다.</p>
+
+<p>makeCart()는 단품 등록, 여러개 상품 등록을 구분하고 이미 장바구니에 있는 상품일 경우 수량만 변경 합니다. 회원이 추가한 상품은 이 메서드 내에서 장바구니 테이블에 저장되고 비회원이 추가한 상품은 이전 장바구니 상품과 함께 리스트 객체에 담아서 리턴 합니다. 이 후 장바구니 목록을 컨트롤러에서 세션에 저장합니다.</p>
+
+<p><br /></p>
+
+<p><em>-CartController.java</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">"/cart/cartAdd"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">cartAdd</span><span class="o">(</span><span class="n">CommandMap</span> <span class="n">commandMap</span><span class="o">,</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">ModelAndView</span> <span class="n">mv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">();</span>
+		<span class="n">mv</span><span class="o">.</span><span class="na">setViewName</span><span class="o">(</span><span class="s">"redirect:/cart/cartList"</span><span class="o">);</span>
+		<span class="n">HttpSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+		
+		<span class="c1">//장바구니 상품 목록</span>
+		<span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">cartIventory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span> 
+		
+		<span class="c1">//회원 장바구니 담기 - DB</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="c1">//회원은 commandMap에 회원번호를 담아서 makeCart로 전달</span>
+			<span class="n">commandMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">,</span> <span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">));</span>
+			
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+			<span class="c1">//비회원용 장바구니 담기 - 세션</span>
+			<span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">cartInSession</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;();</span>
+			
+			<span class="k">if</span><span class="o">(</span><span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"cartSession"</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> 
+				<span class="c1">//세션에 존재하는 이전 장바구니</span>
+				<span class="n">cartInSession</span> <span class="o">=</span> <span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;)</span> <span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"cartSession"</span><span class="o">);</span>
+				<span class="c1">//비회원은 commandMap에 이전 세션 장바구니를 담아서 makeCart로 전달</span>
+				<span class="n">commandMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"cartSession"</span><span class="o">,</span> <span class="n">cartInSession</span><span class="o">);</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		
+		<span class="c1">//추가한 상품으로 장바구니 생성, 회원은 makeCart에서 바로 장바구니 테이블(DB)에 저장</span>
+		<span class="n">cartIventory</span> <span class="o">=</span> <span class="n">cartService</span><span class="o">.</span><span class="na">makeCart</span><span class="o">(</span><span class="n">commandMap</span><span class="o">.</span><span class="na">getMap</span><span class="o">());</span>
+		<span class="c1">//비회원은 세션에 장바구니 저장 </span>
+		<span class="k">if</span><span class="o">(</span><span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">session</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">"cartSession"</span><span class="o">,</span> <span class="n">cartIventory</span><span class="o">);</span>
+		<span class="o">}</span>	
+		<span class="k">return</span> <span class="n">mv</span><span class="o">;</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="장바구니-목록">장바구니 목록</h2>
+
+<p>사용자가 장바구니 페이지에 진입 했을때, CartController 클래스에 cartList() 메서드가 회원은 DB, 비회원은 세션에 저장되어 있는 장바구니 목록을 보여줍니다.
+<br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"/cart/cartList"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">cartList</span><span class="o">(</span><span class="n">CommandMap</span> <span class="n">commandMap</span><span class="o">,</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">ModelAndView</span> <span class="n">mv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">();</span>
+		<span class="n">mv</span><span class="o">.</span><span class="na">setViewName</span><span class="o">(</span><span class="s">"cartList"</span><span class="o">);</span>
+		<span class="n">HttpSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+		<span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">cartList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;();</span><span class="c1">//장바구니</span>
+
+		<span class="k">if</span> <span class="o">(</span><span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span><span class="c1">//회원</span>
+			<span class="n">commandMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">,</span> <span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">));</span>
+			<span class="n">cartService</span><span class="o">.</span><span class="na">cleanUpCart</span><span class="o">(</span><span class="n">commandMap</span><span class="o">.</span><span class="na">getMap</span><span class="o">());</span> <span class="c1">//장바구니에서 7일 지난 상품 정리</span>
+			<span class="n">cartList</span> <span class="o">=</span> <span class="n">cartService</span><span class="o">.</span><span class="na">selectMyCart</span><span class="o">(</span><span class="n">commandMap</span><span class="o">.</span><span class="na">getMap</span><span class="o">());</span> <span class="c1">//회원 장바구니 목록</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">//비회원</span>
+			<span class="k">if</span> <span class="o">(</span><span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"cartSession"</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+				<span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">cartSession</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;();</span><span class="c1">//세션 장바구니</span>
+				<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">cartItem</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span> <span class="c1">//장바구니 상품</span>
+				<span class="n">cartSession</span> <span class="o">=</span> <span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;)</span> <span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"cartSession"</span><span class="o">);</span>
+				<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">cartSession</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span><span class="c1">//세션 저장된 상품 번호로 DB에서 상품 정보를 하나씩 불러옴</span>
+					<span class="n">cartItem</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+					<span class="n">cartItem</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"GOODS_KIND_NUMBER"</span><span class="o">,</span> <span class="n">cartSession</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"GOODS_KIND_NUMBER"</span><span class="o">));</span><span class="c1">//상품 종류 번호</span>
+					<span class="n">cartItem</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"GOODS_NUMBER"</span><span class="o">,</span> <span class="n">cartSession</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"GOODS_NUMBER"</span><span class="o">));</span><span class="c1">//상품번호</span>
+					<span class="n">cartItem</span> <span class="o">=</span> <span class="n">cartService</span><span class="o">.</span><span class="na">sessionCartList</span><span class="o">(</span><span class="n">cartItem</span><span class="o">);</span><span class="c1">//상품 정보</span>
+					<span class="n">cartItem</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"CART_AMOUNT"</span><span class="o">,</span> <span class="n">cartSession</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"CART_AMOUNT"</span><span class="o">));</span><span class="c1">//장바구니 상품 수량</span>
+					<span class="n">cartList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">cartItem</span><span class="o">);</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		<span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"cartList"</span><span class="o">,</span> <span class="n">cartList</span><span class="o">);</span>
+		
+	<span class="k">return</span> <span class="n">mv</span><span class="o">;</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="장바구니-상품-수량-변경-및-삭제">장바구니 상품 수량 변경 및 삭제</h2>
+
+<p>장바구니 상품의 <strong>수량 변경</strong>은 사용자 측의 ajax 요청을 CartController 컨트롤러의 <strong>modifyEa()</strong> 메서드가 처리하도록 구현했습니다.</p>
+
+<p>회원은 장바구니 테이블(DB)의 상품 수량 칼럼을 UPDATE하고 비회원은 세션에 저장된 장바구니의 상품 수량을 변경합니다. 수량이 변경 된 후 장바구니 목록은 <strong>@ResponsBody</strong> 어노테이션에 의해서 응답 객체의 body 부분에 담겨 사용자측으로 전송 됩니다.</p>
+
+<p><br /></p>
+
+<p><em>-장바구니 페이지에 ajax 요청 코드</em></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">ajaxChangeEa</span><span class="p">(</span><span class="nx">cartNum</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"장바구니 수량변경"</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">idx</span> <span class="o">=</span> <span class="nx">idx</span><span class="p">;</span> <span class="c1">//추가한 상품 수량</span>
+	<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">index</span><span class="p">;</span><span class="c1">//장바구니 목록 중 상품의 인덱스</span>
+	<span class="kd">var</span> <span class="nx">ea</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">".input_ea"</span><span class="o">+</span><span class="nx">index</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span> <span class="mi">10</span><span class="p">);</span><span class="c1">//현재 상품 수량</span>
+	<span class="kd">var</span> <span class="nx">goodKind</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">".goods_kind"</span><span class="o">+</span><span class="nx">index</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span> <span class="mi">10</span><span class="p">);</span>
+	<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+		<span class="na">url</span><span class="p">:</span> <span class="s2">"/ModuHome/cart/modifyEa"</span><span class="p">,</span>
+		<span class="na">data</span><span class="p">:</span> <span class="p">{</span><span class="s2">"CART_NUMBER"</span><span class="p">:</span> <span class="nx">cartNum</span><span class="p">,</span> <span class="s2">"CART_AMOUNT"</span><span class="p">:</span><span class="nx">idx</span><span class="p">,</span> <span class="s2">"GOODS_KIND_NUMBER"</span><span class="p">:</span><span class="nx">goodKind</span><span class="p">},</span>
+		<span class="na">dataType</span><span class="p">:</span> <span class="s2">"json"</span><span class="p">,</span>
+		<span class="na">success</span><span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+			<span class="c1">//수량 변경 후 페이지에 삽입</span>
+			<span class="nx">$</span><span class="p">(</span><span class="s2">".input_ea"</span><span class="o">+</span><span class="nx">index</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">idx</span><span class="o">+</span><span class="nx">ea</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><em>-cartController.java</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">"/cart/modifyEa"</span><span class="o">)</span>
+	<span class="nd">@ResponseBody</span>
+	<span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nf">modifyEa</span><span class="o">(</span><span class="n">CommandMap</span> <span class="n">commandMap</span><span class="o">,</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+		<span class="n">HttpSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+		<span class="c1">//회원 장바구니 상품 수량변경</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">cartService</span><span class="o">.</span><span class="na">updateCart</span><span class="o">(</span><span class="n">commandMap</span><span class="o">.</span><span class="na">getMap</span><span class="o">());</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+			<span class="c1">//비회원 장바구니 상품 수량변경</span>
+			<span class="kt">int</span> <span class="n">goodKind</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">((</span><span class="n">String</span><span class="o">)</span><span class="n">commandMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"GOODS_KIND_NUMBER"</span><span class="o">));</span>
+			<span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">sessionCart</span> <span class="o">=</span> <span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;)</span> <span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"cartSession"</span><span class="o">);</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">sessionCart</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="kt">int</span> <span class="n">session_goodKind</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">sessionCart</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"GOODS_KIND_NUMBER"</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span> 
+				<span class="k">if</span><span class="o">(</span><span class="n">session_goodKind</span> <span class="o">==</span> <span class="n">goodKind</span><span class="o">)</span> <span class="o">{</span>
+					<span class="kt">int</span> <span class="n">cart_amount</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">sessionCart</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"CART_AMOUNT"</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span>
+					<span class="c1">//int cart_amount2 = Integer.parseInt(cart_amount1);</span>
+					<span class="n">cart_amount</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">;</span>
+					<span class="n">sessionCart</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">replace</span><span class="o">(</span><span class="s">"CART_AMOUNT"</span><span class="o">,</span> <span class="n">cart_amount</span><span class="o">);</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+			<span class="n">session</span><span class="o">.</span><span class="na">removeAttribute</span><span class="o">(</span><span class="s">"cartSession"</span><span class="o">);</span>
+			<span class="n">session</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">"cartSession"</span><span class="o">,</span> <span class="n">sessionCart</span><span class="o">);</span>
+		<span class="o">}</span>
+		
+		<span class="k">return</span> <span class="n">param</span><span class="o">;</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><strong>장바구니 상품 삭제</strong> 기능은 CartController의 cartDelete() 메서드에 구현했습니다. 사용자는 각 상품 목록 맨 우측에 있는삭제 버튼으로 상품을 하나씩 삭제하거나 체크 박스를 이용해서 한 개 또는 여러 개의 상품을 삭제할 수 있습니다.
+<strong>@RequestParam</strong> 어노테이션으로 여러 개의 상품 분류 번호를 배열로 받은 후 회원/비회원을 구분하여 처리합니다.</p>
+
+<p><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"/cart/cartDelete"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">cartDelete</span><span class="o">(</span><span class="n">CommandMap</span> <span class="n">commandMap</span><span class="o">,</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> 
+			<span class="nd">@RequestParam</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">"GOODS_KIND_NUMBER[]"</span><span class="o">,</span> <span class="n">required</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span> <span class="n">String</span><span class="o">[]</span> <span class="n">arrayParams</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">ModelAndView</span> <span class="n">mv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">();</span>
+		<span class="n">HttpSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+		<span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">cartList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;();</span>
+
+		<span class="n">String</span><span class="o">[]</span> <span class="n">cart_number</span><span class="o">=</span> <span class="n">arrayParams</span><span class="o">;</span> <span class="c1">//삭제 요청으로 넘어온 상품 종류 번호</span>
+		<span class="n">commandMap</span><span class="o">.</span><span class="na">getMap</span><span class="o">().</span><span class="na">put</span><span class="o">(</span><span class="s">"cart_number"</span><span class="o">,</span> <span class="n">cart_number</span><span class="o">);</span>
+		
+		<span class="c1">//상품 삭제 시작</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span><span class="c1">//회원</span>
+			<span class="n">commandMap</span><span class="o">.</span><span class="na">getMap</span><span class="o">().</span><span class="na">put</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">,</span> <span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"MEMBER_NUMBER"</span><span class="o">));</span>
+			<span class="n">cartService</span><span class="o">.</span><span class="na">deleteMyCart</span><span class="o">(</span><span class="n">commandMap</span><span class="o">.</span><span class="na">getMap</span><span class="o">());</span> <span class="c1">//장바구니 상품 삭제</span>
+	        <span class="n">cartList</span> <span class="o">=</span> <span class="n">cartService</span><span class="o">.</span><span class="na">selectMyCart</span><span class="o">(</span><span class="n">commandMap</span><span class="o">.</span><span class="na">getMap</span><span class="o">());</span><span class="c1">//새로운 장바구니 목록</span>
+	         
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>  <span class="c1">//비회원 세션 장바구니</span>
+			<span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">cartSession</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;();</span>
+			<span class="n">cartSession</span> <span class="o">=</span> <span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;)</span> <span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">"cartSession"</span><span class="o">);</span>
+			<span class="n">cartList</span> <span class="o">=</span> <span class="n">cartService</span><span class="o">.</span><span class="na">deleteSessionCart</span><span class="o">(</span><span class="n">cartSession</span><span class="o">,</span> <span class="n">commandMap</span><span class="o">.</span><span class="na">getMap</span><span class="o">());</span>
+		
+		<span class="o">}</span>
+		<span class="n">mv</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">"cartList"</span><span class="o">,</span><span class="n">cartList</span><span class="o">);</span>
+		<span class="n">mv</span><span class="o">.</span><span class="na">setViewName</span><span class="o">(</span><span class="s">"store/cart/cartList"</span><span class="o">);</span>
+		<span class="k">return</span> <span class="n">mv</span><span class="o">;</span>
+	    <span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /><br /><br /><br /></p>
+
+<h1 id="주문-결제-페이지-1">주문 /결제 페이지</h1>
+
+<p>장바구니 또는 상세페이지에서 구매하기 버튼을 누르면 상품을 단품 또는 여러개 주문 할 수 있습니다. 또한 회원은 구매 금액에서 포인트를 차감할 수 있습니다. 전체 주문 과정을 <strong>트랜잭션</strong>으로 묶어서 구현 했으며 <strong>우편번호 검색 서비스 API</strong>와 아임포트 <strong>결제 API</strong>를 적용하였습니다.</p>
+
+<p><br /></p>
+
+<p><em>-주문/결제 페이지</em></p>
+
+<p><img src="https://midas123.github.io\assets\images\post\MODUHOME\md-order.jpg" alt="" class="center-image" /></p>
+
+<p><br /></p>
+
+<p><em>-결제 화면</em></p>
+
+<p><img src="https://midas123.github.io\assets\images\post\MODUHOME\md-orderpay.jpg" alt="" class="center-image" /></p>
+
+<p><br /></p>
+
+<p><em>-주문 결과 페이지</em></p>
+
+<p><img src="https://midas123.github.io\assets\images\post\MODUHOME\md-orderresult.jpg" alt="" class="center-image" /></p>
+
+<p><br /></p>
+
+<p>주문/결제 파트에는 8개의 메서드가 있습니다. 각 메서드의 기능은 아래와 같습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">OrderService</span> <span class="o">{</span>
+	<span class="c1">//주문자 정보 가져오기(적립 포인트)</span>
+	<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nf">orderMember</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	<span class="c1">//주문 상품 정보 가져오기</span>
+	<span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nf">orderGoods</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	<span class="c1">//주문 트랜잭션 처리</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">orderGoodsAction</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	<span class="c1">//배송 정보 생성</span>
+	<span class="kd">public</span> <span class="n">Object</span> <span class="nf">createDeliveryList</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	<span class="c1">//주문 정보 생성</span>
+	<span class="kd">public</span> <span class="n">Object</span> <span class="nf">createOrderList</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	<span class="c1">//상품 재고 차감</span>
+	<span class="kd">public</span> <span class="n">Object</span> <span class="nf">goodsCountDown</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	<span class="c1">//포인트 사용 및 적립</span>
+	<span class="kd">public</span> <span class="n">Object</span> <span class="nf">insertPoint</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+	<span class="c1">//주문 코드 생성</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">makeOrderCode</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="주문-과정-트랜잭션-처리">주문 과정 트랜잭션 처리</h2>
+
+<p>결제 진행 후 주문 처리 과정을 트랜잭션으로 묶어서 한번에 처리 되도록 구현했습니다. 자바 코드 내에서 DefaultTransactionDefinition 클래스를 이용해서 처리 하였습니다. 아래에 있는 orderGoodsAction() 메서드에서 createDeliveryList(), createDeliveryList(), goodsCountDown(), insertPoint() 메서드가 정상적으로 실행되면 트랜잭션 처리가 완료 됩니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">orderGoodsAction</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="c1">//트랜잭션 설정</span>
+		<span class="n">DefaultTransactionDefinition</span> <span class="n">def</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultTransactionDefinition</span><span class="o">();</span>
+		<span class="n">def</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"GoodsOrderTx"</span><span class="o">);</span>
+		<span class="n">def</span><span class="o">.</span><span class="na">setPropagationBehavior</span><span class="o">(</span><span class="n">TransactionDefinition</span><span class="o">.</span><span class="na">PROPAGATION_REQUIRED</span><span class="o">);</span>
+		<span class="c1">//트랜잭션 시작</span>
+		<span class="n">TransactionStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">transactionManager</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">(</span><span class="n">def</span><span class="o">);</span>
+		<span class="k">try</span> <span class="o">{</span>
+		<span class="c1">//배송 정보 생성</span>
+		<span class="n">orderDAO</span><span class="o">.</span><span class="na">createDeliveryList</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+		<span class="c1">//주문서 생성</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"kinds[]"</span><span class="o">)</span> <span class="k">instanceof</span> <span class="n">String</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//단품</span>
+			<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"GOODS_KIND_NUMBER"</span><span class="o">,</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"kinds[]"</span><span class="o">));</span>
+			<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"ORDER_AMOUNT"</span><span class="o">,</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"ea[]"</span><span class="o">));</span>
+			<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"GOODS_NUMBER"</span><span class="o">,</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"GOODS_NUMBER[]"</span><span class="o">));</span>
+			<span class="n">List</span><span class="o">&lt;</span><span class="n">BigDecimal</span><span class="o">&gt;</span> <span class="n">orderPrice</span> <span class="o">=</span> <span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">BigDecimal</span><span class="o">&gt;)</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"ORDER_TOTAL_PRICE[]"</span><span class="o">);</span>
+			<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"ORDER_TOTAL_PRICE"</span><span class="o">,</span> <span class="n">orderPrice</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span>
+			<span class="n">orderDAO</span><span class="o">.</span><span class="na">createOrderList</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">//여러개 상품</span>
+			<span class="n">String</span><span class="o">[]</span> <span class="n">goodsKindNum</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">[])</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"kinds[]"</span><span class="o">);</span>
+			<span class="n">String</span><span class="o">[]</span> <span class="n">ea</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">[])</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"ea[]"</span><span class="o">);</span>
+			<span class="n">String</span><span class="o">[]</span> <span class="n">goodsNum</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">[])</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"GOODS_NUMBER[]"</span><span class="o">);</span>
+			<span class="n">List</span><span class="o">&lt;</span><span class="n">BigDecimal</span><span class="o">&gt;</span> <span class="n">orderPrices</span> <span class="o">=</span> <span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">BigDecimal</span><span class="o">&gt;)</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"ORDER_TOTAL_PRICE[]"</span><span class="o">);</span>
+			
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">goodsKindNum</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"GOODS_KIND_NUMBER"</span><span class="o">,</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">goodsKindNum</span><span class="o">[</span><span class="n">i</span><span class="o">]));</span>
+				<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"ORDER_AMOUNT"</span><span class="o">,</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">ea</span><span class="o">[</span><span class="n">i</span><span class="o">]));</span>
+				<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"GOODS_NUMBER"</span><span class="o">,</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">goodsNum</span><span class="o">[</span><span class="n">i</span><span class="o">]));</span>
+				<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"ORDER_TOTAL_PRICE"</span><span class="o">,</span> <span class="n">orderPrices</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+				<span class="n">orderDAO</span><span class="o">.</span><span class="na">createOrderList</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		
+		<span class="c1">//상품 재고 수량 빼기</span>
+		<span class="n">orderDAO</span><span class="o">.</span><span class="na">goodsCountDown</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+		<span class="c1">//포인트 적립</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"usePoint"</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">if</span><span class="o">(!((</span><span class="n">String</span><span class="o">)</span><span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"usePoint"</span><span class="o">)).</span><span class="na">isEmpty</span><span class="o">()){</span>
+				<span class="kt">int</span> <span class="n">usePoint</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">((</span><span class="n">String</span><span class="o">)</span><span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"usePoint"</span><span class="o">));</span>
+				<span class="k">if</span> <span class="o">(</span><span class="n">usePoint</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+					<span class="kt">int</span> <span class="n">POINT_POINT</span> <span class="o">=</span> <span class="o">-(</span><span class="n">usePoint</span><span class="o">);</span>
+					<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"POINT_POINT"</span> <span class="o">+</span> <span class="n">POINT_POINT</span><span class="o">);</span>
+					<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"POINT_POINT"</span><span class="o">,</span> <span class="n">POINT_POINT</span><span class="o">);</span>
+					<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"POINT_CONTENT"</span><span class="o">,</span> <span class="s">"상품 구매"</span><span class="o">);</span>
+					<span class="n">orderDAO</span><span class="o">.</span><span class="na">insertPoint</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+				<span class="o">}</span>
+			  <span class="o">}</span>
+		<span class="o">}</span>
+		<span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">transactionManager</span><span class="o">.</span><span class="na">rollback</span><span class="o">(</span><span class="n">status</span><span class="o">);</span>
+			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"#####주문 처리 중 에러발생"</span><span class="o">);</span>
+			  <span class="k">throw</span> <span class="n">ex</span><span class="o">;</span>
+			<span class="o">}</span>
+		<span class="c1">//트랜잭션 종료</span>
+		<span class="n">transactionManager</span><span class="o">.</span><span class="na">commit</span><span class="o">(</span><span class="n">status</span><span class="o">);</span>
+		<span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>이 메서드는 OrderController 클래스에 orderEnd() 메서드에서 아래처럼 사용 됩니다. commandMap 객체에는 주문 관련 데이터가 담겨있습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="c1">//상품 구매 트랜잭션 처리</span>
+	<span class="n">orderService</span><span class="o">.</span><span class="na">orderGoodsAction</span><span class="o">(</span><span class="n">commandMap</span><span class="o">.</span><span class="na">getMap</span><span class="o">());</span>
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<h2 id="포인트-사용-적립">포인트 사용 적립</h2>
+
+<p><strong>포인트 적립 및 사용</strong> 모두 INSERT 쿼리문으로 DB에 저장됩니다. 포인트는 적립시 +, 사용시 -로 DB에 저장됩니다. 회원이 포인트 확인시에는 회원 번호로 포인트 내역을 모두 합계한 결과를 보여줍니다.</p>
+
+<p>주문 페이지에서 회원이 사용할 포인트를 입력하고 ‘포인트 적용’ 버튼을 누르면 최종 결제금액에서 차감하는 기능을 <strong>jquery</strong>로 구현했습니다. ‘적용 취소’ 버튼을 누르면 결제금액과 포인트를 사용 전으로 되돌립니다. 이 기능들은 웹 브라우저에서만 동작합니다. 회원이 ‘주문하기’ 버튼을 클릭해야만 사용 포인트와 최종 결제 금액을 포함한 주문내역이 DB에 저장됩니다.</p>
+
+<p><br /></p>
+
+<p><em>-포인트 사용 jquery</em></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">changePoint</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+	<span class="kd">var</span> <span class="nx">mypoint</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#myPoint"</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span> <span class="mi">10</span><span class="p">);</span><span class="c1">//보유 포인트</span>
+	<span class="kd">var</span> <span class="nx">usepoint</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#POINT_POINT"</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span> <span class="mi">10</span><span class="p">);</span><span class="c1">//사용할 포인트</span>
+	<span class="kd">var</span> <span class="nx">deliveryfee</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//배송비</span>
+	<span class="kd">var</span> <span class="nx">afterpoint</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//차감 후 포인트 </span>
+	<span class="kd">var</span> <span class="nx">aftersumprice</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//포인트 차감 후 결제금액</span>
+	<span class="kd">var</span> <span class="nx">sumprice</span> <span class="o">=</span> <span class="nx">$</span><span class="p">{</span><span class="nx">sum</span><span class="p">};</span><span class="c1">//포인트 적용 전 결제금액</span>
+	<span class="kd">var</span> <span class="nx">pointmax</span> <span class="o">=</span> <span class="nx">sumprice</span> <span class="o">*</span> <span class="mf">0.05</span><span class="p">;</span><span class="c1">//포인트 사용한도</span>
+	
+	<span class="c1">//사용할 포인트 유효성 검사</span>
+	<span class="k">if</span><span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">usepoint</span><span class="p">)</span> <span class="o">||</span> <span class="nx">usepoint</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">){</span>
+		<span class="nx">alert</span><span class="p">(</span><span class="s2">"포인트는 숫자로 입력해주세요."</span><span class="p">);</span>
+		<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+ 	<span class="k">if</span><span class="p">(</span><span class="nx">usepoint</span> <span class="o">&gt;</span> <span class="nx">pointmax</span><span class="p">){</span>
+		<span class="nx">alert</span><span class="p">(</span><span class="s2">"포인트 사용 범위 초과"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="p">}</span>
+	 
+	<span class="c1">//포인트 차감</span>
+	<span class="k">if</span><span class="p">(</span><span class="nx">mypoint</span> <span class="o">&gt;=</span> <span class="nx">usepoint</span><span class="p">){</span>
+		 <span class="nx">afterpoint</span> <span class="o">=</span> <span class="nx">mypoint</span> <span class="o">-</span> <span class="nx">usepoint</span><span class="p">;</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="nx">alert</span><span class="p">(</span><span class="s2">"포인트를 다시 입력해주세요."</span><span class="p">);</span>
+		<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+	<span class="c1">//배송비 설정</span>
+	<span class="k">if</span><span class="p">(</span><span class="nx">sumprice</span> <span class="o">&lt;</span> <span class="mi">30000</span><span class="p">){</span>
+		<span class="nx">deliveryfee</span> <span class="o">=</span> <span class="mi">2500</span><span class="p">;</span> 
+	<span class="p">}</span>
+	<span class="c1">//결제금액에서 포인트, 배송비 계산</span>
+	<span class="nx">aftersumprice</span> <span class="o">=</span> <span class="nx">sumprice</span> <span class="o">+</span> <span class="nx">deliveryfee</span> <span class="o">-</span> <span class="nx">usepoint</span><span class="p">;</span>
+	
+	<span class="c1">//계산 결과 삽입</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s2">"#pointDis"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">usepoint</span><span class="p">);</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s2">"#myPoint"</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">afterpoint</span><span class="p">);</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s2">"#totalPrice"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">comma</span><span class="p">(</span><span class="nx">aftersumprice</span><span class="p">));</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s2">":input[name=TOTALPRICE]"</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">aftersumprice</span><span class="p">);</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s2">":input[name=usePoint]"</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">usepoint</span><span class="p">);</span>
+	<span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><em>-포인트 취소 jquery</em></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">rollbackPoint</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">sumprice</span> <span class="o">=</span> <span class="nx">$</span><span class="p">{</span><span class="nx">sum</span><span class="p">};</span> <span class="c1">//주문 총액</span>
+	<span class="kd">var</span> <span class="nx">bkpoint</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#backupPoint"</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span> <span class="mi">10</span><span class="p">);</span><span class="c1">//원래 포인트</span>
+	<span class="kd">var</span> <span class="nx">zrpoint</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span><span class="c1">//사용 포인트 빈칸</span>
+	<span class="c1">//페이지 삽입</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s2">"#totalPrice"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">comma</span><span class="p">(</span><span class="nx">sumprice</span><span class="p">));</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s2">"#myPoint"</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">bkpoint</span><span class="p">);</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s2">"#POINT_POINT"</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">zrpoint</span><span class="p">);</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s2">"#pointDis"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+	<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>	
+<span class="p">}</span> 
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="우편번호-검색-서비스">우편번호 검색 서비스</h2>
+
+<p>배송지 입력시 우편번호 검색을 이용할 수 있습니다. 다음 지도 api를 이용하였습니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"http://dmaps.daum.net/map_js_init/postcode.v2.js"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span>
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kd">function</span> <span class="nx">sample6_execDaumPostcode</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">new</span> <span class="nx">daum</span><span class="p">.</span><span class="nx">Postcode</span><span class="p">({</span>
+        <span class="na">oncomplete</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.</span>
+            <span class="c1">// 각 주소의 노출 규칙에 따라 주소를 조합한다.</span>
+            <span class="c1">// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.</span>
+            <span class="kd">var</span> <span class="nx">fullAddr</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span> <span class="c1">// 최종 주소 변수</span>
+            <span class="kd">var</span> <span class="nx">extraAddr</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span> <span class="c1">// 조합형 주소 변수</span>
+
+            <span class="c1">// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">userSelectedType</span> <span class="o">===</span> <span class="s1">'R'</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 사용자가 도로명 주소를 선택했을 경우</span>
+                <span class="nx">fullAddr</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">roadAddress</span><span class="p">;</span>
+
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// 사용자가 지번 주소를 선택했을 경우(J)</span>
+                <span class="nx">fullAddr</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">jibunAddress</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 사용자가 선택한 주소가 도로명 타입일때 조합한다.</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">userSelectedType</span> <span class="o">===</span> <span class="s1">'R'</span><span class="p">){</span>
+                <span class="c1">//법정동명이 있을 경우 추가</span>
+                <span class="k">if</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">bname</span> <span class="o">!==</span> <span class="s1">''</span><span class="p">){</span>
+                    <span class="nx">extraAddr</span> <span class="o">+=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">bname</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="c1">// 건물명이 있을 경우 추가</span>
+                <span class="k">if</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">buildingName</span> <span class="o">!==</span> <span class="s1">''</span><span class="p">){</span>
+                    <span class="nx">extraAddr</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">extraAddr</span> <span class="o">!==</span> <span class="s1">''</span> <span class="p">?</span> <span class="s1">', '</span> <span class="o">+</span> <span class="nx">data</span><span class="p">.</span><span class="nx">buildingName</span> <span class="p">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">buildingName</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="c1">// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.</span>
+                <span class="nx">fullAddr</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">extraAddr</span> <span class="o">!==</span> <span class="s1">''</span> <span class="p">?</span> <span class="s1">' ('</span><span class="o">+</span> <span class="nx">extraAddr</span> <span class="o">+</span><span class="s1">')'</span> <span class="p">:</span> <span class="s1">''</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 우편번호와 주소 정보를 해당 필드에 넣는다.</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'sample6_postcode'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">zonecode</span><span class="p">;</span> 
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'sample6_address'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">fullAddr</span><span class="p">;</span>
+
+            <span class="c1">//커서를 상세주소 필드로 이동한다.</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'sample6_address2'</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}).</span><span class="nx">open</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="아임포트-결제">아임포트 결제</h2>
+
+<p>주문, 배송 정보 입력 데이터의 유효성 검사 후 결제가 진행 됩니다. 결제 정보를 넘기기전 자바스크립트로 유효성 검사가 진행됩니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">IMP</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">IMP</span><span class="p">;</span>
+<span class="nx">IMP</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="s1">'imp08080720'</span><span class="p">);</span> <span class="c1">// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용</span>
+
+<span class="kd">function</span> <span class="nx">buyGoods</span><span class="p">()</span> <span class="p">{</span>
+	 <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'#order-name'</span><span class="p">).</span><span class="nx">val</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="nx">alert</span><span class="p">(</span><span class="s2">"주문자의 성함을 입력하세요."</span><span class="p">);</span>	       
+	        <span class="nx">$</span><span class="p">(</span><span class="s1">'#order-name'</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+	        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	    <span class="p">}</span>  
+	 
+	 <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'#emergency12'</span><span class="p">).</span><span class="nx">val</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#emergency13'</span><span class="p">).</span><span class="nx">val</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="nx">alert</span><span class="p">(</span><span class="s2">"주문자의 연락처을 입력하세요."</span><span class="p">);</span>	       
+	        <span class="nx">$</span><span class="p">(</span><span class="s1">'#emergency12'</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+	        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	    <span class="p">}</span>
+	 <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'#input-mail'</span><span class="p">).</span><span class="nx">val</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="nx">alert</span><span class="p">(</span><span class="s2">"주문자의 이메일을 입력하세요."</span><span class="p">);</span>	       
+	        <span class="nx">$</span><span class="p">(</span><span class="s1">'#input-mail'</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+	        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	    <span class="p">}</span> 
+	 
+	 <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'#receiver'</span><span class="p">).</span><span class="nx">val</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="nx">alert</span><span class="p">(</span><span class="s2">"수령인의 이름을 입력하세요."</span><span class="p">);</span>	       
+	        <span class="nx">$</span><span class="p">(</span><span class="s1">'#receiver'</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+	        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	    <span class="p">}</span>
+	 
+	 <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'#emergency32'</span><span class="p">).</span><span class="nx">val</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#emergency33'</span><span class="p">).</span><span class="nx">val</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="nx">alert</span><span class="p">(</span><span class="s2">"수령인의 연락처을 입력하세요."</span><span class="p">);</span>	       
+	        <span class="nx">$</span><span class="p">(</span><span class="s1">'#emergency32'</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+	        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	    <span class="p">}</span>
+	 
+	 <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'#sample6_postcode'</span><span class="p">).</span><span class="nx">val</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#sample6_address'</span><span class="p">).</span><span class="nx">val</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#sample6_address'</span><span class="p">).</span><span class="nx">val</span><span class="p">().</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="nx">alert</span><span class="p">(</span><span class="s2">"수령인의  주소를 입력하세요."</span><span class="p">);</span>	       
+	        <span class="nx">$</span><span class="p">(</span><span class="s1">'#sample6_postcode'</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+	        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	    <span class="p">}</span>
+	 <span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"agree"</span><span class="p">).</span><span class="nx">checked</span> <span class="o">!=</span> <span class="kc">true</span><span class="p">){</span>
+		 <span class="nx">alert</span><span class="p">(</span><span class="s2">"정보수집에 동의하셔야합니다."</span><span class="p">);</span>
+		 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"agree"</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+		 <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	 <span class="p">}</span>
+	 
+	 <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'input[name=payType]:checked'</span><span class="p">).</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+		 <span class="nx">alert</span><span class="p">(</span><span class="s2">"결제방법을 선택해주세요."</span><span class="p">)</span>
+		 <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	 <span class="p">}</span>
+	 <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'input[name=payType]:checked'</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"inicisPay"</span><span class="p">)</span> <span class="p">{</span>
+		 <span class="nx">IMP</span><span class="p">.</span><span class="nx">request_pay</span><span class="p">({</span>
+    <span class="na">pg</span> <span class="p">:</span> <span class="s1">'html5_inicis'</span><span class="p">,</span> <span class="c1">// version 1.1.0부터 지원.</span>
+    <span class="na">pay_method</span> <span class="p">:</span> <span class="s1">'card'</span><span class="p">,</span>
+    <span class="na">merchant_uid</span> <span class="p">:</span> <span class="s1">'${ORDER_CODE}'</span> <span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">(),</span>
+    <span class="na">name</span> <span class="p">:</span> <span class="s1">'[ModuHome]'</span><span class="o">+</span><span class="s1">'${GOODS_NAME}'</span><span class="p">,</span>
+    <span class="na">amount</span> <span class="p">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">rm_comma</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"#totalPrice"</span><span class="p">).</span><span class="nx">html</span><span class="p">())),</span>
+    <span class="na">buyer_email</span> <span class="p">:</span> <span class="s1">'${orderMember.MEMBER_EMAIL}'</span><span class="p">,</span>
+    <span class="na">buyer_name</span> <span class="p">:</span> <span class="s1">'${orderMember.MEMBER_NAME}'</span><span class="p">,</span>
+    <span class="na">buyer_tel</span> <span class="p">:</span> <span class="s1">'${orderMember.MEMBER_PHONE}'</span><span class="p">,</span>
+    <span class="na">buyer_addr</span> <span class="p">:</span> <span class="s1">'${orderMember.MEMBER_ADDRESS1}'</span><span class="o">+</span><span class="s1">'${orderMember.MEMBER_ADDRESS2}'</span><span class="p">,</span>
+    <span class="na">buyer_postcode</span> <span class="p">:</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#sample6_postcode"</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+    <span class="na">m_redirect_url</span> <span class="p">:</span> <span class="s1">'/ModuHome/orderEnd'</span>
+<span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">rsp</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="nx">rsp</span><span class="p">.</span><span class="nx">success</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="s1">'결제가 완료되었습니다.'</span><span class="p">;</span>
+        <span class="nx">msg</span> <span class="o">+=</span> <span class="s1">'고유ID : '</span> <span class="o">+</span> <span class="nx">rsp</span><span class="p">.</span><span class="nx">imp_uid</span><span class="p">;</span>
+        <span class="nx">msg</span> <span class="o">+=</span> <span class="s1">'상점 거래ID : '</span> <span class="o">+</span> <span class="nx">rsp</span><span class="p">.</span><span class="nx">merchant_uid</span><span class="p">;</span>
+        <span class="nx">msg</span> <span class="o">+=</span> <span class="s1">'결제 금액 : '</span> <span class="o">+</span> <span class="nx">rsp</span><span class="p">.</span><span class="nx">paid_amount</span><span class="p">;</span>
+        <span class="nx">msg</span> <span class="o">+=</span> <span class="s1">'카드 승인번호 : '</span> <span class="o">+</span> <span class="nx">rsp</span><span class="p">.</span><span class="nx">apply_num</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="s1">'결제에 실패하였습니다.'</span><span class="p">;</span>
+        <span class="nx">msg</span> <span class="o">+=</span> <span class="s1">'에러내용 : '</span> <span class="o">+</span> <span class="nx">rsp</span><span class="p">.</span><span class="nx">error_msg</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+<span class="p">});</span>
+		 <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	 <span class="p">}</span>
+	 
+	<span class="nx">$</span><span class="p">(</span><span class="s1">'#frmOrder'</span><span class="p">).</span><span class="nx">submit</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p><br /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/ajax" class="page__taxonomy-item" rel="tag">ajax</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/jquery" class="page__taxonomy-item" rel="tag">jquery</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/maven" class="page__taxonomy-item" rel="tag">maven</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/mybatis" class="page__taxonomy-item" rel="tag">mybatis</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/oracle" class="page__taxonomy-item" rel="tag">oracle</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/spring-mvc" class="page__taxonomy-item" rel="tag">spring-mvc</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2019-01-26T00:00:00+00:00">January 26, 2019</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2019/01/22/off-the-ball.html" class="pagination--pager" title="OFF-THE-BALL
+">이전</a>
+    
+    
+      <a href="/2019/02/07/ModuHome2.html" class="pagination--pager" title="ModuHome2
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <section id="disqus_thread">
+    <script>
+    
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ykblog-2.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow" style="padding-top: 10px;">
+   <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2019 yk-dev-blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+
+
+
+
+
+
+
+
+  </body>
+</html>

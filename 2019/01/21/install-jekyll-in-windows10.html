@@ -1,0 +1,578 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>윈도우10에서 jekyll 설치하기 - yk-dev-blog</title>
+<meta name="description" content="윈도우에서 jekyll 설치">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="yk-dev-blog">
+<meta property="og:title" content="윈도우10에서 jekyll 설치하기">
+<meta property="og:url" content="https://midas123.github.io/2019/01/21/install-jekyll-in-windows10.html">
+
+
+  <meta property="og:description" content="윈도우에서 jekyll 설치">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-01-21T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://midas123.github.io/2019/01/21/install-jekyll-in-windows10.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="yk-dev-blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+
+
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">맨 위로</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTop").style.display = "block";
+    } else {
+      document.getElementById("scrollToTop").style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138663237-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138663237-1');
+</script>
+
+<!-- flex slider -->
+<link rel="stylesheet" href="/assets/slider/flexslider.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.6.2.js"integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="crossorigin="anonymous"></script>
+<script src="/assets/slider/jquery.flexslider.js"></script>
+<script src="/assets/slider/jquery.flexslider-min.js"></script>
+
+<style>
+@font-face {
+ font-family: 'flexslider-icon';
+ src: url(/assets/slider/fonts/flexslider-icon.eot);
+ src: url(/assets/slider/fonts/flexslider-icon.woff) format('woff'),
+      url(/assets/slider/fonts/flexslider-icon.ttf) format('truetype');
+}
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "fade",
+      directionNav: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      touch: true
+    });
+  });
+</script>
+
+<!-- flex slider end -->
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!-- end custom head snippets -->
+
+  </head>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">yk-dev-blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+  
+  <div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="http://midas123.tistory.com/" rel="nofollow noopener noreferrer"><i class="fab fa-blogger" aria-hidden="true"></i> Tistory Blog</a></li>
+          
+        
+          
+            <li><a href="https://github.com/midas123" rel="nofollow noopener noreferrer"><i class="fab fa-git-square" aria-hidden="true"></i> Github</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">MENU</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/year-archive/" class="">최근 포스트</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/#all-tags" class="">모든 태그</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  
+</div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="윈도우10에서 jekyll 설치하기">
+    <meta itemprop="description" content="윈도우에서 jekyll 설치">
+    <meta itemprop="datePublished" content="January 21, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">윈도우10에서 jekyll 설치하기
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="윈도우에서-jekyll-설치">윈도우에서 jekyll 설치</h2>
+
+<p>1.루비인스톨러 설치 (2.4 버전이상)</p>
+
+<p>※gem은 프로그래밍 언어 루비에 패키지 매니져</p>
+
+<p>2.윈도우 실행창에서 ‘cmd’ 입력해서 명령 프롬프트 실행 후 설치 여부 확인</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby -v
+gem -v
+</code></pre></div></div>
+
+<p>3.jekyll 설치 및 확인</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install jekyll bundler
+jekyll -v
+</code></pre></div></div>
+
+<h2 id="jekyll로-static-사이트-생성-및-실행">jekyll로 static 사이트 생성 및 실행</h2>
+
+<p>1.기본 static 사이트 생성(실행위치 C:\Users\username)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll new "사이트명"
+</code></pre></div></div>
+
+<p><img src="https://midas123.github.io/assets/images/post/0121/jek-start3.jpg" alt="" /></p>
+
+<p>2.사이트 구동 (실행위치 C:\Users\username\사이트명)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd "사이트명"
+
+bundle exec jekyll serve
+</code></pre></div></div>
+
+<p>3.웹브라우저에서 로컬호스트 URL로 사이트에 접속</p>
+
+<p><img src="https://midas123.github.io/assets/images/post/0121/jek-start2.jpg" alt="" /></p>
+
+<p>※사이트 구동 중 컨버전 에러 발생시</p>
+
+<p><img src="https://midas123.github.io/assets/images/post/0121/jek-start1.jpg" alt="" /></p>
+
+<p>아래 명령어 입력</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chcp 65001
+</code></pre></div></div>
+
+<p>여기까지 진행되면 기본적인 레이아웃만 있는 사이트를 로컬 환경에서 실행할 수 있습니다. 이제 마음에 드는 테마를 설치하고 자기 입맛대로 사이트를 커스텀 하면 됩니다. 테마를 설치하기 전에 front matter에 대해 알아야 합니다.</p>
+
+<hr />
+
+<h2 id="front-matter">Front matter</h2>
+
+<p>jekyll을 시작하면서 가장 먼저 알아야 할 것 입니다. html, css 등을 직접 작성하지 않고 이것만 잘 설정해줘도 그럴듯한 사이트가 완성 됩니다.front matter는 yaml 또는 json 형태의 데이터 입니다. “키 값”: “밸류” 형태로 사이트에 설정이 담겨 있습니다. html 또는 md 파일 상단에 위치 합니다.  아래 처럼 예시 처럼 “—“으로 감싸줍니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: post
+title:  "Welcome to Jekyll!"
+date:   2019-01-21 12:57:18 +0900
+categories: jekyll update
+
+---
+
+You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+</code></pre></div></div>
+
+<p>여기서 layout, title, date, categories 등 다양한 설정을 합니다.
+예를 들어, 마크다운 작성한 포스트의 레이아웃은  여기서 설정한 post로 보여집니다.
+html 또는 md(마크다운 파일)은 텍스트나 코드 형태의 컨텐츠를 담고 있고 설정된 layout이 씌워진 형태가 최종적으로 웹브라우저에 출력됩니다.</p>
+
+<hr />
+
+<h2 id="사이트-구조폴더-구조">사이트 구조(폴더 구조)</h2>
+
+<p><img src="https://midas123.github.io/assets/images/post/0121/jek-start4.jpg" alt="" /></p>
+
+<p><strong>_posts</strong>: 마크다운으로 작성한 포스트를 여기에 저장합니다.</p>
+
+<p><strong>_site</strong>: 사이트 구동시 생성되는 폴더 입니다. 사이트의 최종 버전 이므로 건드릴 필요없습니다.</p>
+
+<p><strong>_config.yml:</strong> 사이트의 모든 설정</p>
+
+<p><strong>gemfile:</strong> 사이트의 디펜던시 설정(theme 설정)</p>
+
+<hr />
+
+<h2 id="참고">참고</h2>
+
+<p><a href="https://jekyllrb.com/resources/">jekyll 공식 resources</a></p>
+
+<p><a href="https://mmistakes.github.io/minimal-mistakes/docs/configuration/#">minimal-mistakes 테마 가이드 문서</a></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/jekyll" class="page__taxonomy-item" rel="tag">jekyll</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2019-01-21T00:00:00+00:00">January 21, 2019</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">이전</a>
+    
+    
+      <a href="/2019/01/22/off-the-ball.html" class="pagination--pager" title="OFF-THE-BALL
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <section id="disqus_thread">
+    <script>
+    
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ykblog-2.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow" style="padding-top: 10px;">
+   <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2019 yk-dev-blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+
+
+
+
+
+
+
+
+  </body>
+</html>

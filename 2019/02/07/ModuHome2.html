@@ -1,0 +1,726 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>ModuHome2 - yk-dev-blog</title>
+<meta name="description" content="MODUHOME 프로젝트를 업그레이드 하였습니다. 그래서 ‘ModuHome2’라고 네이밍하였고 프로젝트의 부족한 부분을 보완하고 사이트를 실제로 배포하는 과정을 공부하였습니다.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="yk-dev-blog">
+<meta property="og:title" content="ModuHome2">
+<meta property="og:url" content="https://midas123.github.io/2019/02/07/ModuHome2.html">
+
+
+  <meta property="og:description" content="MODUHOME 프로젝트를 업그레이드 하였습니다. 그래서 ‘ModuHome2’라고 네이밍하였고 프로젝트의 부족한 부분을 보완하고 사이트를 실제로 배포하는 과정을 공부하였습니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-02-07T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://midas123.github.io/2019/02/07/ModuHome2.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="yk-dev-blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+
+
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">맨 위로</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTop").style.display = "block";
+    } else {
+      document.getElementById("scrollToTop").style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138663237-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138663237-1');
+</script>
+
+<!-- flex slider -->
+<link rel="stylesheet" href="/assets/slider/flexslider.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.6.2.js"integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="crossorigin="anonymous"></script>
+<script src="/assets/slider/jquery.flexslider.js"></script>
+<script src="/assets/slider/jquery.flexslider-min.js"></script>
+
+<style>
+@font-face {
+ font-family: 'flexslider-icon';
+ src: url(/assets/slider/fonts/flexslider-icon.eot);
+ src: url(/assets/slider/fonts/flexslider-icon.woff) format('woff'),
+      url(/assets/slider/fonts/flexslider-icon.ttf) format('truetype');
+}
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "fade",
+      directionNav: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      touch: true
+    });
+  });
+</script>
+
+<!-- flex slider end -->
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!-- end custom head snippets -->
+
+  </head>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">yk-dev-blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+  
+  <div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="http://midas123.tistory.com/" rel="nofollow noopener noreferrer"><i class="fab fa-blogger" aria-hidden="true"></i> Tistory Blog</a></li>
+          
+        
+          
+            <li><a href="https://github.com/midas123" rel="nofollow noopener noreferrer"><i class="fab fa-git-square" aria-hidden="true"></i> Github</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">MENU</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/year-archive/" class="">최근 포스트</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/#all-tags" class="">모든 태그</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  
+</div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="ModuHome2">
+    <meta itemprop="description" content="MODUHOME 프로젝트를 업그레이드 하였습니다. 그래서 ‘ModuHome2’라고 네이밍하였고 프로젝트의 부족한 부분을 보완하고 사이트를 실제로 배포하는 과정을 공부하였습니다.">
+    <meta itemprop="datePublished" content="February 07, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">ModuHome2
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1프로젝트-배포-환경-구성">1.프로젝트 배포 환경 구성</a></li>
+  <li><a href="#2장바구니-기능-업그레이드">2.장바구니 기능 업그레이드</a></li>
+  <li><a href="#추가-사항">+추가 사항</a></li>
+  <li><a href="#index">INDEX</a></li>
+  <li><a href="#junit-테스트">junit 테스트</a></li>
+  <li><a href="#프로젝트를-aws-ec2-인스턴스에-수동-배포">프로젝트를 aws ec2 인스턴스에 수동 배포</a></li>
+  <li><a href="#docker-jenkins-자동-빌드-및-배포환경-구성">docker jenkins 자동 빌드 및 배포환경 구성</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>MODUHOME 프로젝트를 업그레이드 하였습니다. 그래서 ‘ModuHome2’라고 네이밍하였고 프로젝트의 부족한 부분을 보완하고 사이트를 실제로 배포하는 과정을 공부하였습니다.</p>
+
+<p><a href="https://github.com/midas123/moduhome2">프로젝트-github-링크</a></p>
+
+<p><br /></p>
+
+<h2 id="1프로젝트-배포-환경-구성">1.프로젝트 배포 환경 구성</h2>
+
+<p>처음에는 프로젝트를 수동으로 직접 배포하였습니다. <strong>Putty</strong>로 AWS 인스턴스와 SSH 통신하여 톰캣 서버를 설치하고 필요한 서버 설정을 한뒤, <strong>Filezilla</strong>로 프로젝트 .war파일을 업로드해서 수동 배포했습니다.</p>
+
+<p>하지만 프로젝트에 변경 사항을 생길때마다 이 과정을 반복하는 것은 굉장히 불편한 일이였습니다. 자연스럽게 자동 배포 환경을 구성하는데 관심을 갖게 되었습니다.</p>
+
+<p>먼저 <strong>AWS-EC2</strong> 인스턴스에서 <strong>Docker</strong>로 가상환경을 구성하고 <strong>톰캣</strong> 서버와 <strong>Jenkins</strong>를 설치합니다. 그리고 <strong>github</strong>에 변경사항을 commit하면 <strong>Webhooks</strong>가 젠킨스로 push를 보내서 프로젝트가 새로 빌드 및 배포되는 환경을 만들었습니다.</p>
+
+<p><br /></p>
+
+<h2 id="2장바구니-기능-업그레이드">2.장바구니 기능 업그레이드</h2>
+
+<p>장바구니 담기 기능에서 makeCart() 메서드를 추가하였습니다. 이 기능에서 가장 중요한 역할을 하는 메서드 입니다.</p>
+
+<p>makeCart() 메서드는 회원과 비회원을 구분하고 단품 또는 여러 개의 상품을 장바구니에 추가하는 기능을 합니다.동일한 상품이 이미 장바구니에 있을 경우에는 수량을 변경 합니다. 장바구니는 회원은 DB에 저장되고 비회원은 세션에 됩니다. 기능이 잘 작동하는지 확인하기 위해서 <strong>JUNIT</strong>으로 메서드를 테스트 하였습니다.</p>
+
+<p><br />
+<img class="mh2-img" src="https://midas123.github.io\assets\images\post\MODUHOME2\mh2.jpg" width="700" />
+<br /></p>
+
+<h2 id="추가-사항">+추가 사항</h2>
+
+<p>현재 사용 중인 AWS EC2 인스턴스는 프리티어 라이센스로 컴퓨터 스펙이 최저 사양 입니다. 간혹 jenkins에 의해서 빌드 및 배포되는 과정에서 리소스 부족으로 인스턴스가 리부팅되고 docker 가상환경에서 배포 중이던 프로젝트가 멈추는 문제가 있었습니다.</p>
+
+<p>아래와 같이 간단한 쉘 스크립트를 만들고 crontab 스케줄러에 의해서 인스턴스 리부팅 후에 자동으로  설정해서 문제를 해결했습니다.</p>
+
+<p>추가적으로 리소스 부족으로 재부팅되는 경우를 최소화하기 위해서 아래 스크립트로 수시로 메모리를 정리하도록 했습니다.</p>
+
+<p><strong><em>-start_docker.sh</em></strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c">#!/bin/sh</span>
+docker start <span class="o">[</span>톰캣 컨테이너 ID]
+docker start <span class="o">[</span>젠킨스 컨테이너 ID]
+
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><strong><em>-clearcache.sh</em></strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<span class="nb">sync</span><span class="p">;</span> <span class="nb">echo </span>3 <span class="o">&gt;</span> /proc/sys/vm/drop_caches
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><strong><em>-crontab 설정 파일</em></strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 0 * * * sh /root/clearcache.sh
+
+@reboot sh /root/start_docker.sh
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="index">INDEX</h2>
+
+<ul>
+  <li><a href="#junit-테스트">JUNIT 테스트</a></li>
+  <li><a href="#프로젝트를-aws-ec2-인스턴스에-수동-배포">AWS EC2 인스턴스에 수동 배포</a></li>
+  <li><a href="#docker-jenkins-자동-빌드-및-배포환경-구성">docker와 jenkins를 이용한 자동 빌드 및 배포환경 구성</a></li>
+</ul>
+
+<p><br /><br /></p>
+
+<h2 id="junit-테스트">junit 테스트</h2>
+
+<p>상품이 이미 담겨있는 기존 장바구니에 ‘‘장바구니 담기’‘로 새로운 상품을 추가할 경우 잘 동작하는지 확인하였습니다.
+CartItem 클래스는 VO 객체로 상품 번호, 상품 분류번호, 상품 수량을 Map 형태로 저장합니다.</p>
+
+<p>CartServiceImplTest 클래스의 setup() 메서드에서 CartItem 객체에 값을 저장합니다. 그리고 testMakeCartInventory() 메서드에서 makeCart() 메서드를 실행하고 리턴한 값(장바구니)이 예상 값과 동일한지 확인합니다.</p>
+
+<p><br /></p>
+
+<p><em>-CartServiceImplTest 테스트 클래스</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">Assert</span><span class="o">.*;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.Before</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CartServiceImplTest</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">BeforeCart</span><span class="o">;</span> <span class="c1">//이전 세션 장바구니</span>
+	<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">expectedCart</span><span class="o">;</span> <span class="c1">//장바구니 담기 후 세션 장바구니</span>
+	<span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">newGoods</span><span class="o">;</span> <span class="c1">//장바구니에 새로 추가될 상품</span>
+	<span class="kd">private</span> <span class="n">CartItem</span> <span class="n">item</span><span class="o">;</span> <span class="c1">//장바구니 상품</span>
+	<span class="kd">private</span> <span class="n">CartItem</span> <span class="n">item2</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">CartItem</span> <span class="n">item3</span><span class="o">;</span>
+	
+	<span class="nd">@Before</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">BeforeCart</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span> <span class="c1">//상품 추가 전 장바구니</span>
+		<span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CartItem</span><span class="o">(</span><span class="s">"344"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">,</span> <span class="s">"500"</span><span class="o">);</span>
+		<span class="n">item2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CartItem</span><span class="o">(</span><span class="s">"345"</span><span class="o">,</span> <span class="s">"5"</span><span class="o">,</span> <span class="s">"500"</span><span class="o">);</span>
+		<span class="n">BeforeCart</span><span class="o">.</span><span class="na">add</span><span class="o">((</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;)</span> <span class="n">item</span><span class="o">.</span><span class="na">makeItem</span><span class="o">());</span>
+		<span class="n">BeforeCart</span><span class="o">.</span><span class="na">add</span><span class="o">((</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;)</span> <span class="n">item2</span><span class="o">.</span><span class="na">makeItem</span><span class="o">());</span>
+		
+		<span class="n">expectedCart</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span> <span class="c1">//상품 추가 후 장바구니(추가 상품은 아래에)</span>
+		<span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CartItem</span><span class="o">(</span><span class="s">"344"</span><span class="o">,</span> <span class="s">"5"</span><span class="o">,</span> <span class="s">"500"</span><span class="o">);</span><span class="c1">//상품 수량 2증가</span>
+		<span class="n">item2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CartItem</span><span class="o">(</span><span class="s">"345"</span><span class="o">,</span> <span class="s">"9"</span><span class="o">,</span> <span class="s">"500"</span><span class="o">);</span><span class="c1">//상품 수량 4증가</span>
+		<span class="n">item3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CartItem</span><span class="o">(</span><span class="s">"350"</span><span class="o">,</span> <span class="s">"1"</span><span class="o">,</span> <span class="s">"500"</span><span class="o">);</span><span class="c1">//추가 된 새로운 상품</span>
+		<span class="n">expectedCart</span><span class="o">.</span><span class="na">add</span><span class="o">((</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;)</span> <span class="n">item</span><span class="o">.</span><span class="na">makeItem</span><span class="o">());</span>
+		<span class="n">expectedCart</span><span class="o">.</span><span class="na">add</span><span class="o">((</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;)</span> <span class="n">item2</span><span class="o">.</span><span class="na">makeItem</span><span class="o">());</span>
+		<span class="n">expectedCart</span><span class="o">.</span><span class="na">add</span><span class="o">((</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;)</span> <span class="n">item3</span><span class="o">.</span><span class="na">makeItem</span><span class="o">());</span>
+		
+		<span class="c1">//비회원 세션 장바구니 담기(추가) 요청 데이터</span>
+		<span class="n">String</span> <span class="n">goodsNum</span> <span class="o">=</span> <span class="s">"500"</span><span class="o">;</span> <span class="c1">//상품번호</span>
+		<span class="n">String</span><span class="o">[]</span> <span class="n">ea</span> <span class="o">=</span> <span class="o">{</span><span class="s">"2"</span><span class="o">,</span> <span class="s">"4"</span><span class="o">,</span> <span class="s">"1"</span><span class="o">};</span><span class="c1">//상품 수량</span>
+		<span class="n">String</span><span class="o">[]</span> <span class="n">kinds</span> <span class="o">=</span> <span class="o">{</span><span class="s">"344"</span><span class="o">,</span> <span class="s">"345"</span><span class="o">,</span> <span class="s">"350"</span><span class="o">};</span> <span class="c1">//상품 종류 번호</span>
+		<span class="n">newGoods</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+		<span class="n">newGoods</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"ea[]"</span><span class="o">,</span> <span class="n">ea</span><span class="o">);</span>
+		<span class="n">newGoods</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"GOODS_KIND_NUMBER[]"</span><span class="o">,</span><span class="n">kinds</span> <span class="o">);</span>
+		<span class="n">newGoods</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"GOODS_NUMBER"</span><span class="o">,</span> <span class="n">goodsNum</span><span class="o">);</span>
+		<span class="n">newGoods</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"cartSession"</span><span class="o">,</span> <span class="n">BeforeCart</span><span class="o">);</span> <span class="c1">//makeCart() 실행 전 이전 장바구니 저장</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Test</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMakeCartInventory</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+			<span class="n">CartServiceImpl</span> <span class="n">cartService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CartServiceImpl</span><span class="o">();</span>
+			<span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">AfterMakeCart</span> <span class="o">=</span> <span class="n">cartService</span><span class="o">.</span><span class="na">makeCart</span><span class="o">(</span><span class="n">newGoods</span><span class="o">);</span><span class="c1">//추가 상품으로 장바구니 생성</span>
+			
+			<span class="c1">//makeCart() 실행 후 실제로 리턴한 장바구니와 미리 세팅한 상품 추가 후 장바구니(expectedCart 객체)의 값이 동일한지 확인</span>
+			<span class="n">assertTrue</span><span class="o">(</span><span class="n">expectedCart</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">values</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">AfterMakeCart</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">values</span><span class="o">().</span><span class="na">toString</span><span class="o">()));</span>
+			<span class="n">assertTrue</span><span class="o">(</span><span class="n">expectedCart</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="na">values</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">AfterMakeCart</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="na">values</span><span class="o">().</span><span class="na">toString</span><span class="o">()));</span>
+			<span class="n">assertTrue</span><span class="o">(</span><span class="n">expectedCart</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="na">values</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">AfterMakeCart</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="na">values</span><span class="o">().</span><span class="na">toString</span><span class="o">()));</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<h2 id="프로젝트를-aws-ec2-인스턴스에-수동-배포">프로젝트를 aws ec2 인스턴스에 수동 배포</h2>
+
+<p>로컬 환경에서 실행하던 프로젝트를 AWS 인스턴스에 실제로 배포하면서 클라우드 서비스 리눅스를 접하고 CLI 환경에서 명령어 사용에 익숙해질 수 있었습니다.</p>
+
+<p><br /></p>
+
+<p><strong>진행 과정 요약</strong></p>
+
+<ol>
+  <li>
+    <p>aws 에서 EC2 인스턴스 생성(Ubuntu 16.04.5)</p>
+  </li>
+  <li>
+    <p>EC2 인스턴스 보안그룹 설정에서 port 오픈</p>
+  </li>
+  <li>
+    <p>윈도우 환경에서 Putty로 SSH접속</p>
+  </li>
+  <li>
+    <p>터미널에서 우분투 업데이트 후 톰캣 서버 설치 및 설정</p>
+  </li>
+  <li>
+    <p>이클립스(IDE)에서 maven으로 war 파일 생성</p>
+  </li>
+  <li>
+    <p>FileZilla를 이용해서 톰캣 서버 경로에 war 파일 업로드</p>
+  </li>
+  <li>
+    <p>톰캣이 지정 경로에 있는 프로젝트를 자동으로 배포</p>
+  </li>
+</ol>
+
+<p><br /><br /></p>
+
+<h2 id="docker-jenkins-자동-빌드-및-배포환경-구성">docker jenkins 자동 빌드 및 배포환경 구성</h2>
+
+<p>수동 배포는 프로젝트에 변동사항이 생길 때마다 과정을 반복해야 하는 단점이 있었습니다. 그래서 jenkins와 docker를 사용해서 한 개의 EC2 인스턴스에서 자동 빌드 및 배포되는 환경을 구성하게 되었습니다. 진행 과정을 개인 블로그에 정리하면서 진행했습니다.</p>
+
+<p><a href="https://midas123.tistory.com/232">Docker에 톰캣 설치 및 설정</a></p>
+
+<p><a href="https://midas123.tistory.com/228">Docker 가상환경에서 jenkins/tomcat으로 자동 배포 구성</a></p>
+
+<p><br /></p>
+
+<p><strong>진행 과정 요약</strong></p>
+
+<ol>
+  <li>
+    <p>윈도우 환경에서 Putty로 EC2 인스턴스(Ubuntu 16.04.5)에 SSH 접속</p>
+  </li>
+  <li>
+    <p>터미널에서 Docker 설치</p>
+  </li>
+  <li>
+    <p>Docker에서 jenkins, tomcat 이미지를 pull하고 각각 컨테이너로 실행(외부 port 설정)</p>
+  </li>
+  <li>
+    <p>윈도우 웹 브라우저에서 jenkins 관리자 페이지 접속 후 자동 빌드 및 배포 설정</p>
+  </li>
+  <li>
+    <p>github에서 Webhooks으로 프로젝트에 commit 이벤트 발생시 jenkins로 요청이 전달되도록 설정</p>
+  </li>
+</ol>
+
+<p><br /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/aws" class="page__taxonomy-item" rel="tag">aws</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/docker" class="page__taxonomy-item" rel="tag">docker</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/jenkins" class="page__taxonomy-item" rel="tag">jenkins</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/junit" class="page__taxonomy-item" rel="tag">junit</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/maven" class="page__taxonomy-item" rel="tag">maven</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2019-02-07T00:00:00+00:00">February 07, 2019</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2019/01/26/ModuHome.html" class="pagination--pager" title="ModuHome
+">이전</a>
+    
+    
+      <a href="/2019/02/22/equality.html" class="pagination--pager" title="비교 연산자와 equals() 그리고 hashcode()
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <section id="disqus_thread">
+    <script>
+    
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ykblog-2.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow" style="padding-top: 10px;">
+   <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2019 yk-dev-blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+
+
+
+
+
+
+
+
+  </body>
+</html>

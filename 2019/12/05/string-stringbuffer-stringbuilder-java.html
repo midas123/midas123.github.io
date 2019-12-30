@@ -1,0 +1,570 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>자바 문자열- String, StringBuilder, StringBuffer - yk-dev-blog</title>
+<meta name="description" content="String 문자열을 다루는 알고리즘을 공부하다가 문자열을 변경하기 위해서 Stringbuilder를 사용하는 예제 코드를 보았습니다. String 문자열의 수정이 잦을 경우에 성능 이슈 때문에 Stringbuilder와 StringBuffer 같은 가변(mutable)를 사용해야 한다는 점을 알고 있었지만 자세한 특징과 차이점을 알고자 정리하게 되었습니다.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="yk-dev-blog">
+<meta property="og:title" content="자바 문자열- String, StringBuilder, StringBuffer">
+<meta property="og:url" content="https://midas123.github.io/2019/12/05/string-stringbuffer-stringbuilder-java.html">
+
+
+  <meta property="og:description" content="String 문자열을 다루는 알고리즘을 공부하다가 문자열을 변경하기 위해서 Stringbuilder를 사용하는 예제 코드를 보았습니다. String 문자열의 수정이 잦을 경우에 성능 이슈 때문에 Stringbuilder와 StringBuffer 같은 가변(mutable)를 사용해야 한다는 점을 알고 있었지만 자세한 특징과 차이점을 알고자 정리하게 되었습니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-12-05T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://midas123.github.io/2019/12/05/string-stringbuffer-stringbuilder-java.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="yk-dev-blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+
+
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">맨 위로</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTop").style.display = "block";
+    } else {
+      document.getElementById("scrollToTop").style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138663237-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138663237-1');
+</script>
+
+<!-- flex slider -->
+<link rel="stylesheet" href="/assets/slider/flexslider.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.6.2.js"integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="crossorigin="anonymous"></script>
+<script src="/assets/slider/jquery.flexslider.js"></script>
+<script src="/assets/slider/jquery.flexslider-min.js"></script>
+
+<style>
+@font-face {
+ font-family: 'flexslider-icon';
+ src: url(/assets/slider/fonts/flexslider-icon.eot);
+ src: url(/assets/slider/fonts/flexslider-icon.woff) format('woff'),
+      url(/assets/slider/fonts/flexslider-icon.ttf) format('truetype');
+}
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "fade",
+      directionNav: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      touch: true
+    });
+  });
+</script>
+
+<!-- flex slider end -->
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!-- end custom head snippets -->
+
+  </head>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">yk-dev-blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+  
+  <div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="http://midas123.tistory.com/" rel="nofollow noopener noreferrer"><i class="fab fa-blogger" aria-hidden="true"></i> Tistory Blog</a></li>
+          
+        
+          
+            <li><a href="https://github.com/midas123" rel="nofollow noopener noreferrer"><i class="fab fa-git-square" aria-hidden="true"></i> Github</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">MENU</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/year-archive/" class="">최근 포스트</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/#all-tags" class="">모든 태그</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  
+</div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="자바 문자열- String, StringBuilder, StringBuffer">
+    <meta itemprop="description" content="String 문자열을 다루는 알고리즘을 공부하다가 문자열을 변경하기 위해서 Stringbuilder를 사용하는 예제 코드를 보았습니다. String 문자열의 수정이 잦을 경우에 성능 이슈 때문에 Stringbuilder와 StringBuffer 같은 가변(mutable)를 사용해야 한다는 점을 알고 있었지만 자세한 특징과 차이점을 알고자 정리하게 되었습니다.">
+    <meta itemprop="datePublished" content="December 05, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">자바 문자열- String, StringBuilder, StringBuffer
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#string">String</a></li>
+  <li><a href="#stingbuffer--stringbuilder">StingBuffer , Stringbuilder</a></li>
+  <li><a href="#string-비교하기">String 비교하기</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>String 문자열을 다루는 알고리즘을 공부하다가 문자열을 변경하기 위해서 Stringbuilder를 사용하는 예제 코드를 보았습니다. String 문자열의 수정이 잦을 경우에 성능 이슈 때문에 Stringbuilder와 StringBuffer 같은 가변(mutable)를 사용해야 한다는 점을 알고 있었지만 자세한 특징과 차이점을 알고자 정리하게 되었습니다.</p>
+
+<h1 id="string">String</h1>
+
+<p>자바의 String은 한번 만들어진 후 변경될 수 없는 불변(immutable)클래스 입니다. 메모리 사용량을 최적화하기 위해서 인터닝(interning)을 사용하기 때문입니다.  만약 + 연산자로 String 리터럴을 연산하거나 String 클래스에 substring(), replace() 등의 메서드를 이용해서 문자열을 조작하면 기존 문자열 자체가 수정되지 않고 heap 메모리에 새로운 객체가 생성됩니다.</p>
+
+<p>인터닝이란, 각 <strong>String 리터럴</strong>에 대한 단 하나의 사본을  String Pool에 저장하고 참조해서 사용하는 것 입니다. 새로운 String 리터럴을 생성하면 JVM은 먼저 Pool에서 동등한 값이 있는지 확인합니다. 만약 동일한 값을 찾을 경우 추가적인 메모리 할당 없이 그 값의 메모리 주소를 참조합니다.</p>
+
+<p><strong>new</strong> 연산자를 사용해서 만든 <strong>String 객체</strong>는 모두 새로운 객체이므로 heap 메모리에 저장됩니다. 필요할 경우 String 객체를 intern() 메서드를 사용해서 수동으로 인터닝 할 수 있습니다.</p>
+
+<p>java7 이전에는 String Pool은 고정된 사이즈 였고 OutOfMemory 에러가 발생 가능성이 많았지만, java7 부터는  String Pool이 heap 메모리 영역에 위치하므로 가비지 컬렉터에 관리를 받으므로 에러 가능성이 감소했습니다.</p>
+
+<p><br /><br /></p>
+
+<h1 id="stingbuffer--stringbuilder">StingBuffer , Stringbuilder</h1>
+
+<p>String 연산은 무거운 작업이기 때문에 java는 가변 클래스인 StringBuffer와 StringBuilder를 제공합니다. 이 2개의 클래스는 문자열을 서로 연결하거나 자르는 등, 문자열 연산에 사용합니다.</p>
+
+<p>둘이 제공하는 기능은 동일하지만 차이점이 있는데 StringBuffer는 스레드 세이프이지만 비교적 성능이 떨어지고 StringBuilder는 동기화를 보장하지 않지만 성능이 더 좋다는 점입니다.</p>
+
+<p><br /><br /></p>
+
+<h1 id="string-비교하기">String 비교하기</h1>
+
+<p>2개의 String 문자열을 비교할때는 equals() 메서드를 사용해서 비교해야 합니다. “==” 비교 연산자는 레퍼런스를 비교하기 때문입니다.(같은 객체를 참조하고 있는지)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"abc"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="s">"abc"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">str3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">"abc"</span><span class="o">);</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span> <span class="o">==</span> <span class="n">str2</span><span class="o">);</span> <span class="c1">//true</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span> <span class="o">==</span> <span class="n">str3</span><span class="o">);</span> <span class="c1">//false</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">equals</span><span class="o">.</span><span class="na">str3</span><span class="o">);</span> <span class="c1">//true</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>String 객체와 리터럴을 비교할때에는 아래처럼 equals() 메서드에 인자로 String 객체를 전달해야 NullPointException을 피할 수 있습니다. equals() 메서드 내부적으로 객체가 null 값을 가지고 있는지 확인하기 때문입니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="c1">//good</span>
+<span class="k">if</span><span class="o">(</span><span class="s">"abc"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">str</span><span class="o">)){</span>
+	<span class="c1">//코드</span>
+<span class="o">}</span>
+
+<span class="c1">//bad, NullPointException 가능성</span>
+<span class="k">if</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"abc"</span><span class="o">)){</span>
+    <span class="c1">//코드</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><strong>출처</strong></p>
+
+<ul>
+  <li>https://www.baeldung.com/java-string-pool</li>
+  <li>https://www.slipp.net/questions/271</li>
+  <li>https://minwan1.github.io/2018/06/11/2018-06-11-String-StringBuffer-StringBuilder/</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/java" class="page__taxonomy-item" rel="tag">java</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/string" class="page__taxonomy-item" rel="tag">string</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/stringbuffer" class="page__taxonomy-item" rel="tag">stringbuffer</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/stringbuilder" class="page__taxonomy-item" rel="tag">stringbuilder</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2019-12-05T00:00:00+00:00">December 05, 2019</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2019/08/17/react-redux-api-methods.html" class="pagination--pager" title="Redux - 주요 API 함수
+">이전</a>
+    
+    
+      <a href="/2019/12/13/java-null.html" class="pagination--pager" title="자바에서 null이란?
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <section id="disqus_thread">
+    <script>
+    
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ykblog-2.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow" style="padding-top: 10px;">
+   <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2019 yk-dev-blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+
+
+
+
+
+
+
+
+  </body>
+</html>

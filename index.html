@@ -1,0 +1,977 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>yk-dev-blog</title>
+<meta name="description" content="Welcome to my dev-blog. I blog what I learned about and this blog is made of web-programming stuff.">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="yk-dev-blog">
+<meta property="og:title" content="yk-dev-blog">
+<meta property="og:url" content="https://midas123.github.io/">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="https://midas123.github.io/">
+
+
+
+  <link rel="next" href="https://midas123.github.io/page2/">
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="yk-dev-blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+
+
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">맨 위로</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTop").style.display = "block";
+    } else {
+      document.getElementById("scrollToTop").style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138663237-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138663237-1');
+</script>
+
+<!-- flex slider -->
+<link rel="stylesheet" href="/assets/slider/flexslider.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.6.2.js"integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="crossorigin="anonymous"></script>
+<script src="/assets/slider/jquery.flexslider.js"></script>
+<script src="/assets/slider/jquery.flexslider-min.js"></script>
+
+<style>
+@font-face {
+ font-family: 'flexslider-icon';
+ src: url(/assets/slider/fonts/flexslider-icon.eot);
+ src: url(/assets/slider/fonts/flexslider-icon.woff) format('woff'),
+      url(/assets/slider/fonts/flexslider-icon.ttf) format('truetype');
+}
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "fade",
+      directionNav: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      touch: true
+    });
+  });
+</script>
+
+<!-- flex slider end -->
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!-- end custom head snippets -->
+
+  </head>
+  <body class="layout--splash">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">yk-dev-blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+<div id="main" role="main">
+  <article class="splash" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <section class="page__content" itemprop="text">
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Home</title>
+<style>
+.button_detail{
+  font-size: 14px;
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 4px 12px;
+  text-align: center;
+  text-decoration: none !important;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+a.button_detail:hover{
+    color: white !important;
+    background-color:#262626;
+}
+</style>
+
+</head>
+<body>
+    <div class="index_main">
+    <div class="portfolio-summary">
+        <div class="port-container">
+            <!-- <div class="port-introduction">
+                <h1 style="font-size:45px;">PORTFOLIO</h1>
+                <p>yk의 개발 블로그에 오신 것을 환영합니다.<br>
+                    그 동안 진행해온 프로젝트를 포트폴리오로 정리했습니다.</p>
+                    <p>
+                        <b>'팀 프로젝트'</b>와 <b>'개인 프로젝트'</b>로 구분되어 있으며<br>
+                        <a class="button_detail">상세보기</a>를 클릭하시면 프로젝트 세부내용이 있는 페이지로 이동합니다.
+                    </p>
+                    <br>
+                    <br>
+                    <h1>프로젝트</h1>
+                    <hr>
+            </div> -->
+            <!-- <div class="blog-introduction">
+                    <p>yk의 블로그에 오신 것을 환영합니다.<p>
+            </div>    -->
+
+            <div class="flexslider">
+                <ul class="slides">
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              <li>
+                    <a class="project_link" href="/2019/06/02/web-scraper.html">
+                    <div class="project-box">
+                    
+                
+                    <div class="project_kind">
+                        개인 프로젝트
+                    </div>
+                
+      
+              <div class="project-contents">    
+                    <div class="project_title">
+                      Web-Scraper
+                    </div>
+                    <div class="project_skill">
+                        
+                            <div class="skill_tag">springboot</div>       
+                        
+                            <div class="skill_tag">jpa</div>       
+                        
+                            <div class="skill_tag">hibernate</div>       
+                        
+                            <div class="skill_tag">gradle</div>       
+                        
+                            <div class="skill_tag">maria-db</div>       
+                        
+                            <div class="skill_tag">jsoup</div>       
+                        
+                    </div> 
+                    <div class="project_excerpt">
+                        웹 페이지에서 게시글 제목과 url을 parsing하고 토큰화하여 DB에 저장하고 사용자가 그 내역을 키워드로 검색할 수 있도록 구현했습니다. 이 어플리케이...
+                    </div>
+                    <!-- <div class="project_btn"><a class="button_detail" href="/2019/06/02/web-scraper.html" style="color:black;">Read Me</a></div> -->
+                </div>
+              </div>
+            </a>
+              </li>
+              
+              
+              
+              <li>
+                    <a class="project_link" href="/2019/05/15/ajax-file-upload.html">
+                    <div class="project-box">
+                    
+                
+                    <div class="project_kind">
+                        개인 프로젝트
+                    </div>
+                
+      
+              <div class="project-contents">    
+                    <div class="project_title">
+                      ajax로 파일 업로드하기
+                    </div>
+                    <div class="project_skill">
+                        
+                            <div class="skill_tag">springboot</div>       
+                        
+                            <div class="skill_tag">jpa</div>       
+                        
+                            <div class="skill_tag">hibernate</div>       
+                        
+                            <div class="skill_tag">ajax</div>       
+                        
+                            <div class="skill_tag">maven</div>       
+                        
+                    </div> 
+                    <div class="project_excerpt">
+                        기존 프로젝트에서 회원가입 시 이미지 파일을 업로드 할 수 있도록 수정하였습니다. 파일 정보를 저장하는 엔티티를 추가하고 파일 이름을 변경하여 경로에 저장하...
+                    </div>
+                    <!-- <div class="project_btn"><a class="button_detail" href="/2019/05/15/ajax-file-upload.html" style="color:black;">Read Me</a></div> -->
+                </div>
+              </div>
+            </a>
+              </li>
+              
+              
+              
+              <li>
+                    <a class="project_link" href="/2019/05/10/RESTful-webservice.html">
+                    <div class="project-box">
+                    
+                
+                    <div class="project_kind">
+                        개인 프로젝트
+                    </div>
+                
+      
+              <div class="project-contents">    
+                    <div class="project_title">
+                      스프링부트 RESTful 웹 서비스
+                    </div>
+                    <div class="project_skill">
+                        
+                            <div class="skill_tag">rest-api</div>       
+                        
+                            <div class="skill_tag">springboot</div>       
+                        
+                            <div class="skill_tag">maven</div>       
+                        
+                    </div> 
+                    <div class="project_excerpt">
+                        앞서 스프링부트 + 스프링시큐리티를 사용해서 회원가입/로그인을 구현하였고 이어서 REST api 구조의 기본적인 게시판을 구현했습니다. 이번 프로젝트의 주제...
+                    </div>
+                    <!-- <div class="project_btn"><a class="button_detail" href="/2019/05/10/RESTful-webservice.html" style="color:black;">Read Me</a></div> -->
+                </div>
+              </div>
+            </a>
+              </li>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              <li>
+                    <a class="project_link" href="/2019/04/08/Springboot-Hibernate-project.html">
+                    <div class="project-box">
+                    
+                
+                    <div class="project_kind">
+                        개인 프로젝트
+                    </div>
+                
+      
+              <div class="project-contents">    
+                    <div class="project_title">
+                      Springboot-SpringSecurity-JPA
+                    </div>
+                    <div class="project_skill">
+                        
+                            <div class="skill_tag">springboot</div>       
+                        
+                            <div class="skill_tag">jpa</div>       
+                        
+                            <div class="skill_tag">hibernate</div>       
+                        
+                            <div class="skill_tag">spring-security</div>       
+                        
+                            <div class="skill_tag">maven</div>       
+                        
+                    </div> 
+                    <div class="project_excerpt">
+                        이전에 진행한 팀 프로젝트에서는 spring과 mybatis를 다루었습니다. 그리고 mybatis에 대해 공부하면서 ORM과 hibernate에 대해서 알게...
+                    </div>
+                    <!-- <div class="project_btn"><a class="button_detail" href="/2019/04/08/Springboot-Hibernate-project.html" style="color:black;">Read Me</a></div> -->
+                </div>
+              </div>
+            </a>
+              </li>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              <li>
+                    <a class="project_link" href="/2019/02/07/ModuHome2.html">
+                    <div class="project-box">
+                    
+                
+                    <div class="project_kind">
+                        개인 프로젝트
+                    </div>
+                
+      
+              <div class="project-contents">    
+                    <div class="project_title">
+                      ModuHome2
+                    </div>
+                    <div class="project_skill">
+                        
+                            <div class="skill_tag">junit</div>       
+                        
+                            <div class="skill_tag">aws</div>       
+                        
+                            <div class="skill_tag">docker</div>       
+                        
+                            <div class="skill_tag">jenkins</div>       
+                        
+                            <div class="skill_tag">maven</div>       
+                        
+                    </div> 
+                    <div class="project_excerpt">
+                        MODUHOME 프로젝트를 업그레이드 하였습니다. 그래서 ‘ModuHome2’라고 네이밍하였고 프로젝트의 부족한 부분을 보완하고 사이트를 실제로 배포하는 과...
+                    </div>
+                    <!-- <div class="project_btn"><a class="button_detail" href="/2019/02/07/ModuHome2.html" style="color:black;">Read Me</a></div> -->
+                </div>
+              </div>
+            </a>
+              </li>
+              
+              
+              
+              <li>
+                    <a class="project_link" href="/2019/01/26/ModuHome.html">
+                    <div class="project-box">
+                    
+                    <div class="project_kind" style="background-color: #c94c4c;">
+                            팀 프로젝트
+                    </div>
+                
+                
+      
+              <div class="project-contents">    
+                    <div class="project_title">
+                      ModuHome
+                    </div>
+                    <div class="project_skill">
+                        
+                            <div class="skill_tag">spring-mvc</div>       
+                        
+                            <div class="skill_tag">mybatis</div>       
+                        
+                            <div class="skill_tag">ajax</div>       
+                        
+                            <div class="skill_tag">jquery</div>       
+                        
+                            <div class="skill_tag">oracle</div>       
+                        
+                            <div class="skill_tag">maven</div>       
+                        
+                    </div> 
+                    <div class="project_excerpt">
+                        두 번째 팀 프로젝트의 주제는 셀프 인테리어 쇼핑몰이면서 정보를 공유하는 커뮤니티 입니다.
+제가 구현한 기능은 상품 게시판과 상품 상세페이지, 장바구니, 주...
+                    </div>
+                    <!-- <div class="project_btn"><a class="button_detail" href="/2019/01/26/ModuHome.html" style="color:black;">Read Me</a></div> -->
+                </div>
+              </div>
+            </a>
+              </li>
+              
+              
+              
+              <li>
+                    <a class="project_link" href="/2019/01/22/off-the-ball.html">
+                    <div class="project-box">
+                    
+                    <div class="project_kind" style="background-color: #c94c4c;">
+                            팀 프로젝트
+                    </div>
+                
+                
+      
+              <div class="project-contents">    
+                    <div class="project_title">
+                      OFF-THE-BALL
+                    </div>
+                    <div class="project_skill">
+                        
+                            <div class="skill_tag">struts</div>       
+                        
+                            <div class="skill_tag">javascript</div>       
+                        
+                            <div class="skill_tag">oracle</div>       
+                        
+                            <div class="skill_tag">maven</div>       
+                        
+                    </div> 
+                    <div class="project_excerpt">
+                        프로젝트의 주제는 팀/개인 단위로 참여 가능한 축구경기 스케줄링 및 커뮤니티 사이트 입니다. 
+회원 관리와 로그인 기능을 구현하였고 javascript로 유...
+                    </div>
+                    <!-- <div class="project_btn"><a class="button_detail" href="/2019/01/22/off-the-ball.html" style="color:black;">Read Me</a></div> -->
+                </div>
+              </div>
+            </a>
+              </li>
+              
+              
+              
+              
+                </ul>
+            </div>
+       
+            </div>
+            <div class="post-container">
+                <div>
+                    <h1>최근 포스트</h1>    
+                    <hr>
+                </div>
+                <div class="post-list">
+                        
+                            
+                        <div class="post-box">
+                                <!-- <div class="project_kind" style="background-color: #4040a1;">
+                                       
+                                </div> -->
+                            <div class="post-contents">    
+                                <div class="post_title">
+                                  자바에서 null이란?
+                                </div>
+                                <div class="post_excerpt">
+                                    NullPointException은 프로그래밍을 하면서 자주 접하는 익셉션 중 하나이다. 레퍼런스 타입의 변수가 선언만 되고 초기화가 안된 상태에서 호출되면...
+                                </div>
+                                <div class="post_skill">
+                                    
+                                    <div class="skill_tag">java</div>       
+                                    
+                                </div> 
+                            </div>
+                          
+
+                                <div class="post_detail_btn"><a href="/2019/12/13/java-null.html">Read me..</a></div>
+                            
+                        </div>
+                        <div class="post_gap"></div>
+                        
+                        
+                            
+                        <div class="post-box">
+                                <!-- <div class="project_kind" style="background-color: #4040a1;">
+                                       
+                                </div> -->
+                            <div class="post-contents">    
+                                <div class="post_title">
+                                  자바 문자열- String, StringBuilder, StringBuffer
+                                </div>
+                                <div class="post_excerpt">
+                                    String 문자열을 다루는 알고리즘을 공부하다가 문자열을 변경하기 위해서 Stringbuilder를 사용하는 예제 코드를 보았습니다. String 문자열의...
+                                </div>
+                                <div class="post_skill">
+                                    
+                                    <div class="skill_tag">java</div>       
+                                    
+                                    <div class="skill_tag">string</div>       
+                                    
+                                    <div class="skill_tag">stringbuilder</div>       
+                                    
+                                    <div class="skill_tag">stringbuffer</div>       
+                                    
+                                </div> 
+                            </div>
+                          
+
+                                <div class="post_detail_btn"><a href="/2019/12/05/string-stringbuffer-stringbuilder-java.html">Read me..</a></div>
+                            
+                        </div>
+                        <div class="post_gap"></div>
+                        
+                        
+                            
+                        <div class="post-box">
+                                <!-- <div class="project_kind" style="background-color: #4040a1;">
+                                       
+                                </div> -->
+                            <div class="post-contents">    
+                                <div class="post_title">
+                                  Redux - 주요 API 함수
+                                </div>
+                                <div class="post_excerpt">
+                                    redux를 사용하면 react 앱에서 사용되는 모든 로컬 state를 한 곳에 저장하고 관리할 수 있다. 리액트 컴포넌트의 로컬 state를 저장하는 곳을...
+                                </div>
+                                <div class="post_skill">
+                                    
+                                    <div class="skill_tag">redux</div>       
+                                    
+                                    <div class="skill_tag">react</div>       
+                                    
+                                </div> 
+                            </div>
+                          
+
+                                <div class="post_detail_btn"><a href="/2019/08/17/react-redux-api-methods.html">Read me..</a></div>
+                            
+                        </div>
+                        <div class="post_gap"></div>
+                        
+                        
+                            
+                        <div class="post-box">
+                                <!-- <div class="project_kind" style="background-color: #4040a1;">
+                                       
+                                </div> -->
+                            <div class="post-contents">    
+                                <div class="post_title">
+                                  Redux 기본 개념 정리
+                                </div>
+                                <div class="post_excerpt">
+                                    Redux는 자바스크립트 어플리케이션을 위한 state 관리 도구 입니다. 그리고 리액트와 사용하는 경우가 많습니다. 리액트는 기본적으로 컴포넌트에서 로컬 ...
+                                </div>
+                                <div class="post_skill">
+                                    
+                                    <div class="skill_tag">redux</div>       
+                                    
+                                    <div class="skill_tag">react</div>       
+                                    
+                                </div> 
+                            </div>
+                          
+
+                                <div class="post_detail_btn"><a href="/2019/08/12/react-redux.html">Read me..</a></div>
+                            
+                        </div>
+                        <div class="post_gap"></div>
+                        
+                        
+                            
+                        <div class="post-box">
+                                <!-- <div class="project_kind" style="background-color: #4040a1;">
+                                       
+                                </div> -->
+                            <div class="post-contents">    
+                                <div class="post_title">
+                                  React 기본 개념 정리2
+                                </div>
+                                <div class="post_excerpt">
+                                    리액트 기본 개념 정리 첫 번째에 이어서 두 번째에서는 UI화면의 기능을 구현하는데 쓰이는 기본적인 리액트 기술에 대해서 정리했습니다.
+
+
+                                </div>
+                                <div class="post_skill">
+                                    
+                                    <div class="skill_tag">javascript</div>       
+                                    
+                                    <div class="skill_tag">react</div>       
+                                    
+                                </div> 
+                            </div>
+                          
+
+                                <div class="post_detail_btn"><a href="/2019/08/01/rest-basic2.html">Read me..</a></div>
+                            
+                        </div>
+                        <div class="post_gap"></div>
+                        
+                        
+                            
+                        <div class="post-box">
+                                <!-- <div class="project_kind" style="background-color: #4040a1;">
+                                       
+                                </div> -->
+                            <div class="post-contents">    
+                                <div class="post_title">
+                                  스프링시큐리티 - authentication
+                                </div>
+                                <div class="post_excerpt">
+                                    프로젝트에서 간단하게 스프링-시큐리티를 적용해본 경험이 있습니다. 별도의 서비스 클래스를 만들고 UserDetailsService 인터페이스를 구현하여 lo...
+                                </div>
+                                <div class="post_skill">
+                                    
+                                    <div class="skill_tag">spring</div>       
+                                    
+                                    <div class="skill_tag">spring-security</div>       
+                                    
+                                    <div class="skill_tag">authentication</div>       
+                                    
+                                </div> 
+                            </div>
+                          
+
+                                <div class="post_detail_btn"><a href="/2019/07/29/springsecurity.html">Read me..</a></div>
+                            
+                        </div>
+                        <div class="post_gap"></div>
+                        
+                        
+                    </div>
+                    <div class="to_archive">
+                        <a href="/year-archive/" class="">포스트 더 보기..</a>        
+                    </div>            
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
+
+
+    </section>
+  </article>
+  <div class="sidebar-tags" id="all-tags">
+      <h1>Tags</h1>
+      <hr>
+      <ul class="tags">
+        
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/ajax" class="tag">ajax(2)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/algorithm" class="tag">algorithm(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/authentication" class="tag">authentication(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/aws" class="tag">aws(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/call stack" class="tag">call-stack(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/comparable" class="tag">comparable(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/comparator" class="tag">comparator(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/docker" class="tag">docker(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/equals" class="tag">equals(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/fetch" class="tag">fetch(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/gradle" class="tag">gradle(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/hashcode" class="tag">hashcode(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/hibernate" class="tag">hibernate(4)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/java" class="tag">java(5)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/javascript" class="tag">javascript(4)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/jekyll" class="tag">jekyll(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/jenkins" class="tag">jenkins(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/join" class="tag">join(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/jpa" class="tag">jpa(4)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/jquery" class="tag">jquery(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/jsoup" class="tag">jsoup(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/junit" class="tag">junit(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/linux" class="tag">linux(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/maria-db" class="tag">maria-db(2)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/maven" class="tag">maven(6)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/mybatis" class="tag">mybatis(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/oracle" class="tag">oracle(3)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/react" class="tag">react(6)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/recursion" class="tag">recursion(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/redux" class="tag">redux(2)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/rest-api" class="tag">rest-api(2)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/security-filter" class="tag">security-filter(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/spring" class="tag">spring(2)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/spring-mvc" class="tag">spring-mvc(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/spring-security" class="tag">spring-security(3)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/springboot" class="tag">springboot(7)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/string" class="tag">string(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/stringbuffer" class="tag">stringbuffer(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/stringbuilder" class="tag">stringbuilder(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/struts" class="tag">struts(1)</a></li>
+        
+        
+        
+        <li><a href="https://midas123.github.io/tags/timer" class="tag">timer(1)</a></li>
+        
+      </ul>
+    </div> 
+
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow" style="padding-top: 10px;">
+   <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2019 yk-dev-blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,721 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>React 프로젝트 세팅 방법 - yk-dev-blog</title>
+<meta name="description" content="react 프로젝트 개발 환경 세팅을 정리했다. react는 유저 인터페이스를 만드는 라이브러리이므로프론트 엔드만을 담당하기 때문에 백엔드에서 사용자 요청을 처리하기 위한 웹 서버가 추가로 필요하다.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="yk-dev-blog">
+<meta property="og:title" content="React 프로젝트 세팅 방법">
+<meta property="og:url" content="https://midas123.github.io/2019/04/21/Reactjs-project.html">
+
+
+  <meta property="og:description" content="react 프로젝트 개발 환경 세팅을 정리했다. react는 유저 인터페이스를 만드는 라이브러리이므로프론트 엔드만을 담당하기 때문에 백엔드에서 사용자 요청을 처리하기 위한 웹 서버가 추가로 필요하다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-04-21T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://midas123.github.io/2019/04/21/Reactjs-project.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="yk-dev-blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+
+
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">맨 위로</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTop").style.display = "block";
+    } else {
+      document.getElementById("scrollToTop").style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138663237-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138663237-1');
+</script>
+
+<!-- flex slider -->
+<link rel="stylesheet" href="/assets/slider/flexslider.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.6.2.js"integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="crossorigin="anonymous"></script>
+<script src="/assets/slider/jquery.flexslider.js"></script>
+<script src="/assets/slider/jquery.flexslider-min.js"></script>
+
+<style>
+@font-face {
+ font-family: 'flexslider-icon';
+ src: url(/assets/slider/fonts/flexslider-icon.eot);
+ src: url(/assets/slider/fonts/flexslider-icon.woff) format('woff'),
+      url(/assets/slider/fonts/flexslider-icon.ttf) format('truetype');
+}
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "fade",
+      directionNav: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      touch: true
+    });
+  });
+</script>
+
+<!-- flex slider end -->
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!-- end custom head snippets -->
+
+  </head>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">yk-dev-blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+  
+  <div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="http://midas123.tistory.com/" rel="nofollow noopener noreferrer"><i class="fab fa-blogger" aria-hidden="true"></i> Tistory Blog</a></li>
+          
+        
+          
+            <li><a href="https://github.com/midas123" rel="nofollow noopener noreferrer"><i class="fab fa-git-square" aria-hidden="true"></i> Github</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">MENU</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/year-archive/" class="">최근 포스트</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/#all-tags" class="">모든 태그</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  
+</div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="React 프로젝트 세팅 방법">
+    <meta itemprop="description" content="react 프로젝트 개발 환경 세팅을 정리했다. react는 유저 인터페이스를 만드는 라이브러리이므로프론트 엔드만을 담당하기 때문에 백엔드에서 사용자 요청을 처리하기 위한 웹 서버가 추가로 필요하다.">
+    <meta itemprop="datePublished" content="April 21, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">React 프로젝트 세팅 방법
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#nodejs--npm-설치">nodejs &amp; npm 설치</a></li>
+  <li><a href="#create-react-app">create-react-app</a></li>
+  <li><a href="#webpack">webpack</a>
+    <ul>
+      <li><a href="#1프로젝트-초기화">1.프로젝트 초기화</a></li>
+      <li><a href="#2webpack-설치">2.webpack 설치</a></li>
+      <li><a href="#3프로젝트-모듈-설치">3.프로젝트 모듈 설치</a></li>
+      <li><a href="#4packagejson-설정">4.package.json 설정</a></li>
+      <li><a href="#5webpackconfigjs">5.webpack.config.js</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>react 프로젝트 개발 환경 세팅을 정리했다. react는 유저 인터페이스를 만드는 라이브러리이므로
+프론트 엔드만을 담당하기 때문에 백엔드에서 사용자 요청을 처리하기 위한 웹 서버가 추가로 필요하다.</p>
+
+<p>그러므로 개발 단계에서 손 쉽게 사용할 수 있는 nodejs를 먼저 설치한다. 그리고 react 프로젝트 설치 하는데 쉽고 빠른 방법(<a href="#create-react-app">create-react-app</a>)과 복잡한 방법(<a href="#webpack">webpack</a> 설치 및 설정)이 있다.방법마다 장단점이 있으므로 상황에 맞는 방법을 선택하여 프로젝트를 설치를 진행하면 된다.</p>
+
+<h1 id="nodejs--npm-설치">nodejs &amp; npm 설치</h1>
+
+<p>윈도우에서 nodejs를 <a href="https://nodejs.org/ko/download/">다운로드</a> 후 설치시 npm도 같이 설치된다. node는 자바스크립트 기반의 오픈 소스 서버이다. 같이 설치되는 <a href="https://docs.npmjs.com/cli/npm">npm</a>은 자바스크립트 패키지 매니져이다. CLI를 지원하므로 윈도우 명령 프롬프트에서 오픈소스 설치 명령어를 입력하면 다운로드 받은 후 설치가 진행된다.</p>
+
+<h1 id="create-react-app">create-react-app</h1>
+
+<p>create-react-app는 별다른 설정 없이 커맨드 한줄로 리액트 앱을 빌드해준다. 단 SPA를 고려해서 만들어졌으므로 다수의 웹페이지를 개발할 경우 적합하지 않다.</p>
+
+<p><strong>설치</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install -g create-react-app
+</code></pre></div></div>
+
+<p><strong>리액트 프로젝트 생성</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>create-react-app helloworld
+</code></pre></div></div>
+
+<p><strong>리액트 프로젝트 실행</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd helloworld
+yarn start
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h1 id="webpack">webpack</h1>
+
+<p><a href="https://webpack.js.org/concepts">webpack</a>은 자바스크립트 앱을 위한 static module bundler이다. 어플리케이션의 모든 <a href="https://webpack.js.org/concepts/modules/">module</a>을 맵핑하는 dependency graph를 만든다. 그리고 이를 하나 이상의 bundle로 묶어준다. bundle은 html, css 등을 포함하는 자바스크립트 파일이다. 웹 서버가 이 파일을 보내고 사용자의 웹브라우저가 출력한다.</p>
+
+<p>또한, 개발 단계에서 live-reloading이 가능한 <a href="https://webpack.js.org/configuration/dev-server">webpack-dev-server</a>를 제공한다. webpack은 4.0버전 이후로 기본적인 설정이 되어있다. 세부적인 설정이 필요할 경우 <strong>webpack.config.js</strong> 파일을 루트 경로에 생성한다. 이 파일에 저장된 설정을 webpack이 자동으로 사용한다.</p>
+
+<h2 id="1프로젝트-초기화">1.프로젝트 초기화</h2>
+
+<p>해당 프로젝트 경로에서 아래 명령어를 입력한다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm init -y
+</code></pre></div></div>
+
+<p>npm init 실행 후 폴더 안에 package.json 파일이 생성된다.</p>
+
+<p><em>-package.json</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "name": "react-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="2webpack-설치">2.webpack 설치</h2>
+
+<p>로컬 영역에 설치(아래 코드)가 권장된다. 만약 글로벌(코드에 -g 추가)로 설치할 경우 webpack 버전이 다른 프로젝트 간에 충돌이 일어날 수 있다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install --save webpack
+
+//버전 입력시
+npm install --save-dev webpack@&lt;version&gt;
+</code></pre></div></div>
+
+<p>※webpack 4.0 이상을 사용할 경우 <a href="https://webpack.js.org/api/cli/">CLI</a>를 추가로 설치해야 한다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install --save-dev webpack-cli
+</code></pre></div></div>
+
+<p> ※ –save-dev는 -D와 같다.</p>
+
+<p><br /></p>
+
+<h2 id="3프로젝트-모듈-설치">3.프로젝트 모듈 설치</h2>
+
+<p><strong>react 설치</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install --save react react-dom
+</code></pre></div></div>
+
+<p><strong>개발 모듈 설치</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install --save-dev react-hot-loader webpack webpack-dev-server
+
+//6.x
+npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react
+//7.x이후 최신버전
+npm install --save-dev @babel/core babel-loader @babel/preset-env @babel/preset-react
+
+npm install css-loader style-loader --save-dev
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="4packagejson-설정">4.package.json 설정</h2>
+
+<p>이 파일에서는 주로 프로젝트에서 사용하는 dependency를 정의한다.</p>
+
+<p><strong>scripts</strong>: 로컬 webpack을 CLI에서 쉽게 사용할 수 있도록 <a href="https://docs.npmjs.com/misc/scripts">npm script</a>를 작성한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"react-test2"</span><span class="p">,</span>
+  <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"1.0.0"</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="s2">"main"</span><span class="p">:</span> <span class="s2">"index.js"</span><span class="p">,</span>
+  <span class="s2">"scripts"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"test"</span><span class="p">:</span> <span class="s2">"echo </span><span class="se">\"</span><span class="s2">Error: no test specified</span><span class="se">\"</span><span class="s2"> &amp;&amp; exit 1"</span><span class="p">,</span>
+    <span class="s2">"start"</span><span class="p">:</span> <span class="s2">"webpack-dev-server --mode development --open --hot"</span><span class="p">,</span>
+    <span class="s2">"build"</span><span class="p">:</span> <span class="s2">"webpack --mode production"</span>
+  <span class="p">},</span>
+  <span class="s2">"author"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="s2">"license"</span><span class="p">:</span> <span class="s2">"ISC"</span><span class="p">,</span>
+  <span class="s2">"dependencies"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"react"</span><span class="p">:</span> <span class="s2">"^16.8.6"</span><span class="p">,</span>
+    <span class="s2">"react-dom"</span><span class="p">:</span> <span class="s2">"^16.8.6"</span>
+  <span class="p">},</span>
+  <span class="s2">"devDependencies"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"@babel/core"</span><span class="p">:</span> <span class="s2">"^7.4.3"</span><span class="p">,</span>
+    <span class="s2">"@babel/preset-env"</span><span class="p">:</span> <span class="s2">"^7.4.3"</span><span class="p">,</span>
+    <span class="s2">"@babel/preset-react"</span><span class="p">:</span> <span class="s2">"^7.0.0"</span><span class="p">,</span>
+    <span class="s2">"babel-loader"</span><span class="p">:</span> <span class="s2">"^8.0.5"</span><span class="p">,</span>
+    <span class="s2">"css-loader"</span><span class="p">:</span> <span class="s2">"^2.1.1"</span><span class="p">,</span>
+    <span class="s2">"html-webpack-plugin"</span><span class="p">:</span> <span class="s2">"^3.2.0"</span><span class="p">,</span>
+    <span class="s2">"react-hot-loader"</span><span class="p">:</span> <span class="s2">"^4.8.4"</span><span class="p">,</span>
+    <span class="s2">"style-loader"</span><span class="p">:</span> <span class="s2">"^0.23.1"</span><span class="p">,</span>
+    <span class="s2">"webpack"</span><span class="p">:</span> <span class="s2">"^4.30.0"</span><span class="p">,</span>
+    <span class="s2">"webpack-cli"</span><span class="p">:</span> <span class="s2">"^3.3.1"</span><span class="p">,</span>
+    <span class="s2">"webpack-dev-server"</span><span class="p">:</span> <span class="s2">"^3.3.1"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위 설정 중 scripts 안에서 “start”에 할당한 명령어를 커맨드 창에서 아래처럼 실행할 수 있다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm start
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="5webpackconfigjs">5.webpack.config.js</h2>
+
+<p>webpack은 entry에 있는 모듈의 의존 관계를 이용해서 번들 작업을 진행한다. webpack.config.js에서는 entry 파일과 output 파일을 정하고 프로젝트의 asset 파일(css, js 등)을 모듈로 등록한다.</p>
+
+<p><strong>entry</strong>: dependency graph의 시작점, webpack은 entry point에서 직/간접적으로 의존하고 있는 모듈 또는 라이브러리를 알아내서 빌드한다.</p>
+
+<p><strong>output</strong>: webpack이 만들어내는 bundle의 저장 위치와 이름을 정한다.</p>
+
+<p><strong><a href="https://webpack.js.org/concepts/loaders/">loaders</a></strong>: webpack이 다른 타입의 파일을 처리하도록 돕는다. (ex. babel-loader, style-loader, css-loader)</p>
+
+<ul>
+  <li>
+    <p>test 프로퍼티는 require() / import statement 안에 있는, 변환되야할 파일을 가리킨다.</p>
+
+    <p>참고:<a href="https://webpack.js.org/guides/asset-management#setup">asset-management</a></p>
+  </li>
+  <li>
+    <p>use 프로퍼티는 사용될 loader를 가리킨다.</p>
+  </li>
+</ul>
+
+<p><em>※loader 사용시 주의사항</em>(출처 <a href="https://webpack.js.org/concepts/#loaders">링크</a>)</p>
+
+<blockquote>
+  <p>It is important to remember that when defining rules in your webpack config, you are defining them under <code class="highlighter-rouge">module.rules</code> and not <code class="highlighter-rouge">rules</code>. For your benefit, webpack will warn you if this is done incorrectly.</p>
+</blockquote>
+
+<blockquote>
+  <p>Keep in mind that when using regex to match files, you may not quote it. i.e <code class="highlighter-rouge">/\.txt$/</code> is not the same as <code class="highlighter-rouge">'/\.txt$/'</code>/ <code class="highlighter-rouge">"/\.txt$/"</code>. The former instructs webpack to match any file that ends with .txt and the latter instructs webpack to match a single file with an absolute path ‘.txt’; this is likely not your intention</p>
+</blockquote>
+
+<p><strong><a href="https://webpack.js.org/api/plugins/">plugin</a></strong>: 번들 최적화, asset 관리, 환경 변수 injection 등의 업무를 수행하는 플러그인 설정. 아래 코드의HtmlWebpackPlugin처럼 상수를 만들고 plugins 배열에 추가한다.</p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"path"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"html-webpack-plugin"</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">entry</span><span class="p">:</span> <span class="s2">"./src/index.js"</span><span class="p">,</span>
+  <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s2">"/dist"</span><span class="p">),</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="s2">"index-bundle.js"</span>
+  <span class="p">},</span>
+  <span class="na">module</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">rules</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">js$/</span><span class="p">,</span>
+        <span class="na">exclude</span><span class="p">:</span> <span class="sr">/node_modules/</span><span class="p">,</span>
+        <span class="na">use</span><span class="p">:</span> <span class="p">[</span><span class="s2">"babel-loader"</span><span class="p">]</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">css$/</span><span class="p">,</span>
+        <span class="na">use</span><span class="p">:</span> <span class="p">[</span><span class="s2">"style-loader"</span><span class="p">,</span> <span class="s2">"css-loader"</span><span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">({</span>
+      <span class="na">template</span><span class="p">:</span> <span class="s2">"./src/index.html"</span>
+    <span class="p">})</span>
+  <span class="p">]</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/javascript" class="page__taxonomy-item" rel="tag">javascript</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/react" class="page__taxonomy-item" rel="tag">react</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2019-04-21T00:00:00+00:00">April 21, 2019</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2019/04/18/Reactjs-basic.html" class="pagination--pager" title="React 기본 개념 정리
+">이전</a>
+    
+    
+      <a href="/2019/04/27/rest-basic.html" class="pagination--pager" title="REST API 기본 개념
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <section id="disqus_thread">
+    <script>
+    
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ykblog-2.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow" style="padding-top: 10px;">
+   <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2019 yk-dev-blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+
+
+
+
+
+
+
+
+  </body>
+</html>

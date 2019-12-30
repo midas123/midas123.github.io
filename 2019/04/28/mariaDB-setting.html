@@ -1,0 +1,683 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>리눅스 mariaDB 세팅 - yk-dev-blog</title>
+<meta name="description" content="리눅스(데비안) 환경에서 마리아DB 세팅 방법을 정리했습니다. mariaDB는 mysql 엔지니어가 만든 오픈 소스 데이터베이스 입니다. (GNU General Public License, version 2.)">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="yk-dev-blog">
+<meta property="og:title" content="리눅스 mariaDB 세팅">
+<meta property="og:url" content="https://midas123.github.io/2019/04/28/mariaDB-setting.html">
+
+
+  <meta property="og:description" content="리눅스(데비안) 환경에서 마리아DB 세팅 방법을 정리했습니다. mariaDB는 mysql 엔지니어가 만든 오픈 소스 데이터베이스 입니다. (GNU General Public License, version 2.)">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-04-28T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://midas123.github.io/2019/04/28/mariaDB-setting.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="yk-dev-blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+
+
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">맨 위로</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTop").style.display = "block";
+    } else {
+      document.getElementById("scrollToTop").style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138663237-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138663237-1');
+</script>
+
+<!-- flex slider -->
+<link rel="stylesheet" href="/assets/slider/flexslider.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.6.2.js"integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="crossorigin="anonymous"></script>
+<script src="/assets/slider/jquery.flexslider.js"></script>
+<script src="/assets/slider/jquery.flexslider-min.js"></script>
+
+<style>
+@font-face {
+ font-family: 'flexslider-icon';
+ src: url(/assets/slider/fonts/flexslider-icon.eot);
+ src: url(/assets/slider/fonts/flexslider-icon.woff) format('woff'),
+      url(/assets/slider/fonts/flexslider-icon.ttf) format('truetype');
+}
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "fade",
+      directionNav: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      touch: true
+    });
+  });
+</script>
+
+<!-- flex slider end -->
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!-- end custom head snippets -->
+
+  </head>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">yk-dev-blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+  
+  <div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="http://midas123.tistory.com/" rel="nofollow noopener noreferrer"><i class="fab fa-blogger" aria-hidden="true"></i> Tistory Blog</a></li>
+          
+        
+          
+            <li><a href="https://github.com/midas123" rel="nofollow noopener noreferrer"><i class="fab fa-git-square" aria-hidden="true"></i> Github</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">MENU</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/year-archive/" class="">최근 포스트</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/#all-tags" class="">모든 태그</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  
+</div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="리눅스 mariaDB 세팅">
+    <meta itemprop="description" content="리눅스(데비안) 환경에서 마리아DB 세팅 방법을 정리했습니다. mariaDB는 mysql 엔지니어가 만든 오픈 소스 데이터베이스 입니다. (GNU General Public License, version 2.)">
+    <meta itemprop="datePublished" content="April 28, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">리눅스 mariaDB 세팅
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#mariadb-인스톨">mariaDB 인스톨</a></li>
+  <li><a href="#mariadb-시작">mariaDB 시작</a></li>
+  <li><a href="#db-계정-생성">DB 계정 생성</a></li>
+  <li><a href="#db-포트-및-listen-ip-설정">DB 포트 및 listen IP 설정</a></li>
+  <li><a href="#db-접속-테스트">DB 접속 테스트</a></li>
+  <li><a href="#db-데이터-한글--깨지는-현상">DB 데이터 한글  깨지는 현상</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>리눅스(데비안) 환경에서 마리아DB 세팅 방법을 정리했습니다. <a href="https://mariadb.com/kb/ko/mariadb-korean-mariadb/">mariaDB</a>는 mysql 엔지니어가 만든 오픈 소스 데이터베이스 입니다. (<a href="https://www.olis.or.kr/license/Detailselect.do?lId=1004&amp;mapCode=010004">GNU General Public License, version 2</a>.)</p>
+
+<p>mysql과 호환될 뿐만 아니라 더 많은 기능과 빠른 성능을 가지고 있다고 합니다. <a href="https://mariadb.com/kb/en/library/mariadb-vs-mysql-features/">특징들</a></p>
+
+<p><br /></p>
+
+<h2 id="mariadb-인스톨">mariaDB 인스톨</h2>
+
+<p><strong>서버/클라이언트 설치</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install mariadb-server mariadb-client
+</code></pre></div></div>
+
+<p>※dirmngr 미설치로 인한 에러시 아래코드로 설치</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install dirmngr --install-recommends
+</code></pre></div></div>
+
+<p><strong>마리아DB 버전 확인</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql --version
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<h2 id="mariadb-시작">mariaDB 시작</h2>
+
+<p>systemd는 리눅스 시스템 부팅시 작동할 프로그램을 관리하는 서비스 매니져이다. 본인 리눅스 버전의 지원 여부확인해야 한다. MariaDB 10.1.8 버전부터 <a href="">systemd</a>가 사용되고 있다.(그 이전엔 <a href="https://mariadb.com/kb/en/library/sysvinit/">sysVnit</a> )</p>
+
+<p><br /></p>
+
+<p><strong>리눅스 root 계정 로그인</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su root //루트 계정 로그인(비밀번호 입력)
+
+sudo passwd root //최초 설치 후 루트 계정 비밀번호 설정
+</code></pre></div></div>
+
+<p><strong>시작 설정</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl status mariadb //실행 상태 확인
+
+systemctl start mariadb
+
+systemctl restart mariadb
+</code></pre></div></div>
+
+<p><strong>자동 시작 설정</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl enable mariadb
+</code></pre></div></div>
+
+<p><strong>참고</strong></p>
+
+<p>https://mariadb.com/kb/en/library/systemd/#interacting-with-the-mariadb-server-process</p>
+
+<p><br /></p>
+
+<h2 id="db-계정-생성">DB 계정 생성</h2>
+
+<p>마리아DB에 root 유저로 접속</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql -u root -p
+</code></pre></div></div>
+
+<p>새로운 계정으로 사용할 데이터 베이스 생성</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE DATABASE 'DB명';
+
+SHOW DATABASES //DB 목록
+USE 'DB명'; //DB 선택
+</code></pre></div></div>
+
+<p>root 계정으로 외부에서 접속하는 것은 보안상 좋지 않으므로 새로 계정을 생성한다. 아래는 예시는 계정명이 abc123, 접속대역은 제한없음(%)이고 비밀번호는 1234이다. <a href="https://mariadb.com/kb/en/library/create-user/">CREATE USER 문법</a></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE USER 'abc123'@'%' IDENTIFIED BY '1234';
+
+SELECT user,host FROM mysql.user; //mysql데이터베이스의 유저 테이블 조회
+DROP USER 'abc123'@'%'; //계정 삭제
+</code></pre></div></div>
+
+<p>생성한 계정에 권한 부여.  eft 데이터베이스의 모든 테이블(*)에 대한 모든 권한을 abc123에게 부여한다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GRANT all privileges ON efg.* TO 'abc123';
+
+REVOKE DELETE ON efg.* FROM abc123@'%'; //권한 제거
+</code></pre></div></div>
+
+<p>※INSERT, UPDATE, DELETE 등 DML로 GRANT 테이블을 직접 조작하여 권한을 부여하면 db서버를 재시작 하기전까지 변경사항이 적용되지 않는다. <a href="https://dev.mysql.com/doc/refman/5.7/en/privilege-changes.html">링크</a></p>
+
+<p>위에서 처럼 <strong>GRANT(DCL)로 권한을 부여하지 않은 경우</strong> 아래 명령어로 권한 변경을 갱신해줘야 한다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FLUSH PRIVILEGES;
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="db-포트-및-listen-ip-설정">DB 포트 및 listen IP 설정</h2>
+
+<p>my.cnf 파일을 오픈 후 포트 수정 및 IP 바인딩이 가능하다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vi /etc/mysql/my.cnf
+</code></pre></div></div>
+
+<p>로컬이 아닌 구글 클라우드 인스턴스에 설치했으므로 아래와 같이 <strong>bind-address</strong>을 변경했다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bind-address = 127.0.0.1     -&gt;      0.0.0.0
+</code></pre></div></div>
+
+<p>마리아DB 재시작 후 아래 명령어로 <strong>bind-address</strong>가 변경 되었는지 확인한다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo lsof -i -P -n | grep 3306
+</code></pre></div></div>
+
+<p><strong>port 번호</strong>는 그대로 사용한다. (기본값은 3306) 참고로 필자는 구글 클라우드 인스턴스에 mariaDB를 설치했으므로 구글 클라우드 인스턴스의 방화벽 설정에서 port를 열어줘야 외부에서 접속할 수 있다.</p>
+
+<p><br /></p>
+
+<p><em>-구글 클라우드 방화벽 설정 결과</em></p>
+
+<p><img src="https://midas123.github.io\assets\images\post\0428\gc-config.jpg" alt="" class="center-image" /></p>
+
+<p><br /></p>
+
+<h2 id="db-접속-테스트">DB 접속 테스트</h2>
+
+<p>기존에 사용 중이던 sqldeveloper로 접속 테스트를 진행했다.  mysql/mariaDB에 접속하려면 <a href="Connector/J">Connector/J</a>를 별도로 설치해야 한다. db-connection</p>
+
+<p><strong>connector/J 설치방법</strong></p>
+
+<p>1.zip 파일로 다운 받은 후 적당한 곳에 압축을 푼 후 sqldeveloper를 실행한다.</p>
+
+<p>2.도구 탭 -&gt; 환경설정 -&gt; 데이터베이스 -&gt; 타사 JDBC 드라이버 -&gt; 항목추가 -&gt; 압축 푼 폴더에서 <em>mysql-connector-java-x.x.xx-bin.jar</em> 파일 선택 후 sqldeveloper 재시작</p>
+
+<p><br /></p>
+
+<p><em>-sqldeveloper 연결화면</em></p>
+
+<p><img src="https://midas123.github.io\assets\images\post\0428\db-connection.jpg" alt="" class="center-image" /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="db-데이터-한글--깨지는-현상">DB 데이터 한글  깨지는 현상</h2>
+
+<p>sqldeveloper로 mariaDB에 한글 데이터를 넣었는데 DB에 저장된 데이터가 깨졌다. 인코딩에는 문제가 없었고 DB에서 디코딩이 잘못되어 한글이 깨진걸로 보였다.</p>
+
+<p>아래 코드를 /etc/mysql/my.cnf 입력하고 mariaDB를 재시작한다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[mysql]
+default-character-set=utf8
+
+[client]
+default-character-set=utf8
+
+[mysqld]
+collation-server = utf8_unicode_ci
+init-connect='SET NAMES utf8'
+character-set-server = utf8
+</code></pre></div></div>
+
+<p>charset 변경 전에 만들어진 테이블은 직접 수정해야 한다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ALTER TABLE 테이블명 convert to charset utf8;
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>참고:</p>
+
+<p><a href="https://alvinbunk.wordpress.com/2017/06/29/using-oracle-sql-developer-to-connect-to-mysqlmariadb-databases/">설치방법</a></p>
+
+<p><a href="https://m.blog.naver.com/CommentList.nhn?blogId=50after&amp;logNo=220912861796">프로젝트에 설치방법</a></p>
+
+<p><a href="https://cloud.google.com/solutions/setup-mysql?hl=ko">구글 클라우드 인스턴스에서 mysql 설정하는 방법</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/linux" class="page__taxonomy-item" rel="tag">linux</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/maria-db" class="page__taxonomy-item" rel="tag">maria-db</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2019-04-28T00:00:00+00:00">April 28, 2019</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2019/04/27/rest-basic.html" class="pagination--pager" title="REST API 기본 개념
+">이전</a>
+    
+    
+      <a href="/2019/05/03/oracle-join-syntax.html" class="pagination--pager" title="오라클 JOIN
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <section id="disqus_thread">
+    <script>
+    
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ykblog-2.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow" style="padding-top: 10px;">
+   <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2019 yk-dev-blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+
+
+
+
+
+
+
+
+  </body>
+</html>

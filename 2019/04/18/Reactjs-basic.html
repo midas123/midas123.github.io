@@ -1,0 +1,843 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>React 기본 개념 정리 - yk-dev-blog</title>
+<meta name="description" content="요즘은 리액트 같은 라이브러리 혹은 프레임워크를 이용해서 사용자의 브라우저에서 화면 렌더링을 담당하고 그때그때 데이터가 필요한 경우 서버에 요청하는 SPA(Single Page Application) 방식이 많이 사용되는 것으로 알고 있습니다. 이 방식은 서버 측에서는 자원의 사용을 최소화하고 사용자 측에서는 서버의 응답 시간이 줄어들기 때문에 사용 경험이 향상되는 장점이 있는 것으로 알고 있습니다.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="yk-dev-blog">
+<meta property="og:title" content="React 기본 개념 정리">
+<meta property="og:url" content="https://midas123.github.io/2019/04/18/Reactjs-basic.html">
+
+
+  <meta property="og:description" content="요즘은 리액트 같은 라이브러리 혹은 프레임워크를 이용해서 사용자의 브라우저에서 화면 렌더링을 담당하고 그때그때 데이터가 필요한 경우 서버에 요청하는 SPA(Single Page Application) 방식이 많이 사용되는 것으로 알고 있습니다. 이 방식은 서버 측에서는 자원의 사용을 최소화하고 사용자 측에서는 서버의 응답 시간이 줄어들기 때문에 사용 경험이 향상되는 장점이 있는 것으로 알고 있습니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-04-18T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://midas123.github.io/2019/04/18/Reactjs-basic.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="yk-dev-blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+
+
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">맨 위로</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTop").style.display = "block";
+    } else {
+      document.getElementById("scrollToTop").style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138663237-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138663237-1');
+</script>
+
+<!-- flex slider -->
+<link rel="stylesheet" href="/assets/slider/flexslider.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.6.2.js"integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="crossorigin="anonymous"></script>
+<script src="/assets/slider/jquery.flexslider.js"></script>
+<script src="/assets/slider/jquery.flexslider-min.js"></script>
+
+<style>
+@font-face {
+ font-family: 'flexslider-icon';
+ src: url(/assets/slider/fonts/flexslider-icon.eot);
+ src: url(/assets/slider/fonts/flexslider-icon.woff) format('woff'),
+      url(/assets/slider/fonts/flexslider-icon.ttf) format('truetype');
+}
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "fade",
+      directionNav: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      touch: true
+    });
+  });
+</script>
+
+<!-- flex slider end -->
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!-- end custom head snippets -->
+
+  </head>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">yk-dev-blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+  
+  <div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="http://midas123.tistory.com/" rel="nofollow noopener noreferrer"><i class="fab fa-blogger" aria-hidden="true"></i> Tistory Blog</a></li>
+          
+        
+          
+            <li><a href="https://github.com/midas123" rel="nofollow noopener noreferrer"><i class="fab fa-git-square" aria-hidden="true"></i> Github</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">MENU</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/year-archive/" class="">최근 포스트</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/#all-tags" class="">모든 태그</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  
+</div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="React 기본 개념 정리">
+    <meta itemprop="description" content="요즘은 리액트 같은 라이브러리 혹은 프레임워크를 이용해서 사용자의 브라우저에서 화면 렌더링을 담당하고 그때그때 데이터가 필요한 경우 서버에 요청하는 SPA(Single Page Application) 방식이 많이 사용되는 것으로 알고 있습니다. 이 방식은 서버 측에서는 자원의 사용을 최소화하고 사용자 측에서는 서버의 응답 시간이 줄어들기 때문에 사용 경험이 향상되는 장점이 있는 것으로 알고 있습니다.">
+    <meta itemprop="datePublished" content="April 18, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">React 기본 개념 정리
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#reactjs란">Reactjs란?</a>
+    <ul>
+      <li><a href="#컴포넌트-클래스">컴포넌트 클래스</a></li>
+    </ul>
+  </li>
+  <li><a href="#react-엘레먼트element">React 엘레먼트(element)</a>
+    <ul>
+      <li><a href="#엘리먼트로-dom-렌더링하기">엘리먼트로 DOM 렌더링하기</a></li>
+      <li><a href="#렌더링-된-엘리먼트-수정하기">렌더링 된 엘리먼트 수정하기</a></li>
+    </ul>
+  </li>
+  <li><a href="#컴포넌트">컴포넌트</a>
+    <ul>
+      <li><a href="#컴포넌트-정의">컴포넌트 정의</a></li>
+      <li><a href="#컴포넌트-렌더링">컴포넌트 렌더링</a></li>
+      <li><a href="#컴포넌트-조립">컴포넌트 조립</a></li>
+      <li><a href="#컴포넌트-추출">컴포넌트 추출</a></li>
+    </ul>
+  </li>
+  <li><a href="#props">props</a>
+    <ul>
+      <li><a href="#props-read-only">Props Read-only</a></li>
+    </ul>
+  </li>
+  <li><a href="#state">state</a>
+    <ul>
+      <li><a href="#컴포넌트에-라이프-사이클-메서드-추가하기">컴포넌트에 라이프 사이클 메서드 추가하기</a></li>
+      <li><a href="#state-올바르게-사용하기">State 올바르게 사용하기</a></li>
+      <li><a href="#데이터는-아래로-흐른다">데이터는 아래로 흐른다</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>요즘은 리액트 같은 라이브러리 혹은 프레임워크를 이용해서 사용자의 브라우저에서 화면 렌더링을 담당하고 그때그때 데이터가 필요한 경우 서버에 요청하는 SPA(Single Page Application) 방식이 많이 사용되는 것으로 알고 있습니다. 이 방식은 서버 측에서는 자원의 사용을 최소화하고 사용자 측에서는 서버의 응답 시간이 줄어들기 때문에 사용 경험이 향상되는 장점이 있는 것으로 알고 있습니다.</p>
+
+<p>이런 자바스크립트 기반 기술이 웹 개발자 커뮤니티에서도 자주 화두가 되면서 자연스럽게 관심을 갖게 되었고 react 공식문서를 보고 정리해보았습니다.</p>
+
+<h1 id="reactjs란">Reactjs란?</h1>
+
+<p>React는 프레임워크가 아닌 라이브러리이다. 유저 인터페이스를 위해 만들어졌다. 
+복잡한 UI 관련 코드들를 ‘<strong>컴포넌트</strong>’ 라고 부르는 좀 더 작고 고립 된 조각으로 구성한다. React의 Virtual DOM에 의해서 DOM 엘레먼츠가 바뀔때마다 전체 뷰가 다시 로드하는 대신 수정된 부분만 업데이트 하기 때문에 처리속도 더 빨라졌고
+각 컴포넌트를 재사용하면서 UI 관련 중복 코드를 줄일 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="컴포넌트-클래스">컴포넌트 클래스</h2>
+
+<p>Reactjs는 UI 화면을 여러 개의 컴포넌트로 쪼개서 구성한다. 각 컴포넌트는 캡슐화되어 독립적으로 동작한다. 그러므로 각각의 심플한 컴포넌트를 이용해서 복잡한 UI 화면을 만들 수 있다. 먼저 컴포넌트 구조를 정리하고 컴포넌트 내에서 사용되는 <a href="#props">props</a>, <a href="#state">state</a>, <a href="#컴포넌트-라이프-사이클-메서드">라이프 사이클 메서드</a>를 간단하게 정리하려고 한다.  ES6에서 기본적인 컴포넌트 클래스의 모습은 아래와 같다.</p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Square</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className=</span><span class="s2">"shopping-list"</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Shopping List for <span class="si">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Instagram<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>WhatsApp<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Oculus<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+	<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">Square</span> <span class="na">name=</span><span class="s2">"jane"</span><span class="p">/&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'root'</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>Square 컴포넌트는 React.Component 클래스를 상속 받고, render() 메서드를 통해서 화면에서 보여줄 view를 return 한다. 이 메서드의 return 괄호 안에 있는 코드는 <a href="https://reactjs.org/docs/introducing-jsx.html">JSX</a> 문법에 의해서 작성된 html 코드이다. JSX 안에서는 html 코드와 함께 어떠한 javascript도 사용 가능하다.</p>
+
+<p>참고로 JSX 문법을 대신해서 아래와 같은 코드를 직접 작성해도 된다. 참고로 JSX는 개발자의 편의를 위해 만들어진 문법으로 빌드 타임시 자동으로 아래 코드로 변환 된다.</p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'div'</span><span class="p">,</span> <span class="p">{</span><span class="na">className</span><span class="p">:</span> <span class="s1">'shopping-list'</span><span class="p">},</span>
+  <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'h1'</span><span class="p">,</span> <span class="cm">/* ... h1 children ... */</span><span class="p">),</span>
+  <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'ul'</span><span class="p">,</span> <span class="cm">/* ... ul children ... */</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>최종적으로 ReactDOM.render() 메서드가 Square 컴포넌트를 Virtual DOM으로 반환하고 JSX 문법으로 작성한 내용이 ‘root’ 컨테이너 안에 위치한 상태로 웹브라우저 화면에 출력된다.</p>
+
+<p><br /></p>
+
+<h1 id="react-엘레먼트element">React 엘레먼트(element)</h1>
+
+<p>위에 React.createElement() 메서드는 각각 리엑트 엘레먼트를 반환한다. 엘레먼트는 컴포넌트를 구성하는 요소이다.
+자바스크립트 객체처럼 값을 저장해서 전달 할 수 있다. 이런 엘레먼트가 모여 만들어진 컴포넌트는 곧 하나의 DOM 객체가 된다.</p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;;</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="엘리먼트로-dom-렌더링하기">엘리먼트로 DOM 렌더링하기</h2>
+
+<p>HTML 파일에 ‘root’로 div태그를 만든다. 이 ‘root’에는 React DOM이 관리하는 모든게 들어간다.(ex. 컴포넌트, 엘리먼트)</p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"root"</span><span class="o">&gt;</span><span class="p">&lt;</span><span class="err">/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<p>리액트만으로 만들어진 어플리케이션은 하나의 root DOM node를 갖는다. 만약 다른 앱과 리액트를 통합한다면 원하는 만큼의 독립된 root DOM node를 가질 수 있다.</p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;;</span>
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'root'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="렌더링-된-엘리먼트-수정하기">렌더링 된 엘리먼트 수정하기</h2>
+
+<p>엘리먼츠는 불변한다. 한번 만들어진 엘리먼트의 자식 또는 속성을 바꿀 수 없다. UI를 수정 하려면 새로운 엘리먼트를 만들어야 한다. (아래 코드에서는 1초 마다 엘리먼트가 생성됨)</p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">tick</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="p">(</span>
+ <span class="c1">//코드</span>
+  <span class="p">);</span>
+  <span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'root'</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="nx">setInterval</span><span class="p">(</span><span class="nx">tick</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>엘리먼트를 새로 생성해서 업데이트 할때에는 React DOM에 의해서 이전과 비교해서 바뀌 부분만이 업데이트 된다.</p>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="컴포넌트">컴포넌트</h1>
+
+<p>전체 UI를 부분적으로 나누어 독립적이고, 재사용 가능한 형태로 만들 것을 컴포넌트라고 한다. 컴포넌트는 자바스크립트 function과 같다. 임의의 input(props)을 받아서 사용자 화면에 보여질 React 엘리먼츠를 리턴한다. <a href="https://reactjs.org/docs/react-component.html">react-component-api-reference</a></p>
+
+<h2 id="컴포넌트-정의">컴포넌트 정의</h2>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//javascript function</span>
+<span class="kd">function</span> <span class="nx">Welcome</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, <span class="si">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//ES6 class</span>
+<span class="kd">class</span> <span class="nx">Welcome</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>※ES6 클래스가 function과 다른 특징은 state와 라이프사이클이다.</p>
+
+<p><br /></p>
+
+<h2 id="컴포넌트-렌더링">컴포넌트 렌더링</h2>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="p">&lt;</span><span class="nc">Welcome</span> <span class="na">name=</span><span class="s2">"Sara"</span> <span class="p">/&gt;;</span>
+</code></pre></div></div>
+
+<p>위처럼 유저가 정의한 컴포넌트(Welcome)를 나타내는 엘리먼트는 JSX 속성(name)을 객체 형태로 전달 받는다. 이 객체를 ‘props’ 이라고 한다.</p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Welcome</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, <span class="si">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="p">&lt;</span><span class="nc">Welcome</span> <span class="na">name=</span><span class="s2">"Sara"</span> <span class="p">/&gt;;</span>
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="nx">element</span><span class="p">,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'root'</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>※ 컴포넌트 이름은 항상 대문자로 시작해야 한다.</p>
+
+<p><br /></p>
+
+<h2 id="컴포넌트-조립">컴포넌트 조립</h2>
+
+<p>컴포넌트는 다른 컴포넌트에서 참조되어 출력될 수 있다. 이러한 이유로 버튼, 폼, 대화상자, 화면 등 컴포넌트로 표현되는 것들을 재사용 할 수 있다.</p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">Welcome</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"Sara"</span> <span class="o">/&gt;</span>
+<span class="p">&lt;</span><span class="nc">Welcome</span> <span class="na">name=</span><span class="s2">"Cahal"</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nc">Welcome</span> <span class="na">name=</span><span class="s2">"Edite"</span> <span class="p">/&gt;</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="컴포넌트-추출">컴포넌트 추출</h2>
+
+<p>컴포넌트 내에서 몇 번씩 사용되는 부분을 새로운 컴포넌트로 만든다. 버튼, 패널, 아바타 또는 앱, 댓글 등은 좋은 재사용 컴포넌트 후보이다.</p>
+
+<p><br /></p>
+
+<h1 id="props">props</h1>
+
+<p>properties의 줄임말로 컴포넌트에서 사용되는 파라미터이다.</p>
+
+<h2 id="props-read-only">Props Read-only</h2>
+
+<p>리액트의 모든 컴포넌트는 반드시 props를 수정,변조해서는 안된다.(pure vs impure)</p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//pure</span>
+<span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//impure</span>
+<span class="kd">function</span> <span class="nx">withdraw</span><span class="p">(</span><span class="nx">account</span><span class="p">,</span> <span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">account</span><span class="p">.</span><span class="nx">total</span> <span class="o">-=</span> <span class="nx">amount</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>UI에 동적인 변화가 필요한 경우엔 state를 사용한다.</p>
+
+<p><br /></p>
+
+<h1 id="state">state</h1>
+
+<p>만약 컴포넌트가 UI 화면에서 보여주는 값이 계속 수정/변조되야 한다면? 예를 들어, 컴포넌트로 구현한 시계를 초 단위로 업데이트 할때 state를 사용한다.</p>
+
+<p>state는 ES6 class 형태의 컴포넌트에서만 사용할 수 있다. 컴포넌트에서 state를 사용하려면 우선 최초로 state를 할당하는 constructor가 필요하다. <a href="https://overreacted.io/why-do-we-write-super-props/">why-do-we-write-super-props</a></p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Clock</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">//assigns the initial state </span>
+  <span class="p">}</span>
+
+ <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>It is <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">toLocaleTimeString</span><span class="p">()</span><span class="si">}</span>.<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">Clock</span> <span class="p">/&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'root'</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="컴포넌트에-라이프-사이클-메서드-추가하기">컴포넌트에 라이프 사이클 메서드 추가하기</h2>
+
+<p>많은 컴포넌트가 있는 어플리케이션 내에서 컴포넌트가 파기되었을때 사용하던 리소스를 다시 사용 가능하게 만드는 것은 매우 중요하다.</p>
+
+<p>컴포넌트가 DOM으로 최초 렌더링 되었을때를 리액트에서는 ‘마운팅’ 이라고 한다.
+그리고 컴포넌트가 DOM이 제거 되었을때를 ‘언마운팅’ 이라고 한다.</p>
+
+<p>컴포넌트가 ‘마운팅’, ‘언마운팅’ 되었을때 어떤 코드를 실행하려면 아래 메서드를 정의한다. 이 메서드가 라이프 사이클 메서드 이다. <a href="http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/">react-lifecycle-methods-diagram</a></p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Clock</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="p">}</span>
+  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span><span class="c1">//마운팅</span>
+  <span class="p">}</span>
+
+  <span class="nx">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span><span class="c1">//언마운팅</span>
+  <span class="p">}</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">//코드</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>타이머 예제)</p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Clock</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="na">date</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()};</span>
+  <span class="p">}</span>
+
+  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="p">}</span>
+
+  <span class="nx">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>It is <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">toLocaleTimeString</span><span class="p">()</span><span class="si">}</span>.<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="state-올바르게-사용하기">State 올바르게 사용하기</h2>
+
+<p><strong>1.state를 직접 수정하지 않는다. -&gt; setState()를 사용한다.</strong></p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Wrong</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">comment</span> <span class="o">=</span> <span class="s1">'Hello'</span><span class="p">;</span>
+<span class="c1">// Correct</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="na">comment</span><span class="p">:</span> <span class="s1">'Hello'</span><span class="p">});</span>
+</code></pre></div></div>
+
+<p>this.state는 constructor 내에서만 할당되어야한다.</p>
+
+<p><br /></p>
+
+<p><strong>2.state는 비동기적으로 업데이트 될 수 있다.</strong>
+리액트는 퍼포먼스를 위해서 다수의  setState()를 batch해서 호출할 수 있다. setState() 내에 this.props와 this.state 비동기적으로 업데이트 될 수 있으므로 setState()의 인자로 객체가 아닌 function을 사용해야 한다.
+그러면 첫번재 인자로 state를 받은 후 업데이트가 적용되었을때 props를 두 번째로 받게 된다.</p>
+
+<div class="language-react highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Wrong</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+  <span class="na">counter</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">counter</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">increment</span><span class="p">,</span>
+<span class="p">});</span>
+<span class="c1">// Correct</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">((</span><span class="nx">state</span><span class="p">,</span> <span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+  <span class="na">counter</span><span class="p">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">counter</span> <span class="o">+</span> <span class="nx">props</span><span class="p">.</span><span class="nx">increment</span>
+<span class="p">}));</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><strong>3.state의 수정내용은 병합된다.</strong>
+state에 몇 개의 변수가 포함되어 있을때 setState()로 개별적으로 그 변수를 수정할 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="데이터는-아래로-흐른다">데이터는 아래로 흐른다</h2>
+
+<p>다른 컴포넌트의 state에 접근할 수 없다. 오직 state를 정의한 컴포넌트에서만 접근할 수 있다. 데이터는 위에서 아래로 또는 단방향으로 흐른다. 
+컴포넌트가 소유한 state는 props로 자식 컴포넌트에게 전달할 수 있다. 그리고 자식 컴포넌트는 props가 어떤 컴포넌트에서 왔는지 알지 못한다.
+어떤 state라도 항상 특정 컴포넌트에게만 소유되고 state의 데이터는 아래에 있는 자식 컴포넌트에게만 영향을 준다.</p>
+
+<p><br /></p>
+
+<p>출처: https://reactjs.org/docs/hello-world.html</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/javascript" class="page__taxonomy-item" rel="tag">javascript</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/react" class="page__taxonomy-item" rel="tag">react</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2019-04-18T00:00:00+00:00">April 18, 2019</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2019/04/08/Springboot-Hibernate-project.html" class="pagination--pager" title="Springboot-SpringSecurity-JPA
+">이전</a>
+    
+    
+      <a href="/2019/04/21/Reactjs-project.html" class="pagination--pager" title="React 프로젝트 세팅 방법
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <section id="disqus_thread">
+    <script>
+    
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ykblog-2.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow" style="padding-top: 10px;">
+   <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2019 yk-dev-blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+
+
+
+
+
+
+
+
+  </body>
+</html>

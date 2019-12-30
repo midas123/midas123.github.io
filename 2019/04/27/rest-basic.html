@@ -1,0 +1,557 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>REST API 기본 개념 - yk-dev-blog</title>
+<meta name="description" content="REST(Representational State Transfer)는 HTTP 프로토콜을 사용하는 웹 서비스 어플리케이션의 아키텍쳐 스타일이다. RESTful 웹 서비스는 REST를 베이스로 하는 웹 서비스를 말한다.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="yk-dev-blog">
+<meta property="og:title" content="REST API 기본 개념">
+<meta property="og:url" content="https://midas123.github.io/2019/04/27/rest-basic.html">
+
+
+  <meta property="og:description" content="REST(Representational State Transfer)는 HTTP 프로토콜을 사용하는 웹 서비스 어플리케이션의 아키텍쳐 스타일이다. RESTful 웹 서비스는 REST를 베이스로 하는 웹 서비스를 말한다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-04-27T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://midas123.github.io/2019/04/27/rest-basic.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="yk-dev-blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+
+
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">맨 위로</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTop").style.display = "block";
+    } else {
+      document.getElementById("scrollToTop").style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138663237-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138663237-1');
+</script>
+
+<!-- flex slider -->
+<link rel="stylesheet" href="/assets/slider/flexslider.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.6.2.js"integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="crossorigin="anonymous"></script>
+<script src="/assets/slider/jquery.flexslider.js"></script>
+<script src="/assets/slider/jquery.flexslider-min.js"></script>
+
+<style>
+@font-face {
+ font-family: 'flexslider-icon';
+ src: url(/assets/slider/fonts/flexslider-icon.eot);
+ src: url(/assets/slider/fonts/flexslider-icon.woff) format('woff'),
+      url(/assets/slider/fonts/flexslider-icon.ttf) format('truetype');
+}
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "fade",
+      directionNav: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      touch: true
+    });
+  });
+</script>
+
+<!-- flex slider end -->
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!-- end custom head snippets -->
+
+  </head>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">yk-dev-blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+  
+  <div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="http://midas123.tistory.com/" rel="nofollow noopener noreferrer"><i class="fab fa-blogger" aria-hidden="true"></i> Tistory Blog</a></li>
+          
+        
+          
+            <li><a href="https://github.com/midas123" rel="nofollow noopener noreferrer"><i class="fab fa-git-square" aria-hidden="true"></i> Github</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">MENU</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/year-archive/" class="">최근 포스트</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/#all-tags" class="">모든 태그</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  
+</div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="REST API 기본 개념">
+    <meta itemprop="description" content="REST(Representational State Transfer)는 HTTP 프로토콜을 사용하는 웹 서비스 어플리케이션의 아키텍쳐 스타일이다. RESTful 웹 서비스는 REST를 베이스로 하는 웹 서비스를 말한다.">
+    <meta itemprop="datePublished" content="April 27, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">REST API 기본 개념
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#resource">Resource</a></li>
+  <li><a href="#http-methods">HTTP methods</a></li>
+  <li><a href="#rest-6가지-원칙">REST 6가지 원칙</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>REST(<strong>Re</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer)는 HTTP 프로토콜을 사용하는 웹 서비스 어플리케이션의 아키텍쳐 스타일이다. RESTful 웹 서비스는 REST를 베이스로 하는 웹 서비스를 말한다.</p>
+
+<p>이 아키텍처의 특징은 리소스 중심으로 구성되며 서버가 클라이언트에게 오직 리소스에 대한 접근만을 제공하는 것이다.</p>
+
+<p><br /></p>
+
+<h2 id="resource">Resource</h2>
+
+<p>리소스는 REST에서 중요한 개념이다.  문서, 이미지, 일시적인 서비스, 어떤 리소스 그룹, 유저ID 혹은 사람 같이 실재하고 이름 지을 수 있는 모든 것이 리소스가 될 수 있다. 그리고 이런 리소스를 구분하고 확인하기 위해서 URI를 사용한다.</p>
+
+<p><br /></p>
+
+<h2 id="http-methods">HTTP methods</h2>
+
+<p>REST API에서 클라이언트 측 요청에 주로 사용되는 http 메서드로는 GET/POST/DELETE/PUT 등이 있다.</p>
+
+<p><br /></p>
+
+<h2 id="rest-6가지-원칙">REST 6가지 원칙</h2>
+
+<p>Restful한 웹 서비스를 만들기 위해서 지켜야하는 원칙이다.</p>
+
+<p><br /></p>
+
+<p><strong>Uniform interface</strong> : 리소스 중심으로 인터페이스를 정해야 한다. 웹 서비스 내에서 리소스는 각각 하나의 URI를 가져야 한다. 또한 웹 서비스의 resource representation들은 네이밍 컨벤션, 링크 포맷, 데이타 포맷 등 특정한 지침을 따라야 한다. 모든 리소스는 HTTP GET으로 접근할 수 있어야 한다.</p>
+
+<p>※<a href="https://stackoverflow.com/questions/33706191/what-is-the-difference-between-resource-and-resource-representation-in-rest">representation</a>은 서버가 응답으로 보내는 리소스가 JSON/XML 등의 형태로 표현되는 것이다.</p>
+
+<p><br /></p>
+
+<p><strong>Client-server</strong>: 클라이언트와 서버가 상호 간의 의존 없이 분리되어 있어야 한다. 서로 분리되어 있으므로 언제든지 개별적으로 개발되거나 교체될 수 있어야 한다.</p>
+
+<p><br /></p>
+
+<p><strong>Stateless</strong>: 서버는 클라이언트의 최근 HTTP request에 대한 어떤한 것도 저장해서는 안된다. 모든 요청은 이전에 발생한 요청과 관계 없이 새롭다.(No session, no history)
+어플리케이션의 state에 대한 책임은 서버가 아닌 클라이언트에게 있다.</p>
+
+<p><br /></p>
+
+<p><strong>Cacheable</strong>: 모든 자원은 캐싱을 적용하거나 하지 않을 수 있는데 REST API에서는 가능하다면 캐싱을 적용해야 한다. 서버는 캐싱의 적용 여부를  HTTP 헤더에서 지시할 수 있다. 또한 캐싱은 서버 또는 클라이언트에서 실행될 수 있다. 캐싱을 사용하므로써 클라이언트 측에서는 불필요한 요청 제거로 인한 성능 향상을, 서버 측은 확장성을 높일 수 있다.</p>
+
+<p>※캐싱: 최초 요청시 리소스의 복사본을 저장하고 재요청 시에 리소스 대신 복사본을 사용하는 것.</p>
+
+<p><br /></p>
+
+<p><strong>Layered system</strong>: 계층 구조를 이루는 시스템을 사용할 수 있다. 예를 들어 어플리케이션 구동 서버, 리소스 저장 서버, 인증 요청 처리하는 서버를 나눈다. 클라이언트 측에서는 어느 서버에 연결되었는지 알 수 없어야 한다.</p>
+
+<p><br /></p>
+
+<p><strong>Code on demand</strong>(선택적):서버는 클라이언트에게 대부분 XML/JSON 형태의 정적인 자원을 응답으로 보낸다. 하지만 필요할 경우 어플리케이션을 지원하는, 실행 가능한 코드를 보낼 수 있다.</p>
+
+<p><br /></p>
+
+<p><strong>참고</strong>:</p>
+
+<p><a href="https://restfulapi.net/rest-architectural-constraints/#uniform-interface">rest-architectural-constraints</a></p>
+
+<p><br /></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/rest-api" class="page__taxonomy-item" rel="tag">rest-api</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2019-04-27T00:00:00+00:00">April 27, 2019</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2019/04/21/Reactjs-project.html" class="pagination--pager" title="React 프로젝트 세팅 방법
+">이전</a>
+    
+    
+      <a href="/2019/04/28/mariaDB-setting.html" class="pagination--pager" title="리눅스 mariaDB 세팅
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <section id="disqus_thread">
+    <script>
+    
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ykblog-2.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow" style="padding-top: 10px;">
+   <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2019 yk-dev-blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+
+
+
+
+
+
+
+
+  </body>
+</html>

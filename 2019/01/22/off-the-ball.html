@@ -1,0 +1,1014 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>OFF-THE-BALL - yk-dev-blog</title>
+<meta name="description" content="프로젝트의 주제는 팀/개인 단위로 참여 가능한 축구경기 스케줄링 및 커뮤니티 사이트 입니다. 회원 관리와 로그인 기능을 구현하였고 javascript로 유효성검사 기능을 구현했습니다.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="yk-dev-blog">
+<meta property="og:title" content="OFF-THE-BALL">
+<meta property="og:url" content="https://midas123.github.io/2019/01/22/off-the-ball.html">
+
+
+  <meta property="og:description" content="프로젝트의 주제는 팀/개인 단위로 참여 가능한 축구경기 스케줄링 및 커뮤니티 사이트 입니다. 회원 관리와 로그인 기능을 구현하였고 javascript로 유효성검사 기능을 구현했습니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-01-22T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://midas123.github.io/2019/01/22/off-the-ball.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="yk-dev-blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#scrollToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+
+</style>
+
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+
+
+<button onclick="topFunction()" id="scrollToTop" title="Go to top">맨 위로</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("scrollToTop").style.display = "block";
+    } else {
+      document.getElementById("scrollToTop").style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138663237-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138663237-1');
+</script>
+
+<!-- flex slider -->
+<link rel="stylesheet" href="/assets/slider/flexslider.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.6.2.js"integrity="sha256-pXKSYZ0U64y9kjvenyjPmUrGarxI98l1t2kyj/M73ck="crossorigin="anonymous"></script>
+<script src="/assets/slider/jquery.flexslider.js"></script>
+<script src="/assets/slider/jquery.flexslider-min.js"></script>
+
+<style>
+@font-face {
+ font-family: 'flexslider-icon';
+ src: url(/assets/slider/fonts/flexslider-icon.eot);
+ src: url(/assets/slider/fonts/flexslider-icon.woff) format('woff'),
+      url(/assets/slider/fonts/flexslider-icon.ttf) format('truetype');
+}
+
+</style>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "fade",
+      directionNav: true,
+      slideshowSpeed: 5000,
+      animationSpeed: 600,
+      touch: true
+    });
+  });
+</script>
+
+<!-- flex slider end -->
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!-- end custom head snippets -->
+
+  </head>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">yk-dev-blog</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+  
+  <div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="http://midas123.tistory.com/" rel="nofollow noopener noreferrer"><i class="fab fa-blogger" aria-hidden="true"></i> Tistory Blog</a></li>
+          
+        
+          
+            <li><a href="https://github.com/midas123" rel="nofollow noopener noreferrer"><i class="fab fa-git-square" aria-hidden="true"></i> Github</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">MENU</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/year-archive/" class="">최근 포스트</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/#all-tags" class="">모든 태그</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  
+</div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="OFF-THE-BALL">
+    <meta itemprop="description" content="프로젝트의 주제는 팀/개인 단위로 참여 가능한 축구경기 스케줄링 및 커뮤니티 사이트 입니다. 회원 관리와 로그인 기능을 구현하였고 javascript로 유효성검사 기능을 구현했습니다.">
+    <meta itemprop="datePublished" content="January 22, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">OFF-THE-BALL
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#index">INDEX</a>
+    <ul>
+      <li><a href="#회원-가입탈퇴--구현">회원 가입/탈퇴  구현</a></li>
+      <li><a href="#로그인--구현">로그인  구현</a></li>
+      <li><a href="#관리자-페이지-구현">관리자 페이지 구현</a></li>
+    </ul>
+  </li>
+  <li><a href="#회원-가입">회원 가입</a></li>
+  <li><a href="#회원정보-중복-확인">회원정보 중복 확인</a></li>
+  <li><a href="#자바스크립트로-유효성-검사">자바스크립트로 유효성 검사</a></li>
+  <li><a href="#프로필-이미지-업로드">프로필 이미지 업로드</a></li>
+  <li><a href="#회원정보-수정-탈퇴">회원정보 수정 탈퇴</a></li>
+  <li><a href="#로그인">로그인</a></li>
+  <li><a href="#아이디-찾기">아이디 찾기</a></li>
+  <li><a href="#비밀번호-찾기-이메일-전송">비밀번호 찾기 이메일 전송</a></li>
+  <li><a href="#회원-목록-게시판-검색">회원 목록 게시판 검색</a></li>
+  <li><a href="#회원-정보-상세페이지-등급변경">회원 정보 상세페이지 등급변경</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>프로젝트의 주제는 팀/개인 단위로 참여 가능한 축구경기 스케줄링 및 커뮤니티 사이트 입니다. 
+회원 관리와 로그인 기능을 구현하였고 <strong>javascript</strong>로 유효성검사 기능을 구현했습니다.</p>
+
+<p><br /></p>
+
+<!-- begin _includes/seo.html -->
+<title>OFF-THE-BALL - yk-dev-blog</title>
+<meta name="description" content="프로젝트의 주제는 팀/개인 단위로 참여 가능한 축구경기 스케줄링 및 커뮤니티 사이트 입니다. 회원 관리와 로그인 기능을 구현하였고 javascript로 유효성검사 기능을 구현했습니다." />
+
+<meta property="og:type" content="article" />
+
+<meta property="og:locale" content="ko" />
+
+<meta property="og:site_name" content="yk-dev-blog" />
+
+<meta property="og:title" content="OFF-THE-BALL" />
+
+<meta property="og:url" content="https://midas123.github.io/2019/01/22/off-the-ball.html" />
+
+<meta property="og:description" content="프로젝트의 주제는 팀/개인 단위로 참여 가능한 축구경기 스케줄링 및 커뮤니티 사이트 입니다. 회원 관리와 로그인 기능을 구현하였고 javascript로 유효성검사 기능을 구현했습니다." />
+
+<meta property="article:published_time" content="2019-01-22T00:00:00+00:00" />
+
+<link rel="canonical" href="https://midas123.github.io/2019/01/22/off-the-ball.html" />
+
+<!-- end _includes/seo.html -->
+
+<head>
+    <meta charset="UTF-8" />
+
+    <title>Home</title>
+<style>
+.button_detail{
+  font-size: 14px;
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 7px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+a.button_detail:hover{
+    color: white !important;
+    background-color:#262626;
+}
+</style>
+
+</head>
+<body>
+    <div style="position: relative;">
+            <div class="mySlides2">
+                <img src="https://midas123.github.io\assets\images\post\OFFTHEBALL\OFFTHEBALL-membership.jpg" />
+                <div id="text">회원가입</div>
+            </div>
+            <div class="mySlides2">
+                <img src="https://midas123.github.io\assets\images\post\OFFTHEBALL\OFFTHEBALL-memberupdate.jpg" />
+                <div id="text">회원정보 수정</div>
+            </div>
+            <div class="mySlides2">
+                <img src="https://midas123.github.io\assets\images\post\OFFTHEBALL\OFFTHEBALL-login.jpg" />
+                <div id="text">로그인</div>
+            </div>
+            <div class="mySlides2">
+                <img src="https://midas123.github.io\assets\images\post\OFFTHEBALL\ofb-memberlist.jpg" />
+                <div id="text">관리자 회원목록</div>
+            </div>
+            <div class="mySlides2">
+                <img src="https://midas123.github.io\assets\images\post\OFFTHEBALL\ofb-memberdetail.jpg" />
+                <div id="text">관리자 회원상세</div>
+            </div>
+            <div>
+                <button class="w3-button w3-display-left" onclick="plusDivs2(-1)" style="position: absolute; left: -20px; top: 43%;">&#10094;</button>    
+                <button class="w3-button w3-display-right" onclick="plusDivs2(+1)" style="position: absolute; right: -20px; top: 43%;">&#10095;</button>
+            </div>
+        </div>
+        <script>    
+        var slideIndex = 1;
+        showDivs2(slideIndex);
+        
+        function plusDivs2(n) {
+            showDivs2(slideIndex += n);
+        }
+        
+        function showDivs2(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides2");
+            if (n > x.length) {slideIndex = 1} 
+            if (n < 1) {slideIndex = x.length} ;
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none"; 
+            }
+            x[slideIndex-1].style.display = "block"; 
+        }
+        
+        </script>
+</body>
+
+<p><br /></p>
+
+<p>제가 팀원으로써 담당한 파트는 아래와 같습니다.</p>
+
+<p><strong>담당 파트</strong> - 회원가입 / 로그인 / 회원정보 수정 / 관리자 페이지 일부 구현
+<br /></p>
+
+<h2 id="index">INDEX</h2>
+
+<ul>
+  <li>
+    <h3 id="회원-가입탈퇴--구현">회원 가입/탈퇴  구현</h3>
+  </li>
+</ul>
+
+<ol>
+  <li><a href="#회원-가입">회원가입</a></li>
+  <li><a href="#회원정보-중복-확인">회원정보 중복 확인</a></li>
+  <li><a href="#자바스크립트로-유효성-검사">자바스크립트로 유효성 검사</a></li>
+  <li><a href="#프로필-이미지-업로드">프로필 이미지 업로드</a></li>
+  <li><a href="#회원정보-수정-탈퇴">회원정보 수정 및 탈퇴</a></li>
+</ol>
+
+<ul>
+  <li>
+    <h3 id="로그인--구현">로그인  구현</h3>
+  </li>
+</ul>
+
+<ol>
+  <li><a href="#로그인">로그인</a></li>
+  <li><a href="#아이디-찾기">아이디 찾기</a></li>
+  <li><a href="#비밀번호-찾기-이메일-전송">비밀번호 찾기 - 이메일 전송</a></li>
+</ol>
+
+<ul>
+  <li>
+    <h3 id="관리자-페이지-구현">관리자 페이지 구현</h3>
+  </li>
+</ul>
+
+<ol>
+  <li><a href="#회원-목록-게시판-검색">회원 목록 게시판&amp;검색</a></li>
+  <li><a href="#회원-정보-상세페이지-등급변경">회원 정보 상세페이지&amp;회원 등급 변경</a></li>
+</ol>
+
+<p><br /><br /><br /><br /></p>
+
+<h1 id="회원-가입-페이지-구현">회원 가입 페이지 구현</h1>
+<p><br />
+<img src="https://midas123.github.io\assets\images\post\OFFTHEBALL\OFFTHEBALL-membership.jpg" alt="" class="center-image" /></p>
+
+<hr />
+
+<h2 id="회원-가입">회원 가입</h2>
+
+<p>form tag로 제출한 회원 정보를 struts의 인터셉터가 memVO(DTO) 객체에 담아줍니다.
+getter/setter 메서드로 일일이 DTO 객체에 담는 코드를 줄일 수 있었습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">prepare</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">memberParam</span> <span class="o">=</span> <span class="k">new</span> <span class="n">memVO</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="n">memVO</span> <span class="nf">getModel</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">memberParam</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">execute</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">memberParam</span><span class="o">.</span><span class="na">setAdmin_yn</span><span class="o">(</span><span class="n">genUser</span><span class="o">);</span>
+		<span class="n">memberParam</span><span class="o">.</span><span class="na">setM_joindate</span><span class="o">(</span><span class="n">m_joindate</span><span class="o">.</span><span class="na">getTime</span><span class="o">());</span>
+		<span class="n">sqlMapper</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="s">"memSQL.insertMem"</span><span class="o">,</span> <span class="n">memberParam</span><span class="o">);</span>
+</code></pre></div></div>
+<p><br /><br /></p>
+
+<h2 id="회원정보-중복-확인">회원정보 중복 확인</h2>
+
+<p>회원가입시 사용자가 입력한 ID, 닉네임, 이메일이 중복되는지 확인합니다. DB에서 SELECT 문으로 검색하여 일치하는 값이 없을 경우  getIdcheckresult()는 1을 리턴합니다. idcheckresult의 값에 따라서 웹브라우저에 출력되는 화면이 달라집니다. 닉네임과 이메일 중복 체크도 같은 방식으로 동작합니다.</p>
+
+<p><img src="https://midas123.github.io\assets\images\post\OFFTHEBALL\OFFTHEBALL-checkid.jpg" alt="" class="center-image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">String</span> <span class="nf">idcheck</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">memberResult</span> <span class="o">=</span> <span class="o">(</span><span class="n">memVO</span><span class="o">)</span> <span class="n">sqlMapper</span><span class="o">.</span><span class="na">queryForObject</span><span class="o">(</span><span class="s">"memSQL.idcheck"</span><span class="o">,</span> <span class="n">memberParam</span><span class="o">);</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">memberResult</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+			<span class="n">idcheckresult</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="k">return</span> <span class="n">SUCCESS</span><span class="o">;</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+<p><br /><br /></p>
+
+<h2 id="자바스크립트로-유효성-검사">자바스크립트로 유효성 검사</h2>
+
+<p>정규표현식을 사용해서 회원 가입시 입력한 데이터에 대해서 좀 더 정확하게 유효성 검사가 동작하도록 구현했습니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">checkIt</span><span class="p">(){</span>
+ 	<span class="kd">var</span> <span class="nx">userinput</span> <span class="o">=</span> <span class="kr">eval</span><span class="p">(</span><span class="s2">"document.userinput"</span><span class="p">);</span>
+ 	<span class="c1">//아이디 유효성 검사 정규식</span>
+	<span class="kd">var</span> <span class="nx">idExp</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">[</span><span class="sr">a-zA-Z0-9</span><span class="se">]{4,12}</span><span class="sr">$/</span><span class="p">;</span> 
+	<span class="c1">//이름 유효성 검사 정규식</span>
+	<span class="kd">var</span> <span class="nx">nameExp</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">~!@</span><span class="se">\#</span><span class="sr">$%&lt;&gt;^&amp;*</span><span class="se">\(</span><span class="sr">)</span><span class="se">\-</span><span class="sr">=+_</span><span class="se">\’]</span><span class="sr">/gi</span><span class="p">;</span>
+	<span class="c1">//닉네임 유효성 검사 정규식</span>
+	<span class="kd">var</span> <span class="nx">nickExp</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">~!@</span><span class="se">\#</span><span class="sr">$%&lt;&gt;^&amp;*</span><span class="se">\(</span><span class="sr">)</span><span class="se">\-</span><span class="sr">=+_</span><span class="se">\’]</span><span class="sr">/gi</span><span class="p">;</span>
+	<span class="c1">//이메일 유효성 검사 정규식</span>
+	<span class="kd">var</span> <span class="nx">emailExp</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">[</span><span class="sr">0-9a-zA-Z</span><span class="se">]([</span><span class="sr">-_</span><span class="se">\.]?[</span><span class="sr">0-9a-zA-Z</span><span class="se">])</span><span class="sr">*@</span><span class="se">[</span><span class="sr">0-9a-zA-Z</span><span class="se">]([</span><span class="sr">-_</span><span class="se">\.]?[</span><span class="sr">0-9a-zA-Z</span><span class="se">])</span><span class="sr">*</span><span class="se">\.[</span><span class="sr">a-zA-Z</span><span class="se">]{2,3}</span><span class="sr">$/i</span><span class="p">;</span>
+	<span class="c1">//휴대폰 번호 유효성 검사 정규식</span>
+	<span class="kd">var</span> <span class="nx">phoneExp</span> <span class="o">=</span> <span class="sr">/^01</span><span class="se">([</span><span class="sr">0|1|6|7|8|9</span><span class="se">]?)</span><span class="sr">-</span><span class="se">?([</span><span class="sr">0-9</span><span class="se">]{3,4})</span><span class="sr">-</span><span class="se">?([</span><span class="sr">0-9</span><span class="se">]{4})</span><span class="sr">$/</span><span class="p">;</span>
+	<span class="c1">//출생연도</span>
+	<span class="kd">var</span> <span class="nx">yearExp</span> <span class="o">=</span><span class="sr">/^</span><span class="se">[</span><span class="sr">0-9</span><span class="se">]{4}</span><span class="sr">$/</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">userinput</span><span class="p">.</span><span class="nx">m_id</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">pw</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">userinput</span><span class="p">.</span><span class="nx">m_passwd</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">userinput</span><span class="p">.</span><span class="nx">m_name</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">nick</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">userinput</span><span class="p">.</span><span class="nx">m_nickname</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+	 <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">idExp</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">id</span><span class="p">)){</span>
+		<span class="nx">alert</span><span class="p">(</span><span class="s2">"아이디는 특수문자/한글/공백은 사용할 수 없습니다.(4자 이상)"</span><span class="p">);</span>
+	 	<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	 <span class="p">}</span>
+	 <span class="k">if</span><span class="p">(</span><span class="nx">pw</span><span class="p">.</span><span class="nx">length</span><span class="o">&lt;</span><span class="mi">8</span><span class="o">||</span><span class="nx">pw</span><span class="p">.</span><span class="nx">length</span><span class="o">&gt;</span><span class="mi">20</span><span class="p">){</span>
+		 <span class="nx">alert</span><span class="p">(</span><span class="s2">"비밀번호는 8자리 ~20자리 이내로 입력해주세요."</span><span class="p">);</span>
+			  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+	 <span class="p">}</span>
+</code></pre></div></div>
+<p><br /><br /></p>
+
+<h2 id="프로필-이미지-업로드">프로필 이미지 업로드</h2>
+
+<p>회원정보를 저장하는 excute() 메서드에서 동작합니다. 저장소에서 파일 이름이 겹치지 않도록 회원ID로 파일명을 새로 만들고 원본 파일명을 따로 저장했습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.io.FileUtils</span><span class="o">;</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">getUpload</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="c1">// 파일명 + ID</span>
+			<span class="n">String</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s">"file_"</span> <span class="o">+</span> <span class="n">memberParam</span><span class="o">.</span><span class="na">getM_id</span><span class="o">();</span>
+			<span class="c1">// 파일 확장자를 가져온다</span>
+			<span class="n">String</span> <span class="n">file_ext</span> <span class="o">=</span> <span class="n">getUploadFileName</span><span class="o">().</span><span class="na">substring</span><span class="o">(</span><span class="n">getUploadFileName</span><span class="o">().</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="sc">'.'</span><span class="o">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span>
+					<span class="n">getUploadFileName</span><span class="o">().</span><span class="na">length</span><span class="o">());</span>
+			<span class="c1">// 파일의 경로와 이름을 file객체에 담는다</span>
+			<span class="n">File</span> <span class="n">destFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">fileUploadPath</span> <span class="o">+</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s">"."</span> <span class="o">+</span> <span class="n">file_ext</span><span class="o">);</span>
+			<span class="c1">// 임시파일을 복사 후 설정한 이름과 경로(서버 컴퓨터)에 저장한다.</span>
+			<span class="n">FileUtils</span><span class="o">.</span><span class="na">copyFile</span><span class="o">(</span><span class="n">getUpload</span><span class="o">(),</span> <span class="n">destFile</span><span class="o">);</span>
+			<span class="n">memberParam</span><span class="o">.</span><span class="na">setM_id</span><span class="o">(</span><span class="n">memberParam</span><span class="o">.</span><span class="na">getM_id</span><span class="o">());</span>
+			<span class="n">memberParam</span><span class="o">.</span><span class="na">setProf_image_org</span><span class="o">(</span><span class="n">getUploadFileName</span><span class="o">());</span>
+			<span class="n">memberParam</span><span class="o">.</span><span class="na">setProf_image_save</span><span class="o">(</span><span class="n">file_name</span> <span class="o">+</span> <span class="s">"."</span> <span class="o">+</span> <span class="n">file_ext</span><span class="o">);</span>
+
+		<span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+			<span class="n">String</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s">"noImage.jpg"</span><span class="o">;</span>
+			<span class="n">memberParam</span><span class="o">.</span><span class="na">setM_id</span><span class="o">(</span><span class="n">memberParam</span><span class="o">.</span><span class="na">getM_id</span><span class="o">());</span>
+			<span class="n">memberParam</span><span class="o">.</span><span class="na">setProf_image_org</span><span class="o">(</span><span class="n">file_name</span><span class="o">);</span>
+			<span class="n">memberParam</span><span class="o">.</span><span class="na">setProf_image_save</span><span class="o">(</span><span class="n">file_name</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="c1">// DB에 파일의 원본이름과 새로 설정한 이름을 업데이트한다.</span>
+		<span class="n">sqlMapper</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="s">"memSQL.updateProfile"</span><span class="o">,</span> <span class="n">memberParam</span><span class="o">);</span>
+		<span class="k">return</span> <span class="n">SUCCESS</span><span class="o">;</span>
+</code></pre></div></div>
+<p><br /><br /></p>
+
+<h2 id="회원정보-수정-탈퇴">회원정보 수정 탈퇴</h2>
+
+<p>회원이 로그인 후 자신의 가입 정보를 확인하고 수정하고 탈퇴할 수 있는 기능을 구현했습니다. 회원 정보와 프로필 이미지를 구분해서 처리하도록 하였습니다.</p>
+
+<p><br /></p>
+
+<p><em>-회원 정보 수정</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="kd">public</span> <span class="n">String</span> <span class="nf">modifyMemPro</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="c1">//회원 정보 수정내역을 DB에 저장</span>
+		<span class="n">sqlMapper</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="s">"memSQL.updateMem"</span><span class="o">,</span> <span class="n">memberParam</span><span class="o">);</span>
+
+		<span class="k">if</span> <span class="o">(</span><span class="n">getUpload</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//회원정보 수정 form태그 제출에 프로필 이미지가 포함되었을때</span>
+			<span class="c1">//이전 프로필 이미지 삭제</span>
+			<span class="k">if</span><span class="o">(!</span><span class="n">memberParam</span><span class="o">.</span><span class="na">getProf_image_save</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">"noImage.jpg"</span><span class="o">))</span> <span class="o">{</span>
+				<span class="n">deletefile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">fileUploadPath</span> <span class="o">+</span> <span class="n">memberParam</span><span class="o">.</span><span class="na">getProf_image_save</span><span class="o">());</span>
+
+				<span class="k">if</span> <span class="o">(</span><span class="n">deletefile</span><span class="o">.</span><span class="na">isFile</span><span class="o">())</span>
+					<span class="n">FileUtils</span><span class="o">.</span><span class="na">forceDelete</span><span class="o">(</span><span class="n">deletefile</span><span class="o">);</span>
+			<span class="o">}</span> 
+			<span class="c1">//새로운 프로필 이미지 저장</span>
+			<span class="n">String</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s">"file_"</span> <span class="o">+</span> <span class="n">memberParam</span><span class="o">.</span><span class="na">getM_id</span><span class="o">();</span>
+			<span class="n">String</span> <span class="n">file_ext</span> <span class="o">=</span> <span class="n">getUploadFileName</span><span class="o">().</span><span class="na">substring</span><span class="o">(</span><span class="n">getUploadFileName</span><span class="o">().</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="sc">'.'</span><span class="o">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span>
+					<span class="n">getUploadFileName</span><span class="o">().</span><span class="na">length</span><span class="o">());</span>
+			<span class="n">File</span> <span class="n">destFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">fileUploadPath</span> <span class="o">+</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s">"."</span> <span class="o">+</span> <span class="n">file_ext</span><span class="o">);</span>
+			<span class="n">FileUtils</span><span class="o">.</span><span class="na">copyFile</span><span class="o">(</span><span class="n">getUpload</span><span class="o">(),</span> <span class="n">destFile</span><span class="o">);</span>
+			
+			<span class="n">memberParam</span><span class="o">.</span><span class="na">setProf_image_org</span><span class="o">(</span><span class="n">getUploadFileName</span><span class="o">());</span>
+			<span class="n">memberParam</span><span class="o">.</span><span class="na">setProf_image_save</span><span class="o">(</span><span class="n">file_name</span> <span class="o">+</span> <span class="s">"."</span> <span class="o">+</span> <span class="n">file_ext</span><span class="o">);</span>
+			<span class="n">memberParam</span><span class="o">.</span><span class="na">setM_id</span><span class="o">(</span><span class="n">memberParam</span><span class="o">.</span><span class="na">getM_id</span><span class="o">());</span>
+			<span class="c1">//회원 프로필 이미지 수정 내역을 DB에 저장</span>
+			<span class="n">sqlMapper</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="s">"memSQL.updateProfile"</span><span class="o">,</span> <span class="n">memberParam</span><span class="o">);</span>
+		<span class="o">}</span>
+
+		<span class="k">return</span> <span class="n">SUCCESS</span><span class="o">;</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+<p><br /> 
+<em>-회원 탈퇴</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">String</span> <span class="nf">deleteMem</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">memberResult</span><span class="o">.</span><span class="na">getProf_image_save</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="c1">//파일 삭제</span>
+			<span class="n">File</span> <span class="n">deleteFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">fileUploadPath</span> <span class="o">+</span> <span class="n">memberResult</span><span class="o">.</span><span class="na">getProf_image_save</span><span class="o">());</span>
+			<span class="n">deleteFile</span><span class="o">.</span><span class="na">delete</span><span class="o">();</span>
+		<span class="o">}</span>
+		<span class="c1">//회원정보 삭제</span>
+		<span class="n">sqlMapper</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"memSQL.deleteMem"</span><span class="o">,</span> <span class="n">memberParam</span><span class="o">);</span>
+    	<span class="n">deletemembercheck</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">//처리결과를 구분해서 화면 출력</span>
+		<span class="n">session</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="s">"session_id"</span><span class="o">);</span> <span class="c1">//세션에 저장된 ID 삭제</span>
+		<span class="n">session</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="s">"session_adminYN"</span><span class="o">);</span> <span class="c1">//회원등급 삭제</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /><br /><br /><br /></p>
+
+<hr />
+
+<h1 id="로그인-페이지-구현">로그인 페이지 구현</h1>
+
+<p><br /></p>
+<h2 id="로그인">로그인</h2>
+
+<p>로그인시 입력한 데이터로 회원 정보를  DB에서 SELECT 문으로 검색하고 그 결과를 객체에 담아서 if문으로 처리하였습니다. if문 조건에 만족하면 세션에 회원 ID와 멤버등급을 저장합니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="kd">public</span> <span class="n">String</span> <span class="nf">execute</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">memberResult</span> <span class="o">=</span> <span class="o">(</span><span class="n">memVO</span><span class="o">)</span><span class="n">sqlMapper</span><span class="o">.</span><span class="na">queryForObject</span><span class="o">(</span><span class="s">"memSQL.loginPro"</span><span class="o">,</span><span class="n">memberParam</span><span class="o">);</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">memberResult</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="kt">int</span> <span class="n">adminYN</span> <span class="o">=</span> <span class="n">memberResult</span><span class="o">.</span><span class="na">getAdmin_yn</span><span class="o">();</span>
+				<span class="n">session</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"session_id"</span><span class="o">,</span> <span class="n">memberResult</span><span class="o">.</span><span class="na">getM_id</span><span class="o">());</span>
+				<span class="n">session</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"session_adminYN"</span><span class="o">,</span> <span class="n">adminYN</span><span class="o">);</span>
+				<span class="k">return</span> <span class="n">SUCCESS</span><span class="o">;</span>
+			
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="n">ERROR</span><span class="o">;</span>
+		<span class="o">}</span>
+		
+	<span class="o">}</span>
+</code></pre></div></div>
+<p><br /><br /></p>
+
+<h2 id="아이디-찾기">아이디 찾기</h2>
+
+<p>사용자가 아이디 찾기 요청시 입력한 데이터로 DB에서 회원ID를 찾아서 결과를 출력해줍니다. 아이디를 그대로 보여주지 않고 “ * “으로 가려서 출력해주도록 구현했습니다. 그러나 당시에 작성한 코드(위)는 id에서 정해진 부분만을 일부 가리는 방식이였고 문제점을 보완한 코드(아래)를 작성하였습니다.</p>
+
+<p><em>-수정 전</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="kd">public</span> <span class="n">String</span> <span class="nf">findId</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+		<span class="n">memberResult</span> <span class="o">=</span> <span class="o">(</span><span class="n">memVO</span><span class="o">)</span><span class="n">sqlMapper</span><span class="o">.</span><span class="na">queryForObject</span><span class="o">(</span><span class="s">"memSQL.findId"</span><span class="o">,</span><span class="n">memberParam</span><span class="o">);</span>
+		
+		<span class="k">if</span><span class="o">(</span><span class="n">memberResult</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">String</span> <span class="n">findIdResult</span> <span class="o">=</span> <span class="n">memberResult</span><span class="o">.</span><span class="na">getM_id</span><span class="o">();</span>
+		<span class="kt">int</span> <span class="n">idLength</span> <span class="o">=</span> <span class="n">findIdResult</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+		<span class="k">if</span><span class="o">(</span><span class="mi">5</span> <span class="o">&lt;</span> <span class="n">idLength</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">m_id</span> <span class="o">=</span> <span class="n">findIdResult</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">"*"</span> <span class="o">+</span> <span class="n">findIdResult</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">)</span> <span class="o">+</span> <span class="s">"*"</span> <span class="o">+</span> <span class="n">findIdResult</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span><span class="n">idLength</span><span class="o">);</span>
+			<span class="n">memberResult</span><span class="o">.</span><span class="na">setM_id</span><span class="o">(</span><span class="n">m_id</span><span class="o">);</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">SUCCESS</span><span class="o">;</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+
+<p><em>-수정 후</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>		<span class="k">if</span><span class="o">(</span><span class="n">memberResult</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">String</span> <span class="n">findIdResult</span> <span class="o">=</span> <span class="n">memberResult</span><span class="o">.</span><span class="na">getM_id</span><span class="o">();</span>
+		
+		<span class="n">String</span><span class="o">[]</span> <span class="n">idToArray</span> <span class="o">=</span> <span class="n">findIdResult</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+		<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">con_Id</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">idToArray</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">i</span><span class="o">&gt;</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+				<span class="n">con_Id</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="s">"*"</span><span class="o">);</span>
+			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+				<span class="n">con_Id</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">idToArray</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		<span class="n">String</span><span class="o">[]</span> <span class="n">idArray</span> <span class="o">=</span> <span class="n">con_Id</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">con_Id</span><span class="o">.</span><span class="na">size</span><span class="o">()]);</span>
+		<span class="n">String</span> <span class="n">blindId</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">""</span><span class="o">,</span> <span class="n">idArray</span><span class="o">);</span>
+		<span class="n">memberResult</span><span class="o">.</span><span class="na">setM_id</span><span class="o">(</span><span class="n">blindId</span><span class="o">);</span>
+</code></pre></div></div>
+<p><em>-출력 화면</em></p>
+
+<p><img src="C:\Users\ykk\midas123\assets\images\post\OFFTHEBALL\oft-oft-findidresult.jpg" alt="" class="center-image" /></p>
+
+<p><br /><br /></p>
+
+<h2 id="비밀번호-찾기-이메일-전송">비밀번호 찾기 이메일 전송</h2>
+
+<p>사용자가 비밀번호 찾기 요청시 입력한 데이터로 DB에서 회원 비밀번호를 찾은 후 회원에게 이메일로 자동 전송해주는 기능을 구현하였습니다. JavaMail API를 이용했습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="kd">public</span> <span class="n">String</span> <span class="nf">findPw</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+		<span class="n">memberResult</span> <span class="o">=</span> <span class="o">(</span><span class="n">memVO</span><span class="o">)</span><span class="n">sqlMapper</span><span class="o">.</span><span class="na">queryForObject</span><span class="o">(</span><span class="s">"memSQL.findPw"</span><span class="o">,</span><span class="n">memberParam</span><span class="o">);</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">memberResult</span> <span class="o">!=</span><span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">"line.separator"</span><span class="o">);</span>
+		<span class="n">String</span> <span class="n">subject</span> <span class="o">=</span> <span class="n">memberResult</span><span class="o">.</span><span class="na">getM_name</span><span class="o">()+</span><span class="s">"님, 비밀번호를 알려드립니다. -OFFTHEBALL"</span><span class="o">;</span>
+		<span class="n">String</span> <span class="n">content</span> <span class="o">=</span>
+			      <span class="s">"안녕하세요. OFF THE BALL 관리자 입니다."</span> <span class="o">+</span> <span class="n">line</span>
+			    <span class="o">+</span> <span class="n">memberResult</span><span class="o">.</span><span class="na">getM_name</span><span class="o">()</span> <span class="o">+</span> <span class="s">"님, 고객님 비밀번호는 "</span> <span class="o">+</span> <span class="n">memberResult</span><span class="o">.</span><span class="na">getM_passwd</span><span class="o">()</span> <span class="o">+</span><span class="s">" 입니다."</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="n">line</span>
+			    <span class="o">+</span><span class="s">"저희 OFF THE BALL은 비밀번호 찾기 결과를 가입하신 이메일로 보내드리고 있습니다."</span> <span class="o">+</span> <span class="n">line</span>
+			    <span class="o">+</span> <span class="s">"비밀번호 찾기를 요청하신 적이 없거나 다른 문의사항이 있으시면 아래 메일로 문의해주시기 바랍니다."</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="n">line</span>
+			    <span class="o">+</span> <span class="s">"about.offtheball@gmail.co.kr"</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="n">line</span>
+			    <span class="o">+</span> <span class="s">"※주의: 저희는 고객님의 개인정보를 묻지 않습니다. 관리자 사칭에 주의하시기 바랍니다."</span> <span class="o">+</span> <span class="n">line</span><span class="o">;</span>
+		<span class="n">Emailsend</span> <span class="n">mail</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Emailsend</span><span class="o">();</span>
+		<span class="n">mail</span><span class="o">.</span><span class="na">GmailSet</span><span class="o">(</span><span class="n">memberResult</span><span class="o">.</span><span class="na">getM_email</span><span class="o">(),</span> <span class="n">subject</span><span class="o">,</span> <span class="n">content</span><span class="o">);</span>
+		<span class="k">return</span> <span class="n">SUCCESS</span><span class="o">;</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="n">ERROR</span><span class="o">;</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<p><em>-이메일 수신 결과</em></p>
+
+<p><img src="https://midas123.github.io\assets\images\post\OFFTHEBALL\OFFTHEBALL-findpw-result.jpg" alt="" class="center-image" /></p>
+
+<h1 id="관리자-페이지">관리자 페이지</h1>
+
+<h2 id="회원-목록-게시판-검색">회원 목록 게시판 검색</h2>
+
+<p>회원 목록을 출력하는 게시판 입니다. 회원 검색 기능도 추가하였습니다. 회원의 아이디, 이름, 이메일로 회원을 검색할 수 있습니다.</p>
+
+<p><img src="https://midas123.github.io\assets\images\post\OFFTHEBALL\ofb-memberlist.jpg" alt="" class="center-image" /></p>
+
+<p><em>-회원 이름으로 검색한 결과</em></p>
+
+<p><img src="https://midas123.github.io\assets\images\post\OFFTHEBALL\ofb-memberlistsearch.jpg" alt="" class="center-image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">"unchecked"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">memberList</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">session</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"session_id"</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//로그인 안된 사용자 처리</span>
+			<span class="k">return</span> <span class="n">LOGIN</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="k">if</span><span class="o">((</span><span class="n">Integer</span><span class="o">)</span><span class="n">session</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"session_adminYN"</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//관리자 등급이 아닌 사용자 처리</span>
+			<span class="k">return</span> <span class="n">ERROR</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="n">String</span> <span class="n">paging</span> <span class="o">=</span> <span class="s">"adminMemList"</span><span class="o">;</span>
+		
+		<span class="k">if</span> <span class="o">(</span><span class="n">getSearch</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">getSearch</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">""</span><span class="o">))</span> <span class="o">{</span> <span class="c1">//회원목록 페이지 처리</span>
+			<span class="n">memlist</span> <span class="o">=</span> <span class="n">sqlMapper</span><span class="o">.</span><span class="na">queryForList</span><span class="o">(</span><span class="s">"memSQL.memList"</span><span class="o">);</span>
+			<span class="n">totalCount</span> <span class="o">=</span> <span class="n">memlist</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+			<span class="c1">//페이징</span>
+			<span class="n">page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">pagingAction</span><span class="o">(</span><span class="n">currentPage</span><span class="o">,</span> <span class="n">totalCount</span><span class="o">,</span> <span class="n">blockCount</span><span class="o">,</span> <span class="n">blockPage</span><span class="o">,</span> <span class="n">paging</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">//회원 정보 검색 결과 페이지 처리</span>
+			<span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">searchMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+			<span class="n">String</span> <span class="n">topics</span><span class="o">[]</span> <span class="o">=</span> <span class="o">{</span> <span class="s">"m_id"</span><span class="o">,</span> <span class="s">"m_name"</span><span class="o">,</span> <span class="s">"m_email"</span> <span class="o">};</span> <span class="c1">//회원 아이디,이름,이메일 중 선택 후 회원 정보 검색</span>
+			<span class="n">searchMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"param1"</span><span class="o">,</span> <span class="n">topics</span><span class="o">[</span><span class="n">getTopic</span><span class="o">()]);</span>
+			<span class="n">searchMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"param2"</span><span class="o">,</span> <span class="s">"%"</span> <span class="o">+</span> <span class="n">getSearch</span><span class="o">()</span> <span class="o">+</span> <span class="s">"%"</span><span class="o">);</span> <span class="c1">//검색어</span>
+			<span class="n">memlist</span> <span class="o">=</span> <span class="n">sqlMapper</span><span class="o">.</span><span class="na">queryForList</span><span class="o">(</span><span class="s">"memSQL.memSearch"</span><span class="o">,</span> <span class="n">searchMap</span><span class="o">);</span>
+			<span class="n">totalCount</span> <span class="o">=</span> <span class="n">memlist</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+			<span class="c1">//페이징</span>
+			<span class="n">page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">pagingAction</span><span class="o">(</span><span class="n">currentPage</span><span class="o">,</span> <span class="n">totalCount</span><span class="o">,</span> <span class="n">blockCount</span><span class="o">,</span> <span class="n">blockPage</span><span class="o">,</span> <span class="n">getTopic</span><span class="o">(),</span> <span class="n">getSearch</span><span class="o">(),</span><span class="n">paging</span><span class="o">);</span>																							
+		<span class="o">}</span>
+		<span class="c1">//웹브라우저 화면에서 출력될 페이징 html코드</span>
+		<span class="n">pagingHtml</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="na">getPagingHtml</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+		<span class="kt">int</span> <span class="n">lastCount</span> <span class="o">=</span> <span class="n">totalCount</span><span class="o">;</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">page</span><span class="o">.</span><span class="na">getEndCount</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">totalCount</span><span class="o">)</span>
+			<span class="n">lastCount</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="na">getEndCount</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="n">memlist</span> <span class="o">=</span> <span class="n">memlist</span><span class="o">.</span><span class="na">subList</span><span class="o">(</span><span class="n">page</span><span class="o">.</span><span class="na">getStartCount</span><span class="o">(),</span> <span class="n">lastCount</span><span class="o">);</span>
+
+		<span class="k">return</span> <span class="n">SUCCESS</span><span class="o">;</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="회원-정보-상세페이지-등급변경">회원 정보 상세페이지 등급변경</h2>
+
+<p>회원 목록에서 회원을 클릭하면 상세페이지로 이동합니다. 회원 등급 변경 기능을 구현하였습니다.</p>
+
+<p><img src="https://midas123.github.io\assets\images\post\OFFTHEBALL\ofb-memberdetail.jpg" alt="" class="center-image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="kd">public</span> <span class="n">String</span> <span class="nf">memberView</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">session</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"session_id"</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="n">LOGIN</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="k">if</span><span class="o">((</span><span class="n">Integer</span><span class="o">)</span><span class="n">session</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"session_adminYN"</span><span class="o">)!=</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="n">ERROR</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="n">memberResult</span> <span class="o">=</span> <span class="o">(</span><span class="n">memVO</span><span class="o">)</span> <span class="n">sqlMapper</span><span class="o">.</span><span class="na">queryForObject</span><span class="o">(</span><span class="s">"memSQL.memListView"</span><span class="o">,</span> <span class="n">memberParam</span><span class="o">);</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">memberResult</span><span class="o">.</span><span class="na">getProf_image_save</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">prof_image_save</span> <span class="o">=</span> <span class="n">memberResult</span><span class="o">.</span><span class="na">getProf_image_save</span><span class="o">();</span>
+			<span class="n">prof_image_org</span> <span class="o">=</span> <span class="n">memberResult</span><span class="o">.</span><span class="na">getProf_image_org</span><span class="o">();</span>
+			
+			<span class="n">profpath</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getContextPath</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/admin/member/profUpload/"</span> <span class="o">+</span> <span class="n">prof_image_save</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">SUCCESS</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">adminRightModi</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">sqlMapper</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="s">"memSQL.updateAdminYN"</span><span class="o">,</span> <span class="n">memberParam</span><span class="o">);</span>
+		<span class="k">return</span> <span class="n">SUCCESS</span><span class="o">;</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/javascript" class="page__taxonomy-item" rel="tag">javascript</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/maven" class="page__taxonomy-item" rel="tag">maven</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/oracle" class="page__taxonomy-item" rel="tag">oracle</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/struts" class="page__taxonomy-item" rel="tag">struts</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2019-01-22T00:00:00+00:00">January 22, 2019</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2019/01/21/install-jekyll-in-windows10.html" class="pagination--pager" title="윈도우10에서 jekyll 설치하기
+">이전</a>
+    
+    
+      <a href="/2019/01/26/ModuHome.html" class="pagination--pager" title="ModuHome
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <section id="disqus_thread">
+    <script>
+    
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ykblog-2.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow" style="padding-top: 10px;">
+   <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2019 yk-dev-blog. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+
+
+
+
+
+
+
+
+  </body>
+</html>
